@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="AscepionLIMS"
+  id="myeclipse.1210224438484"
+  context-root="/AscepionLIMS"
+  j2ee-spec="1.4"
+  archive="AscepionLIMS.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
