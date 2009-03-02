@@ -34,6 +34,40 @@
 		<url-pattern>/MainServlet</url-pattern>
 	</servlet-mapping>
 
+	<!-- DWR conifguation -->
+	<servlet>
+		<servlet-name>dwr-invoker</servlet-name>
+		<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>WEB-INF/dwr.xml</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+		<init-param>
+			<param-name>scriptCompressed</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<!-- Standard Action Servlet Mapping -->
+		<servlet-name>MainServlet</servlet-name>
+		<url-pattern>/MainServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>dwr-invoker</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+	<session-config>
+		<session-timeout>20</session-timeout>
+	</session-config>
+
+
 	<welcome-file-list>
 		<welcome-file>/core/Login.jsp</welcome-file>
 	</welcome-file-list>

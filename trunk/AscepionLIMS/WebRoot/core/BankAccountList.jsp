@@ -12,7 +12,7 @@
 	
 	bankRepos.destroy();
 %>
-<h5><fmt:message key="module.purchasing.purchaserequest"/>:</h5>
+<h5>Bank List:</h5>
 <hr>
 
 <center>

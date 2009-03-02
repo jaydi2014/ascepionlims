@@ -112,6 +112,15 @@ public class DepartmentRepository extends LIMSRepository implements
 					+ "Unknown error caught in method getAll. " + e.getMessage());
 		}
 	}
+	
+	public List getAllDwr() throws RepositoryException{
+		Item[] all = getAll();
+		List allDwr = new ArrayList();
+		for(int i=0;i<all.length;i++){
+			allDwr.add(all[i]);
+		}
+		return allDwr;
+	}
 
 	public Item[] getList(int departmentid) throws RepositoryException {
 		try {

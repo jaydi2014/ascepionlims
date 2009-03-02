@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta NAME="author" CONTENT="Peter Csizmadia">
+<link REL ="stylesheet" TYPE="text/css" HREF="../../../marvinmanuals.css" TITLE="Style">
+<title>MarvinSketch Example - Visualizing 3D structures</title>
+</head>
+<body onLoad="links_set_search(location.search)">
+
+<h1>MarvinSketch Example - Visualizing 3D structures</h1>
+
+<p>This example demonstrates how to convert the input structure to 3D.</p>
+
+<center>
+<script LANGUAGE="JavaScript1.1" SRC="../../../marvin.js"></script>
+<script LANGUAGE="JavaScript1.1">
+<!--
+msketch_begin("../../..", 400, 400);
+msketch_param("importConv","c");
+msketch_param("cleanDim","3");
+msketch_param("mol", "../../../mols-2d/vitaminc.csmol");
+msketch_end();
+//-->
+</script>
+</center>
+
+<blockquote>
+<pre>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot; <strong>SRC</strong>=&quot;../../../<a HREF="../marvin.js.txt">marvin.js</a>&quot;<strong>&gt;</strong><strong>&lt;/script&gt;</strong>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot;<strong>&gt;</strong>
+<strong>&lt;!--</strong>
+<strong>msketch_begin(</strong>&quot;../../..&quot;<strong>,</strong> 400<strong>,</strong> 400<strong>);</strong>
+<strong>msketch_param(</strong>&quot;<a HREF="../../../help/developer/sketchman.html#parameters.importConv">importConv</a>&quot;<strong>,</strong>&quot;c&quot;<strong>);</strong>
+<strong>msketch_param(</strong>&quot;<a HREF="../../../help/developer/sketchman.html#parameters.cleanDim">cleanDim</a>&quot;<strong>,</strong>&quot;3&quot;<strong>);</strong>
+<strong>msketch_param(</strong>&quot;<a HREF="../../../help/developer/sketchman.html#parameters.mol">mol</a>&quot;<strong>,</strong> &quot;../../../mols-2d/caffeine.mol&quot;<strong>);</strong>
+<strong>msketch_end();</strong>
+<strong>//--&gt;</strong>
+<strong>&lt;/script&gt;</strong>
+</pre>
+</blockquote>
+
+</body>
+</html>

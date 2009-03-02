@@ -1,0 +1,266 @@
+<html>
+<head>
+<meta NAME="author" CONTENT="Peter Csizmadia">
+<link REL ="stylesheet" TYPE="text/css" HREF="../../../marvinmanuals.css" TITLE="Style">
+<title>MarvinSketch Example - Import/export of built-in and
+	user defined molecule formats in JavaScript</title>
+</head>
+<body onLoad="links_set_search(location.search)">
+
+<h1>MarvinSketch Example - Import/export of built-in and
+	user defined molecule formats in JavaScript</h1>
+
+Press the <strong>Import</strong> button to import the molfile into MarvinSketch.
+Change the molecule (delete some atoms or bonds, draw new ones),
+select a molecule format from the list, then try the <strong>Export</strong>
+buttons.
+
+You can import a SMARTS string from the text box by using the <strong>Import
+SMARTS</strong> button. To import or export a molecule in <em>myformat</em>,
+press the <strong>Import myformat</strong> or <strong>Export myformat</strong>
+button.
+<p>
+<center>
+<form NAME=MolForm onSubmit="return false">
+<textarea NAME="MolTxt" ROWS=20 COLS=70>
+3,7-Dihydro-1,3,7-trimethyl-1H-purine-2,6-dione
+  Marvin  07099920012D
+
+ 14 15  0  0  0  0  0  0  0  0999 V2000
+   -2.0245   -2.6287    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.0245   -1.0107    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.7156   -0.0596    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4367   -1.8197    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.8415   -0.8197    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -5.5735   -0.8197    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -4.7075   -2.3196    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.8415   -3.8197    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.9755   -2.3196    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.9755   -1.3197    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.8415    0.1803    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -5.5735   -2.8197    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -4.7075   -1.3197    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.8415   -2.8197    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+  5 13  1  0  0  0  0
+ 13  7  1  0  0  0  0
+  7 14  1  0  0  0  0
+ 14  9  1  0  0  0  0
+  9 10  2  0  0  0  0
+  5 10  1  0  0  0  0
+  4  2  1  0  0  0  0
+  2 10  1  0  0  0  0
+  9  1  1  0  0  0  0
+  4  1  2  0  0  0  0
+  2  3  1  0  0  0  0
+  5 11  2  0  0  0  0
+ 13  6  1  0  0  0  0
+  7 12  2  0  0  0  0
+ 14  8  1  0  0  0  0
+M  END
+</textarea>
+<p>
+<input TYPE=BUTTON VALUE="Import" onClick="importMol(null)">
+<input TYPE=BUTTON VALUE="Import SMARTS" onClick="importMol('smarts:')">
+<input TYPE=BUTTON VALUE="Import myformat" onClick="importMol('myformat:')">
+</p>
+<p>Export format:
+<select name="molformat">
+<option VALUE="cml">cml</option>
+<option VALUE="csmol">csmol</option>
+<option VALUE="csrdf">csrdf</option>
+<option VALUE="csrxn">csrxn</option>
+<option VALUE="cssdf">cssdf</option>
+<option SELECTED VALUE="mol">mol</option>
+<option VALUE="mrv">mrv</option>
+<option VALUE="name">name</option>
+<option VALUE="rdf">rdf</option>
+<option VALUE="rxn">rxn</option>
+<option VALUE="smarts">smarts</option>
+<option VALUE="smiles">smiles</option>
+<option VALUE="sdf">sdf</option>
+<option VALUE="sybyl">sybyl</option>
+</select>
+<input TYPE=BUTTON VALUE="Export" onClick="exportMol(getFormat())">
+<input TYPE=BUTTON VALUE="Export myformat" onClick="exportMol('myformat')">
+<input TYPE=BUTTON VALUE="Undo" onClick="undo()">
+<input TYPE=BUTTON VALUE="Redo" onClick="redo()"></p>
+</form>
+
+<script LANGUAGE="JavaScript1.1" SRC="../../../marvin.js"></script>
+<script LANGUAGE="JavaScript1.1">
+<!--
+function getFormat() {
+    var sel = document.MolForm.molformat;
+    var v = document.MolForm.molformat[sel.selectedIndex].value;
+    return v;
+}
+
+function undo() {
+    if(document.MSketch != null) {
+        document.MSketch.undo();
+    }
+}
+
+function redo() {
+    if(document.MSketch != null) {
+        document.MSketch.redo();
+    }
+}
+
+function importMol(opts) {
+	if(document.MSketch != null) {
+		var s = document.MolForm.MolTxt.value;
+		document.MSketch.setMol(s, opts);
+	} else {
+		alert("Cannot import molecule:\n"+
+		      "no JavaScript to Java communication in your browser.\n");
+	}
+}
+function exportMol(format) {
+	if(document.MSketch != null) {
+		var s = document.MSketch.getMol(format);
+		s = unix2local(s); // Convert "\n" to local line separator
+		document.MolForm.MolTxt.value = s;
+	} else {
+		alert("Cannot import molecule:\n"+
+		      "no JavaScript to Java communication in your browser.\n");
+	}
+}
+msketch_name = "MSketch";
+msketch_begin("../../..", 540, 480);
+msketch_end();
+//-->
+</script>
+</center>
+<p>
+Several Marvin supported file formats demonstrated here.
+&quot;Myformat&quot; is a
+user defined <a HREF="../../../help/formats/formats.html">file format</a>, see Java sources
+in the
+<a HREF="../../../help/developer/beans/api/chemaxon/marvin/util/MolExportModule.html">MolExportModule</a>
+API example.
+
+<blockquote>
+<pre>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript&quot;<strong>&gt;</strong>
+&lt;!--
+//--&gt;
+<strong>&lt;/script&gt;</strong>
+
+<strong>&lt;form NAME</strong>=MolForm <strong>onSubmit</strong>=&quot;return false&quot;<strong>&gt;</strong>
+<strong>&lt;textarea NAME</strong>=&quot;MolTxt&quot; <strong>ROWS</strong>=20 <strong>COLS</strong>=70<strong>&gt;</strong>
+3,7-Dihydro-1,3,7-trimethyl-1H-purine-2,6-dione
+  Marvin  07099920012D
+
+ 14 15  0  0  0  0  0  0  0  0999 V2000
+   -2.0245   -2.6287    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.0245   -1.0107    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.7156   -0.0596    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.4367   -1.8197    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.8415   -0.8197    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -5.5735   -0.8197    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -4.7075   -2.3196    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.8415   -3.8197    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.9755   -2.3196    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -2.9755   -1.3197    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.8415    0.1803    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -5.5735   -2.8197    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -4.7075   -1.3197    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+   -3.8415   -2.8197    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0
+  5 13  1  0  0  0  0
+ 13  7  1  0  0  0  0
+  7 14  1  0  0  0  0
+ 14  9  1  0  0  0  0
+  9 10  2  0  0  0  0
+  5 10  1  0  0  0  0
+  4  2  1  0  0  0  0
+  2 10  1  0  0  0  0
+  9  1  1  0  0  0  0
+  4  1  2  0  0  0  0
+  2  3  1  0  0  0  0
+  5 11  2  0  0  0  0
+ 13  6  1  0  0  0  0
+  7 12  2  0  0  0  0
+ 14  8  1  0  0  0  0
+M  END
+<strong>&lt;/textarea&gt;</strong>
+<strong>&lt;p&gt;</strong>
+<strong>&lt;input TYPE</strong>=BUTTON <strong>VALUE</strong>=&quot;Import&quot; <strong>onClick</strong>=&quot;importMol('null')&quot;<strong>&gt;</strong>
+<strong>&lt;input TYPE</strong>=BUTTON <strong>VALUE</strong>=&quot;Import SMARTS&quot; <strong>onClick</strong>=&quot;importMol('smarts:')&quot;<strong>&gt;</strong>
+<strong>&lt;input TYPE</strong>=BUTTON <strong>VALUE</strong>=&quot;Import myformat&quot; <strong>onClick</strong>=&quot;importMol('myformat:')&quot;<strong>&gt;</strong>
+<strong>&lt;/p&gt;</strong>
+<strong>&lt;p&gt;</strong>Export format:
+<strong>&lt;select NAME</strong>="molformat"<strong>&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="cml"<strong>&gt;</strong>cml<strong>&lt;/option&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="csmol"<strong>&gt;</strong>csmol<strong>&lt;/option&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="csrdf"<strong>&gt;</strong>csrdf<strong>&lt;/option&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="csrxn"<strong>&gt;</strong>csrxn<strong>&lt;/option&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="cssdf"<strong>&gt;</strong>cssdf<strong>&lt;/option&gt;</strong>
+<strong>&lt;option SELECTED VALUE</strong>="mol"<strong>&gt;</strong>mol<strong>&lt;/option&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="mrv"<strong>&gt;</strong>mrv<strong>&lt;/option&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="name"<strong>&gt;</strong>name<strong>&lt;/option&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="rdf"<strong>&gt;</strong>rdf<strong>&lt;/option&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="rxn"<strong>&gt;</strong>rxn<strong>&lt;/option&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="smarts"<strong>&gt;</strong>smarts<strong>&lt;/option&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="smiles"<strong>&gt;</strong>smiles<strong>&lt;/option&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="sdf"<strong>&gt;</strong>sdf<strong>&lt;/option&gt;</strong>
+<strong>&lt;option</strong> <strong>VALUE</strong>="sybyl"<strong>&gt;</strong>sybyl<strong>&lt;/option&gt;</strong>
+<strong>&lt;/select&gt;</strong>
+<strong>&lt;input TYPE</strong>=BUTTON <strong>VALUE</strong>=&quot;Export&quot; <strong>onClick</strong>=&quot;exportMol(document.MolForm.molformat.value)&quot;<strong>&gt;</strong>
+<strong>&lt;input TYPE</strong>=BUTTON <strong>VALUE</strong>=&quot;Export myformat&quot; <strong>onClick</strong>=&quot;exportMol('myformat')&quot;<strong>&gt;</strong>
+<strong>&lt;input TYPE</strong>=BUTTON <strong>VALUE</strong>=&quot;Undo&quot; <strong>onClick</strong>=&quot;undo()&quot;<strong>&gt;</strong>
+<strong>&lt;input TYPE</strong>=BUTTON <strong>VALUE</strong>=&quot;Redo&quot; <strong>onClick</strong>=&quot;redo()&quot;<strong>&gt;</strong>
+<strong>&lt;/p&gt;</strong>
+<strong>&lt;/form&gt;</strong>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot; <strong>SRC</strong>=&quot;../../../<a HREF="../marvin.js.txt">marvin.js</a>&quot;<strong>&gt;</strong><strong>&lt;/script&gt;</strong>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot;<strong>&gt;</strong>
+<strong>&lt;!--</strong>
+function <strong>undo()</strong> {
+    if(document.MSketch != null) {
+        document.MSketch.<a href="../../../help/developer/applets/api/JMSketch.html#redo()">undo()</a>;
+    }
+}
+
+function <strong>redo()</strong> {
+    if(document.MSketch != null) {
+        document.MSketch.<a href="../../../help/developer/applets/api/JMSketch.html#redo()">redo()</a>;
+    }
+}
+
+function <strong>importMol(opts)</strong> {
+	if(document.MSketch != null) {
+		var s = document.MolForm.MolTxt.value;
+		document.MSketch.<a HREF="../../../help/developer/applets/api/JMSketch.html#setMol(java.lang.String, java.lang.String)">setMol</a>(s, opts);
+	} else {
+		alert(&quot;Cannot import molecule:\n&quot;+
+		      &quot;no JavaScript to Java communication in your browser.\n&quot;);
+	}
+}
+function <strong>exportMol(</strong>format<strong>)</strong> {
+	if(document.MSketch != null) {
+		var s = document.MSketch.<a HREF="../../../help/developer/applets/api/JMSketch.html#getMol(java.lang.String)">getMol</a>(format);
+		s = <a HREF="../marvin.js.txt">unix2local</a>(s); // Convert &quot;\n&quot; to local line separator
+		document.MolForm.MolTxt.value = s;
+	} else {
+		alert("Cannot import molecule:\n"+
+		      "no JavaScript to Java communication in your browser.\n");
+	}
+}
+<strong>msketch_name</strong> = &quot;MSketch&quot;;
+<strong>msketch_begin(</strong>&quot;../../..&quot;<strong>,</strong> 540<strong>,</strong> 480<strong>);</strong>
+<strong>msketch_end();</strong>
+<strong>//--&gt;</strong>
+<strong>&lt;/script&gt;</strong>
+</pre>
+</blockquote>
+
+<p>
+
+<center><div class="lenia">&nbsp;</div></center>
+<p>
+It may happen that you want to save space on the web page and visualize
+your molecule in a small area. The <a HREF="detach.html">next example</a>
+shows how to fit the applet into a small area.
+
+</body>
+</html>

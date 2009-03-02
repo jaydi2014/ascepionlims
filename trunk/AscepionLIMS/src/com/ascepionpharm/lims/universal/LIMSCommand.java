@@ -19,6 +19,7 @@ public abstract class LIMSCommand implements Command {
 	protected ConnectionPool pool;
 	protected Connection conn;
 	protected String next;
+	protected String failure;
 	protected String name;
 	protected HttpServletRequest req;
 
@@ -44,7 +45,14 @@ public abstract class LIMSCommand implements Command {
 			throw new CommandException(e.getMessage());
 		}
 		connectionPool.free(conn);
-		return next;
+		if(req.getAttribute("failure") != null && "failure".equals(req.getAttribute("failure"))){
+			failure = "core/Message.jsp";
+			req.removeAttribute("failure");
+			return failure;
+		}
+		else{
+			return next;
+		}
 	}
 
 	public abstract void performTask() throws CommandException;

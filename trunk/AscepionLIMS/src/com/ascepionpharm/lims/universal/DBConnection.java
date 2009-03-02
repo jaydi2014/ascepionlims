@@ -74,8 +74,8 @@ public class DBConnection {
 	public static void main(String[] args) throws ClassNotFoundException,
 			SQLException {
 		Connection connection = null;
-		Class.forName(getInstance().getDriver());
-		connection = DriverManager.getConnection(getInstance().getDbURL());
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		connection = DriverManager.getConnection("jdbc:oracle:thin:lims/limsprod@localhost:1521:DEV1");
 
 		if (connection != null) {
 			System.out.println("connection success");

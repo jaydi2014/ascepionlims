@@ -1,0 +1,133 @@
+<html>
+<head>
+<meta NAME="author" CONTENT="Peter Csizmadia">
+<link REL ="stylesheet" TYPE="text/css" HREF="../../../marvinmanuals.css" TITLE="Style">
+<title>MarvinSketch Example - Embedding MarvinSketch applet in HTML pages</title>
+</head>
+<body onLoad="links_set_search(location.search)">
+
+<h1>MarvinSketch Example - Embedding MarvinSketch applet in HTML pages</h1>
+
+This section covers the basic ways of creating Marvin Applets and embedding them in
+HTML pages. If you are looking for a quick solution without the technical background,
+you can skip this section and continue with reading the <a href="#marvinjs">Simple embedding</a> part.
+
+<h4>Technical background</h4>
+<p>
+Sun recommends to include applets in HTML pages by using the APPLET tag:
+<blockquote>
+<pre>
+<strong>&lt;applet CODEBASE</strong>="../../.." <strong>ARCHIVE</strong>=&quot;jmarvin.jar&quot;
+        <strong>CODE</strong>=&quot;JMSketch&quot; <strong>WIDTH</strong>=540 <strong>HEIGHT</strong>=480<strong>&gt;</strong>
+<strong>&lt;strong&gt;</strong>Your browser does not support the applet tag.<strong>&lt;/strong&gt;</strong>
+<strong>&lt;/applet&gt;</strong>
+</pre>
+</blockquote>
+The <code><strong>CODEBASE</strong></code> option specifies the directory of
+the Marvin binaries relative to the HTML file. This HTML file is in a
+subdirectory of the Marvin binaries directory, that's why we use
+"<code>../../..</code>" here.
+The <code><strong>ARCHIVE</strong></code> option is used to preload resources
+that can significantly improve the performance of applets.
+These resources are packed into a compressed JAR file, <code>jmarvin.jar</code>.
+The CODE attribute specifies the name of the applet class.
+The text &quot;<strong>Your browser does not support the applet tag.</strong>&quot; is
+displayed if someone visits the web page with a browser that is not Java
+compatible.
+
+<p>However there is a note in
+    <a href="http://java.sun.com/docs/books/tutorial/deployment/applet/applettag.html">The Java Tutorials</a>,
+    that makes the situation more complicated:</p>
+<blockquote>
+    <hr>
+Note: The HTML specification states that the applet tag is deprecated, and that
+    you should use the object tag instead. However, the specification is vague
+    about how browsers should implement the object tag to support Java applets,
+    and browser support is currently inconsistent. It is therefore recommended
+    that you continue to use the applet tag as a consistent way to deploy Java
+    applets across browsers on all platforms.
+    <hr>
+</blockquote>
+
+<p>There are three possible platform dependent solutions available overall:</p>
+<ol>
+<li><code><strong>&lt;applet ARCHIVE=</strong>&quot;jmarvin.jar&quot;<strong>&gt;</strong></code></li>
+<li><code><strong>&lt;embed&gt;</strong></code></li>
+<li><code><strong>&lt;object&gt;</strong></code></li>
+</ol>
+<p>The <code>embed</code> tag is used to deploy applets that are to be used only
+with the Mozilla family of browsers (including FireFox), the <code>object</code>
+tag with Internet Explorer, while the <code>applet</code> tag is general.
+However with the <code>applet</code> tag, the required Java Plug-in cannot be automatically
+downloaded and installed while it can with the two other solutions.<br>
+The most reliable way among these is to use the <code>applet</code> tag as Sun recommends.</p>
+
+<h4><a class="anchor" name="marvinjs">Simple embedding</a></h4>
+
+<p>To support the use of Marvin Applets, ChemAxon provides utility functions that help to
+overcome the problems of working with HTML tags. These utilities are stored in the
+<a href="../marvin.js.txt">marvin.js</a> JavaSript file.<br>
+The live MarvinSketch applet embedded in the HTML page appears as follows:
+</p>
+
+<center>
+<script LANGUAGE="JavaScript1.1" SRC="../../../marvin.js"></script>
+<script LANGUAGE="JavaScript1.1">
+<!--
+msketch_begin("../../..", 540, 480);
+msketch_end();
+//-->
+</script>
+</center>
+
+<p>To achieve this the following lines should be included in the HTML page:</p>
+<blockquote>
+<pre>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot; <strong>SRC</strong>=&quot;../../../<a HREF="../marvin.js.txt">marvin.js</a>&quot;<strong>&gt;&lt;/script&gt;</strong>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot;<strong>&gt;</strong>
+<strong>&lt;!--</strong>
+<strong>msketch_begin(</strong>&quot;../../..&quot;<strong>,</strong> 540<strong>,</strong> 480<strong>);</strong> <em>// arguments: codebase, width, height</em>
+<strong>msketch_end();</strong>
+<strong>//--&gt;</strong>
+<strong>&lt;/script&gt;</strong>
+</pre>
+</blockquote>
+
+<!--<h4>Notes on Java Virtual Machine settings</h4>
+
+<p>The JVM (built-in or Java Plug-in) has a default
+value based on your browser and Java version. If you want to use a
+different configuration, you can specify it with setting the value of the
+<code><strong>marvin_jvm</strong></code> variable,
+which is intruduced in marvin.js. This setting should be done before calling
+<code>msketch_begin</code>.
+<blockquote>
+<pre>
+<strong>...</strong>
+<strong>marvin_jvm =</strong> &quot;builtin&quot;; // value can be &quot;builtin&quot; or &quot;plugin&quot;
+<strong>msketch_begin(</strong>&quot;../../..&quot;<strong>,</strong> 540<strong>,</strong> 480<strong>);</strong> <em>// arguments: CODEBASE, WIDTH, HEIGHT</em>
+<strong>...</strong>    
+</pre>
+</blockquote>This value can also be set by writing CGI-like parameters in the URL
+of the page in which the MarvinSketch Applet is embedded:
+<blockquote>
+<pre>
+<strong>&lt;a HREF</strong>=&quot;sketchembedded.html?<strong>jvm</strong>=plugin&quot;&gt;click here!<strong>&lt;/a&gt;</strong>
+</pre>
+</blockquote>
+The value of the <strong>jvm</strong> parameter can be
+&quot;<code>builtin</code>&quot; or &quot;<code>plugin</code>&quot;.
+It can easily be tried by appending &quot;<code>?jvm=plugin</code>&quot;
+or &quot;<code>?jvm=builtin</code>&quot; to the URL of this page and
+reloading it.<br>
+<p>Note that in some browsers (such as Internet Explorer) this method does not work if the
+page is on a local drive, because <code>document.location.search</code> is an
+empty string. However it works on web servers using any browser.
+-->
+<p>
+<center><div class="lenia">&nbsp;</div></center>
+<p>The
+<a HREF="colors.html">next example</a> introduces the use of applet parameters.
+
+</body>
+</html>

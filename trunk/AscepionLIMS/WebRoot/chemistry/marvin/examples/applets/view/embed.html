@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta NAME="author" CONTENT="Peter Csizmadia">
+<link REL ="stylesheet" TYPE="text/css" HREF="../../../marvinmanuals.css" TITLE="Style">
+<title>MarvinView Example - Embedding MarvinView applet in HTML pages</title>
+</head>
+<body onLoad="links_set_search(location.search)">
+
+<h1>MarvinView Example - Embedding MarvinView applet in HTML pages</h1>
+
+The basic applet tag that works with Swing, with and without Java Plug-in
+is similar to the one in
+<a HREF="../sketch/embed.html">MarvinSketch Example - Embedding MarvinSketch applet in HTML pages</a>.
+<blockquote>
+<pre>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot; <strong>SRC</strong>=&quot;../../../<a HREF="../marvin.js.txt">marvin.js</a>&quot;<strong>&gt;</strong><strong>&lt;/script&gt;</strong>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot;<strong>&gt;</strong>
+<strong>&lt;!--</strong>
+<em>// marvin_jvm = &quot;builtin&quot;; // &quot;builtin&quot; or &quot;plugin&quot;</em>
+<strong>mview_begin(</strong>&quot;../../..&quot;<strong>,</strong> 200<strong>,</strong> 200<strong>);</strong>
+<strong>mview_param(</strong>&quot;<a HREF="../../../help/developer/viewman.html#parameters.mol">mol</a>&quot;<strong>,</strong> &quot;../../../mols-2d/caffeine.mol&quot;<strong>);</strong>
+<strong>mview_end();</strong>
+<strong>//--&gt;</strong>
+<strong>&lt;/script&gt;</strong>
+</pre>
+</blockquote>
+
+<center>
+<script LANGUAGE="JavaScript1.1" SRC="../../../marvin.js"></script>
+<script LANGUAGE="JavaScript1.1">
+<!--
+// marvin_jvm = "builtin"; // "builtin" or "plugin"
+mview_begin("../../..", 200, 200);
+mview_param("mol", "../../../mols-2d/caffeine.mol");
+mview_end();
+//-->
+</script>
+</center>
+
+
+<p>The traditional applet tag for MarvinView and the built-in JVM is the
+following:
+<blockquote>
+<pre>
+<strong>&lt;applet CODEBASE</strong>="../../.." <strong>ARCHIVE</strong>=&quot;jmarvin.jar&quot; <strong>CODE</strong>=&quot;JMView&quot; <strong>WIDTH</strong>=200 <strong>HEIGHT</strong>=200<strong>&gt;</strong>
+<strong>&lt;param NAME</strong>=&quot;<a HREF="../../../help/developer/viewman.html#parameters.mol">mol</a>&quot; <strong>VALUE</strong>=&quot;../../../mols-2d/caffeine.mol&quot;<strong>&gt;</strong>
+<strong>&lt;strong&gt;</strong>Your browser does not support the applet tag.<strong>&lt;/strong&gt;</strong>
+<strong>&lt;/applet&gt;</strong>
+</pre>
+</blockquote>
+
+<p>
+<center><div class="lenia">&nbsp;</div></center>
+<p>
+<a HREF="sdtable.html">The next example shows how to load molecules from an SD file to a molecule table.</a>
+
+</body>
+</html>

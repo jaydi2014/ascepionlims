@@ -77,6 +77,17 @@ public class QuaryPurchaseCommand extends LIMSCommand {
 				PurchasingBean[] purchases7 = (PurchasingBean[])purchaseRepos.getByAccount(bankid);
 				req.setAttribute("purchase",purchases7);
 			}
+			if(way.equals("ispayed")){
+				int isPayed = Integer.parseInt(req.getParameter("payed"));
+				PurchasingBean[] purchases8 = (PurchasingBean[])purchaseRepos.getByPayed(isPayed);
+				req.setAttribute("purchase",purchases8);
+			}
+			if(way.equals("invoicearrivetime")){
+				Date startDate = DateFeeder.toSQLDate(req.getParameter("startdate"), "MM/dd/yyyy");
+				Date endtDate = DateFeeder.toSQLDate(req.getParameter("enddate"), "MM/dd/yyyy");
+				PurchasingBean[] purchases9 = (PurchasingBean[])purchaseRepos.getByInvoice(startDate, endtDate);
+				req.setAttribute("purchase",purchases9);
+			}
 
 		} catch (RepositoryException re) {
 			throw new CommandException(re.getMessage());

@@ -1,0 +1,3457 @@
+<HTML>
+<HEAD>
+<LINK REL="stylesheet" TYPE="text/css" HREF="../marvinmanuals.css">
+<TITLE>Chemical Terms Reference Tables</TITLE>
+</HEAD>
+<BODY>
+<center>
+<h1>Chemical Terms Reference Tables</h1>
+<h3>Version 5.1.0</h3>
+</center>
+
+<h2>Contents</h2>
+<ul>
+	<li><a href="#basicfunctions">Basic functions</a>
+	<ul>
+		<li><a href="#functiondesc">Basic function descriptions</a>
+		<li><a href="#functionex">Basic function examples</a>
+		<li><a href="#descriptors">Dissimilarity descriptors and metrics</a>
+	</ul>
+	<li><a href="#calculations">Structure based calculations</a>
+	<ul>
+		<li><a href="#plugindesc">Structure based calculation descriptions</a>
+		<li><a href="#pluginex">Structure based calculation examples</a>
+	</ul>
+	<li><a href="#matchfunctions">Match functions</a>
+	<ul>
+		<li><a href="#matchdesc">Match function descriptions</a>
+		<li><a href="#matchex">Match function examples</a>
+	</ul>
+	<li><a href="#notes">Notes</a>
+	<li><a href="LicenseInfo.html">License key names</a>
+	<li><a href="../../examples/evaluator/index.html">Working examples</a>
+</ul>
+
+<center>
+<div class="lenia">&nbsp;</div>
+</center>
+
+<h2>Reference tables</h2>
+
+<p>The following tables provide a summary of <a href="Evaluator.html#functiondef">basic functions</a>, <a
+	href="Evaluator.html#plugindef">structure based calculations</a> and <a href="Evaluator.html#matchdef">match functions</a> using the <a
+	href="Evaluator_files/evaluator.xml.txt">built-in <code>evaluator.xml</code> configuration file</a>.</p>
+<p><b>Note, that although the function/calculation names are case-sensitive, the lowercase versions are always
+accepted.</b> For example, <code>aromaticAtomCount()</code> is equivalent to <code>aromaticatomcount()</code>, but <code>AromaticAtomCount()</code>
+and <code>AROMATICATOMCOUNT()</code> are not recognized by the parser.</p>
+
+<p><b>Note:</b> <code>match</code>, <code>matchCount</code>, <code>disjointMatchCount</code> and <code>dissimilarity</code> 
+functions are not available in Marvin, they can be used only if JChem software package is installed.
+
+<p>You can switch between corresponding descriptions and examples by clicking on the built-in names.</p>
+
+<center>
+<div class="lenia">&nbsp;</div>
+</center>
+
+<h3><a name="basicfunctions"></a>Basic functions</h3>
+
+<p><a name="functiondesc"></a>
+<table border="0" cellspacing="0" cellpadding="5" id="grid" align="center">
+	<caption><b>Basic function descriptions</b></caption>
+	<tr>
+		<th>Built-in name</th>
+		<th>Description</th>
+		<th>Return value</th>
+		<th>Parameters</th>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="absdesc"></a><a href="#absex">abs</a></td>
+		<td>returns the absolute value of a number</td>
+		<td>the absolute value</td>
+		<td>integer or real number</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="arraydesc"></a><a href="#arrayex">array</a></td>
+		<td>constructs an integer array from its arguments</td>
+		<td>the integer array</td>
+		<td>integers or MolAtom objects</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="minmaxdesc"></a><a href="#minmaxex">min<br>
+		max</a></td>
+		<td>takes minimum / maximum of its array and/or numerical parameters</td>
+		<td>the minimum / maximum value</td>
+		<td>integers, real numbers, integer arrays, real number arrays</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="sumdesc"></a><a href="#sumex">sum</a></td>
+		<td>computes the sum of array elements</td>
+		<td>the sum</td>
+		<td>integer array or real number array</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="countdesc"></a><a href="#countex">count</a></td>
+		<td>determines the number of elements in an array</td>
+		<td>the number of array elements</td>
+		<td>integer array or real number array</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="sortdesc"></a><a href="#sortex">sortAsc<br>
+		sortDesc</a></td>
+		<td>sorts an array in ascending / descending order</td>
+		<td>the sorted array</td>
+		<td>integer array or real number array</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="atompropdesc"></a><a href="#atompropex">formalCharge<br>
+		hCount<br>
+		connections<br>
+		<br>
+		valence<br>
+		<br>
+		<br>
+		atno<br>
+		map<br>
+		arom</a></td>
+		<td>
+		<ul>
+			<li>formal charge
+			<li>hydrogen count
+			<li>bond plus implicit H count
+			<li>the sum of bond orders and query H atoms
+			<li>atomic number
+			<li>atom map
+			<li>aromatic (boolean)
+		</ul>
+		</td>
+		<td>various atomic properties</td>
+		<td>atom index or MolAtom object</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="propdesc"></a><a href="#propex">field / property</a></td>
+		<td>returns a molecule property (SDF field value)</td>
+		<td>the molecule property</td>
+		<td>the property key (SDF field name)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="indesc"></a><a href="#inex">in</a></td>
+		<td>determines whether an integer / atom index is contained in a given integer array</td>
+		<td><code>true</code> if the array contains the specified integer, <code>false</code> otherwise</td>
+		<td>an integer or MolAtom object and an integer array</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="filterdesc"></a><a href="#filterex">filter</a></td>
+		<td>filters target atoms by filtering condition</td>
+		<td>target atom indices satisfying the filtering condition</td>
+		<td>target atom indices / objects or index / atom object array (optional, all atoms taken if omitted), filtering
+		condition (boolean expression)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="minmaxatomdesc"></a><a href="#minmaxatomex">minAtom<br>
+		maxAtom</a></td>
+		<td>evaluates objective function for each atom, finds smallest / largest value(s)</td>
+		<td>the atom index / indices corresponding to the smallest / largest evaluation result(s)</td>
+		<td>target atom indices / objects or index / atom object array (optional, all atoms taken if omitted), the
+		objective function (as inner expression string), the number of smallest / largest values to be taken (optional, takes
+		only one if omitted)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="minmaxvaluedesc"></a><a href="#minmaxvalueex">minValue<br>
+		maxValue</a></td>
+		<td>evaluates objective function for each atom, finds smallest / largest value(s)</td>
+		<td>the smallest / largest evaluation result(s)</td>
+		<td>target atom indices / objects or index / atom object array (optional, all atoms taken if omitted), the
+		objective function (as inner expression string), the number of smallest / largest values to be taken (optional, takes
+		only one if omitted)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="pairdesc"></a><a href="#pairex">pair / bond</a></td>
+		<td>converts two atoms or 0-based atom indexes into an "index1-index2" 1-based atom index setter string<br>
+		(used for pairing atoms in <a href="#shortestpathdesc">shortestPath</a>)</td>
+		<td>the generated string</td>
+		<td>two atom indexes or two MolAtom objects</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dissimilaritydesc"></a><a href="#dissimilarityex">dissimilarity</a></td>
+		<td>computes the dissimilarity value between two molecules
+		    <br><p><b>Note:</b> Dissimilarity function is available only in JChem.
+		</td>
+		<td>the dissimilarity value</td>
+		<td><a href="#descriptors">descriptor:metric</a> or descriptor (with default metric) (optional, chemical
+		fingerprint with Tanimoto metric is taken by default), one or two molecules (if only one is specified then the other
+		one is taken from the context)</td>
+	</tr>
+
+</table>
+
+<br>
+
+<p><a name="functionex"></a>
+<table border="0" cellspacing="0" cellpadding="5" id="grid" align="center">
+	<caption><b>Basic function examples</b></caption>
+	<tr>
+		<th>Built-in name</th>
+		<th>General example</th>
+		<th><a href="ChemicalTerms.html#molcontext">Molecule context</a> example</th>
+		<th><a href="ChemicalTerms.html#reactioncontext">Reaction context</a> example</th>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="absex"></a><a href="#absdesc">abs</a></td>
+		<td><pre>abs(7)</pre>returns <code>7</code><pre>abs(-4.9)</pre>returns <code>4.9</code></td>
+		<td><pre>abs(7)</pre>returns <code>7</code><pre>abs(-4.9)</pre>returns <code>4.9</code></td>
+		<td><pre>abs(7)</pre>returns <code>7</code><pre>abs(-4.9)</pre>returns <code>4.9</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="arrayex"></a><a href="#arraydesc">array</a></td>
+		<td><pre>array(2, 5, 6, 8)</pre></td>
+		<td><pre>array(2, 5, 6, 8)</pre></td>
+		<td><pre>array(ratom(2), ratom(5), ratom(6), ratom(8))</pre> <pre>array(patom(2), patom(5), patom(6), patom(8))</pre></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="minmaxex"></a><a href="#minmaxdesc">min<br>
+		max</a></td>
+		<td><pre>min(2, 8, 6)</pre> returns <code>2</code> <pre>max(3.4, 5.6, 1.2)</pre> returns <code>5.6</code></td>
+		<td><pre>min(charge(0), charge(2))</pre> returns the least of the partial charge values on atoms <code>0</code>
+		and <code>2</code> <pre>max(charge())</pre> returns the maximal partial charge value on the input molecule</td>
+		<td><pre>min(charge(ratom(2)), charge(ratom(3)))</pre> returns the least of the partial charge values on reactant
+		atoms matching maps <code>2</code> and <code>3</code> in the reaction equation <pre>max(charge(product(0)))</pre>
+		returns the maximal partial charge value on the first product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="sumex"></a><a href="#sumdesc">sum</a></td>
+		<td><pre>sum(array(3.4, 5.6, 1.2))</pre> returns <code>10.2</code></td>
+		<td><pre>sum(charge())</pre> returns the sum of charge values <pre>sum(pol())</pre> returns the sum of atom
+		polarizability values</td>
+		<td><pre>sum(charge(reactant(0)))</pre> returns the sum of charge values in the first reactant <pre>sum(pol(product(0)))</pre>
+		returns the sum of atom polarizability values in the first product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="countex"></a><a href="#countdesc">count</a></td>
+		<td><pre>count(array(3.4, 5.6, 1.2))</pre> returns <code>3</code></td>
+		<td><pre>count(filter("charge() > 0"))</pre> returns the number of atoms with positive charge <pre>count(filter("match('[#8][C:1]=O', 1"))</pre>
+		returns the number of carboxylic carbons</td>
+		<td><pre>count(filter(reactant(1), "charge() > 0"))</pre> returns the number of atoms with positive charge in the
+		second reactant <pre>count(filter(product(0), "match('[#8][C:1]=O', 1"))</pre> returns the number of carboxylic
+		carbons in the first product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="sortex"></a><a href="#sortdesc">sortAsc<br>
+		sortDesc</a></td>
+		<td><pre>sortAsc(array(3.4, 5.6, 1.2))</pre> returns <code>array(1.2, 3.4, 5.6)</code></td>
+		<td><pre>sortAsc(charge())</pre> returns the partial charge values in ascending order <pre>sortDesc(pka("basic"))</pre>
+		returns the basic p<i>K</i><sub>a</sub> values in descending order</td>
+		<td><pre>sortAsc(charge(reactant(1)))</pre> returns the partial charge values of the second reactant in ascending
+		order <pre>sortDesc(pka(product(0), "basic"))</pre> returns the basic p<i>K</i><sub>a</sub> values of the first
+		product in descending order</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="atompropex"></a><a href="#atompropdesc">formalCharge<br>
+		hCount<br>
+		connections<br>
+		valence<br>
+		atno<br>
+		map<br>
+		arom</a></td>
+		<td>&nbsp;</td>
+		<td><pre>formalCharge(0)</pre> returns the formal charge of atom <code>0</code> <pre>map(3)</pre> returns the
+		atom map number of atom <code>3</code> <pre>connections(2)</pre> returns the number of connections of atom <code>2</code>
+		<pre>valence(0)</pre> returns the valence of atom <code>0</code></td>
+		<td><pre>atno(ratom(1))</pre> returns the atomic number of the reactant atom matching map <code>1</code> in the
+		reaction equation <pre>hCount(patom(3))</pre> returns the hydrogen count on the product atom matching map <code>3</code>
+		in the reaction equation <pre>arom(patom(2))</pre> returns <code>true</code> if the product atom matching map <code>2</code>
+		in the reaction equation has an aromatic bond</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="propex"></a><a href="#propdesc">field / property</a></td>
+		<td>&nbsp;</td>
+		<td><pre>field('ACTIVITY')</pre> returns the value of the ACTIVITY property (SDF field) <pre>field('ACTIVITY') > 2</pre>
+		returns <code>1</code> if the ACTIVITY value is bigger than <code>2</code>, returns <code>0</code> otherwise</td>
+		<td><pre>field(reactant(1), 'ACTIVITY')</pre> returns the ACTIVITY property value of the second reactant <pre>field(product(0), 'ACTIVITY') > field(reactant(0), 'ACTIVITY')</pre>
+		returns <code>1</code> if the ACTIVITY value of the first product is bigger than that of the first reactant, returns <code>0</code>
+		otherwise</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="inex"></a><a href="#indesc">in</a></td>
+		<td><pre>in(5, array(3, 5, 1))</pre> returns <code>true</code> <pre>in(2, array(3, 5, 1))</pre> returns <code>false</code></td>
+		<td><pre>in(3, maxatom("charge()", 2))</pre> returns <code>true</code> if the partial charge on atom <code>3</code>
+		is within the first <code>2</code> largest partial charges in the input molecule <pre>in(3, minatom("pol()", 4))</pre>
+		returns <code>true</code> if the polarizability on atom <code>3</code> is within the first <code>4</code> smallest
+		polarizability values in the input molecule</td>
+		<td><pre>in(ratom(3), maxatom(reactant(0), "charge()", 2))</pre> returns <code>true</code> if the partial charge
+		on reactant atom matching map <code>3</code> in the reaction equation is within the first <code>2</code> largest
+		partial charges in the first reactant <pre>in(patom(1), minatom(product(1), "pol()", 4))</pre> returns <code>true</code>
+		if the polarizability on product atom matching map <code>1</code> in the reaction equation is within the first <code>4</code>
+		smallest polarizability values in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="filterex"></a><a href="#filterdesc">filter</a></td>
+		<td>&nbsp;</td>
+		<td><pre>filter("charge() > 0")</pre> returns the indices of atoms with positive partial charge in the input
+		molecule <pre>filter(6, 7, 8, 9, "match('[#8][C:1]=O', 1)")</pre> returns the carboxylic carbons out of atoms <code>6,
+		7, 8, 9</code> in the input molecule</td>
+		<td><pre>filter(reactant(0), "charge() > 0")</pre> returns the indices of atoms with positive partial charge in
+		the first reactant <pre>filter(patom(1), patom(2), "match('[#8][C:1]=O', 1)")</pre> returns the carboxylic carbons out
+		of product atoms matching map <code>1</code> or <code>2</code> in the reaction equation (note, that these atoms are
+		supposed to be in the same product molecule)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="minmaxatomex"></a><a href="#minmaxatomdesc">minAtom<br>
+		maxAtom</a></td>
+		<td>&nbsp;</td>
+		<td><pre>minAtom("charge('7.4')")</pre> returns the atom index corresponding to minimum partial charge in the
+		major microspecies at pH <code>7.4</code> of the input molecule <pre>maxAtom(6, 7, 8, 9, "charge('7.4')", 2)</pre>
+		selects the two largest partial charges on atoms <code>6, 7, 8, 9</code> in the major microspecies at pH <code>7.4</code>
+		of the input molecule and returns the corresponding indices</td>
+		<td><pre>minAtom(reactant(0), "charge('7.4')")</pre> returns the atom index corresponding to minimum partial
+		charge in the major microspecies at pH <code>7.4</code> of the first reactant <pre>maxAtom(patom(1), patom(2), patom(3), "charge('7.4')", 2)</pre>
+		selects the two largest partial charges on product atoms matching maps <code>1, 2, 3</code> in the major microspecies
+		at pH <code>7.4</code> of the product molecule of these atoms and returns the corresponding indices (note, that these
+		atoms are supposed to be in the same product molecule)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="minmaxvalueex"></a><a href="#minmaxvaluedesc">minValue<br>
+		maxValue</a></td>
+		<td>&nbsp;</td>
+		<td><pre>minValue("charge('7.4')")</pre> returns the minimum partial charge in the major microspecies at pH <code>7.4</code>
+		of the input molecule <pre>maxValue(6, 7, 8, 9, "charge('7.4')", 2)</pre> returns the two largest partial charges on
+		atoms <code>6, 7, 8, 9</code> in the major microspecies at pH <code>7.4</code> of the input molecule</td>
+		<td><pre>minValue(reactant(0), "charge('7.4')")</pre> returns the minimum partial charge in the major
+		microspecies at pH <code>7.4</code> of the first reactant <pre>maxValue(patom(1), patom(2), patom(3), "charge('7.4')", 2)</pre>
+		returns the two largest partial charges on product atoms matching maps <code>1, 2, 3</code> in the major microspecies
+		at pH <code>7.4</code> of the product molecule of these atoms (note, that these atoms are supposed to be in the same
+		product molecule)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="pairex"></a><a href="#pairdesc">pair / bond</a></td>
+		<td><pre>pair(2, 5)</pre> returns "3-6"</td>
+		<td>&nbsp;</td>
+		<td><pre>pair(ratom(1), ratom(2))</pre> returns "index1-index2" where "index1" and "index2" are the 1-based atom
+		indexes of the reactant atoms matching map <code>1</code> and <code>2</code> in the reaction equation <pre>bond(patom(2), patom(5)</pre>
+		returns "index1-index2" where "index1" and "index2" are the 1-based atom indexes of the product atoms matching map <code>2</code>
+		and <code>5</code> in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dissimilarityex"></a><a href="#dissimilaritydesc">dissimilarity</a></td>
+		<td><pre>dissimilarity("PF", "c1ccccc1", "C1CCCCC1")</pre> returns the dissimilarity value between the benzene
+		ring and cyclohexane, computed with pharmacophore fingerprint and its default metric (Tanimoto) <pre>dissimilarity("c1ccccc1", "C1CCCCC1")</pre>
+		returns the dissimilarity value between the benzene ring and cyclohexane, computed with default fingerprint and its
+		default metric (chemical fingerprint with Tanimoto)</td>
+		<td><pre>dissimilarity("PF:Euclidean", "c1ccccc1")</pre> returns the dissimilarity value between the benzene ring
+		and the input molecule, computed with pharmacophore fingerprint and euclidean metric <pre>dissimilarity("LogD", "c1ccccc1")</pre>
+		returns the dissimilarity value between the benzene ring and the input molecule, computed with the LogD descriptor and
+		its default <code>AbsDiff</code> metric</td>
+		<td><pre>dissimilarity("CF:Euclidean", "c1ccccc1", reactant(0))</pre> returns the dissimilarity value between the
+		benzene ring and the first reactant, computed with chemical fingerprint and euclidean metric <pre>dissimilarity(reactant(0), product(0))</pre>
+		returns the dissimilarity value between the first reactant and the first product, computed with default fingerprint
+		and its default metric (chemical fingerprint with Tanimoto)</td>
+	</tr>
+
+</table>
+
+<br>
+
+<a name="descriptors"></a>
+<table border="0" cellspacing="0" cellpadding="5" id="grid" align="center">
+	<caption><b><small>Dissimilarity descriptors and metrics</small></b></caption>
+	<tr>
+		<th>Descriptor</th>
+		<th>Metric</th>
+	</tr>
+	<tr>
+		<td>ChemicalFingerprint (or CF)</td>
+		<td>Tanimoto (default)<br>
+		Euclidean</td>
+	</tr>
+	<tr>
+		<td>PharmacophoreFingerprint (or PF)</td>
+		<td>Tanimoto (default)<br>
+		Euclidean</td>
+	</tr>
+	<tr>
+		<td>Burden eigenvalue descriptor (or BCUT<sup>TM</sup>) (BCUT is a trademark of Tripos, Inc., used with
+		permission)</td>
+		<td>Euclidean</td>
+	</tr>
+	<tr>
+		<td>HDon</td>
+		<td>Euclidean</td>
+	</tr>
+	<tr>
+		<td>HAcc</td>
+		<td>AbsDiff</td>
+	</tr>
+	<tr>
+		<td>Heavy</td>
+		<td>AbsDiff</td>
+	</tr>
+	<tr>
+		<td>LogD</td>
+		<td>AbsDiff</td>
+	</tr>
+	<tr>
+		<td>LogP</td>
+		<td>AbsDiff</td>
+	</tr>
+	<tr>
+		<td>Mass</td>
+		<td>AbsDiff</td>
+	</tr>
+	<tr>
+		<td>TPSA</td>
+		<td>AbsDiff</td>
+	</tr>
+</table>
+
+<br>
+<br>
+
+<center>
+<div class="lenia">&nbsp;</div>
+</center>
+
+<h3><a name="calculations"></a>Structure based calculations</h3>
+
+Structure based calculations are performed using Calculator Plugins (these calculations are also referred as "plugin 
+calculations").
+
+<p><a name="plugindesc"></a>
+<table border="0" cellspacing="0" cellpadding="5" id="grid" align="center">
+	<caption><b>Calculated function descriptions</b></caption>
+	<tr>
+		<th>Built-in name</th>
+		<th>Description</th>
+		<th>Return Value</th>
+		<th>Parameters</th>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="majormsdesc"></a><a href="#majormsex">majorMicrospecies<br>
+		majorMs</a></td>
+		<td>calculates major microspecies at specified pH</td>
+		<td>the major microspecies</td>
+		<td>
+		<ul>
+			<li>the pH value as string
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="mscountdesc"></a><a href="#mscountex">microspeciesCount<br>
+		msCount</a></td>
+		<td>calculates the number of microspecies at specified pH</td>
+		<td>the number of microspecies</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="msdesc"></a><a href="#msex">microspecies<br>
+		ms</a></td>
+		<td>calculates microspecies at specified pH</td>
+		<td>the microspecies</td>
+		<td>
+		<ul>
+			<li>the pH value as string
+			<li>the microspecies index by descending order of microspecies distributions
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="msdistrdesc"></a><a href="#msdistrex">microspeciesDistribution<br>
+		msDistr</a></td>
+		<td>calculates microspecies distribution at specified pH</td>
+		<td>the microspecies distribution</td>
+		<td>
+		<ul>
+			<li>the pH value as string
+			<li>the microspecies index by descending order of microspecies distributions
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="tautomerdesc"></a><a href="#tautomerex">tautomer</a></td>
+		<td>constructs a tautomeric form</td>
+		<td>the tautomer</td>
+		<td>
+		<ul>
+			<li>the tautomer index (0-based)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="tautomersdesc"></a><a href="#tautomersex">tautomers</a></td>
+		<td>constructs all tautomeric forms</td>
+		<td>the tautomer array</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="tautomercountdesc"></a><a href="#tautomercountex">tautomerCount</a></td>
+		<td>calculates the number of tautomers</td>
+		<td>the number of tautomers</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dominanttautomerdesc"></a><a href="#dominanttautomerex">dominantTautomer</a></td>
+		<td>returns the i-th dominant tautomeric form <!-- dominant tautomers are ordered by distribution) --> </td>
+		<td>the i-th dominant tautomer</td>
+		<td>
+		<ul>
+			<li>the dominant tautomer index (0-based)
+			<li>the pH value as string (set if pH effect should be considered)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dominanttautomersdesc"></a><a href="#dominanttautomersex">dominantTautomers</a></td>
+		<td>constructs all dominant tautomeric forms <!-- (ordered by distribution) --> </td>
+		<td>the dominant tautomer array</td>
+		<td>
+		<ul>
+			<li>the pH value as string (set if pH effect should be considered)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dominanttautomercountdesc"></a><a href="#dominanttautomercountex">dominantTautomerCount</a></td>
+		<td>calculates the number of dominant tautomers</td>
+		<td>the number of dominant tautomers</td>
+		<td>
+		<ul>
+			<li>the pH value as string (set if pH effect should be considered)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="canonicaltautomerdesc"></a><a href="#canonicaltautomerex">canonicalTautomer</a></td>
+		<td>constructs the canonical tautomer structure</td>
+		<td>the canonical tautomer structure</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="generictautomerdesc"></a><a href="#generictautomerex">genericTautomer</a></td>
+		<td>constructs the generic tautomer structure</td>
+		<td>the generic tautomer structure</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="moststabletautomerdesc"></a><a href="#moststabletautomerex">mostStableTautomer</a></td>
+		<td>constructs the most stable tautomer structure</td>
+		<td>the most stable tautomer structure</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="resonantcountdesc"></a><a href="#resonantcountex">resonantCount</a></td>
+		<td>calculates the number of resonant structures</td>
+		<td>the number of resonant structures</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="resonantdesc"></a><a href="#resonantex">resonant</a></td>
+		<td>constructs a resonant structure</td>
+		<td>the resonant structure</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="canonicalresonantdesc"></a><a href="#canonicalresonantex">canonicalResonant</a></td>
+		<td>constructs the canonical resonant structure</td>
+		<td>the canonical resonant structure</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="resonantsdesc"></a><a href="#resonantsex">resonants</a></td>
+		<td>constructs all resonant structures</td>
+		<td>the resonant structure array</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="markushenumerationcountdesc"></a><a href="#markushenumerationcountex">markushEnumerationCount</a></td>
+		<td>calculates the number of Markush enumerations</td>
+		<td>the number of Markush enumerations</td>
+		<td>
+		<ul>
+			<li>the (1-based) atom  indexes of the query atoms to be enumerated (default: all)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="randommarkushenumerationsdesc"></a><a href="#randommarkushenumerationsex">randomMarkushEnumerations</a></td>
+		<td>constructs Markush enumerated structures randomly</td>
+		<td>the enumerated structures</td>
+		<td>
+		<ul>
+			<li>the number of structures to be returned (default: 1)
+			<li>the (1-based) atom  indexes of the query atoms to be enumerated (default: all)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="randommarkushenumerationsdisplaydesc"></a><a href="#randommarkushenumerationsdisplayex">randomMarkushEnumerationsDisplay</a></td>
+		<td>constructs Markush enumerated structures randomly with scaffold alignment and scaffold/R-group coloring</td>
+		<td>the enumerated structures with alignment and coloring data</td>
+		<td>
+		<ul>
+			<li>the number of structures to be returned (default: 1)
+			<li>the (1-based) atom  indexes of the query atoms to be enumerated (default: all)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="markushenumerationsdesc"></a><a href="#markushenumerationsex">markushEnumerations</a></td>
+		<td>constructs Markush enumerated structures sequentially</td>
+		<td>the enumerated structures</td>
+		<td>
+		<ul>
+			<li>the number of structures to be returned (default: all)
+			<li>the (1-based) atom  indexes of the query atoms to be enumerated (default: all)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="markushenumerationsdisplaydesc"></a><a href="#markushenumerationsdisplayex">markushEnumerationsDisplay</a></td>
+		<td>constructs Markush enumerated structures sequentially with scaffold alignment and scaffold/R-group coloring</td>
+		<td>the enumerated structures with alignment and coloring data</td>
+		<td>
+		<ul>
+			<li>the number of structures to be returned (default: all)
+			<li>the (1-based) atom  indexes of the query atoms to be enumerated (default: all)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chargedesc"></a><a href="#chargeex">charge</a></td>
+		<td>calculates partial charges on atoms<br>
+		for result types "aromaticsystem" / "aromaticring", calculates the sum of partial charges of the atoms in the aromatic
+		system / smallest aromatic ring containing the atom</td>
+		<td>the charge values</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object,
+			<li>the result type ("total" (default), "pi", "sigma", "aromaticsystem", "aromaticsystemsigma",
+			"aromaticsystempi", "aromaticring", "aromaticringsigma", "aromaticringpi"),
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="resonantchargedesc"></a><a href="#resonantchargeex">resonantCharge</a></td>
+		<td>calculates partial charges on atoms considering resonance effect<br>
+		for result types "aromaticsystem" / "aromaticring", calculates the sum of partial charges of the atoms in the aromatic
+		system / smallest aromatic ring containing the atom</td>
+		<td>the charge values</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object,
+			<li>the result type ("total" (default), "pi", "sigma", "aromaticsystem", "aromaticsystemsigma",
+			"aromaticsystempi", "aromaticring", "aromaticringsigma", "aromaticringpi"),
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="totalchargedesc"></a><a href="#totalchargeex">totalCharge</a></td>
+		<td>calculates total charge of molecule</td>
+		<td>the charge value</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="soendesc"></a><a href="#soenex">sigmaOrbitalElectronegativity<br>
+		sOEN</a></td>
+		<td>calculates atomic sigma orbital electronegativity</td>
+		<td>the sigma orbital electronegativity values</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object,
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="poendesc"></a><a href="#poenex">piOrbitalElectronegativity<br>
+		pOEN</a></td>
+		<td>calculates atomic pi orbital electronegativity</td>
+		<td>the pi orbital electronegativity values</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object,
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="poldesc"></a><a href="#polex">atomicPolarizability<br>
+		polarizability<br>
+		pol<br>
+		atomPol</a></td>
+		<td>calculates atomic polarizability</td>
+		<td>the polarizability values</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object,
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="molpoldesc"></a><a href="#molpolex">molecularPolarizability<br>
+		molPol</a></td>
+		<td>calculates molecular polarizability</td>
+		<td>the polarizability value</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="avgpoldesc"></a><a href="#avgpolex">averagePolarizability<br>
+		averagePol<br>
+		avgPol</a></td>
+		<td>calculates average molecular polarizability component considering 3D geometry</td>
+		<td>the polarizability value</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="principalpoldesc"></a><a href="#principalpolex">axxPol<br>
+		ayyPol<br>
+		azzPol</a></td>
+		<td>calculates principal component of polarizability tensor (<code>a(xx), a(yy), a(zz)</code>)</td>
+		<td>the principal component of polarizability tensor</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="pkadesc"></a><a href="#pkaex">pKa</a></td>
+		<td>calculates p<i>K</i><sub>a</sub> values</td>
+		<td>the p<i>K</i><sub>a</sub> values</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object,
+			<li>the strongness index as string (e.g. '1' for strongest, '2' for second strongest p<i>K</i><sub>a</sub>),
+			<li>the result type ("acidic", "basic", or "pka" for both (default))
+		</ul>
+		Note, that the atom index and the strongness index are mutually exclusive, in the latter case the result type should
+		be specified as "acidic" or "basic".<br><br>
+		In case of "pka"result type the returned p<i>K</i><sub>a</sub> values are 
+		acidic or basic (mixed!), depending on the acidic or basic character of the given atom. Acidic p<i>K</i><sub>a</sub>
+		 is returned for an atom, if <i>acidicpKa() &le 14.8-basicpKa()</i>, otherwise basic p<i>K</i><sub>a</sub> is returned. 
+		 Specifying "acidic" or "basic" result type is required to get the acidic or basic p<i>K</i><sub>a</sub> values only 
+		 (also <a href="#apkadesc">acidicpKa</a> or <a href="#bpkadesc">basicpKa</a> functions can be used alternatively).</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="apkadesc"></a><a href="#apkaex">acidicpKa<br>
+		apKa</a></td>
+		<td>calculates acidic p<i>K</i><sub>a</sub> values</td>
+		<td>the acidic p<i>K</i><sub>a</sub> values</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object,
+			<li>the strongness index as string (e.g. '1' for strongest, '2' for second strongest p<i>K</i><sub>a</sub>),
+		</ul>
+		Note, that the atom index and the strongness index are mutually exclusive.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="bpkadesc"></a><a href="#bpkaex">basicpKa<br>
+		bpKa</a></td>
+		<td>calculates basic p<i>K</i><sub>a</sub> values</td>
+		<td>the basic p<i>K</i><sub>a</sub> values</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object,
+			<li>the strongness index as string (e.g. '1' for strongest, '2' for second strongest p<i>K</i><sub>a</sub>),
+		</ul>
+		Note, that the atom index and the strongness index are mutually exclusive.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="apkalargedesc"></a><a href="#apkalargeex">acidicpKaLargeModel</a></td>
+		<td>calculates acidic p<i>K</i><sub>a</sub> values using large model (this model is optimized for a large number of ionizable atoms)</td>
+		<td>the acidic p<i>K</i><sub>a</sub> values</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object,
+			<li>the strongness index as string (e.g. '1' for strongest, '2' for second strongest p<i>K</i><sub>a</sub>),
+		</ul>
+		Note, that the atom index and the strongness index are mutually exclusive.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="bpkalargedesc"></a><a href="#bpkalargeex">basicpKaLargeModel</a></td>
+		<td>calculates basic p<i>K</i><sub>a</sub> values using large model (this model is optimized for a large number of ionizable atoms)</td>
+		<td>the basic p<i>K</i><sub>a</sub> values</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object,
+			<li>the strongness index as string (e.g. '1' for strongest, '2' for second strongest p<i>K</i><sub>a</sub>),
+		</ul>
+		Note, that the atom index and the strongness index are mutually exclusive.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="logddesc"></a><a href="#logdex">logD</a></td>
+		<td>calculates log<i>D</i> at specified pH</td>
+		<td>the log<i>D</i> value</td>
+		<td>
+		<ul>
+			<li>the pH value
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="logpdesc"></a><a href="#logpex">logP</a></td>
+		<td>calculates log<i>P</i></td>
+		<td>the log<i>P</i> value</td>
+		<td>
+		<ul>
+			<li>the result type:
+			<ul>
+				<li>"logPMicro": the log<i>P</i> of the input molecule itself
+				<li>"logPNonionic": the log<i>P</i> of the nonionic species
+				<li>"logDpI": log<i>D</i> at p<i>I</i>
+				<li>"logPTrue": the most typical from the above (default)
+			</ul>
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="logpidesc"></a><a href="#logpiex">logPincrement<br>
+		logPi</a></td>
+		<td>calculates the atomic log<i>P</i> increment</td>
+		<td>the atomic log<i>P</i> increment</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="solubilitydesc"></a><a href="#solubilityex">solubility<br>
+		logS</a></td>
+		<td>calculates solubility at specified pH</td>
+		<td>the log<i>S</i> value</td>
+		<td>
+		<ul>
+			<li>the pH value
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="logstruedesc"></a><a href="#logstrueex">solubilityAtIsoelectricPoint<br>
+		logSTrue</a></td>
+		<td>calculates solubility at isoelectric point</td>
+		<td>the log<i>S</i> value</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="logsmicrodesc"></a><a href="#logsmicroex">solubilityOfMicroSpecies<br>
+		logSMicro</a></td>
+		<td>calculates solubility of the submitted microspecies</td>
+		<td>the log<i>S</i> value</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="logsneutraldesc"></a><a href="#logsneutralex">solubilityOfNeutral<br>
+		logSNeutral</a></td>
+		<td>calculates solubility of the neutral species</td>
+		<td>the log<i>S</i> value</td>
+		<td align="center">-</td>
+	</tr>
+
+
+	<tr valign="top">
+		<td><a name="orderedesc"></a><a href="#ordereex">electrophilicityOrder<br>
+		orderE</a></td>
+		<td>calculates E(+) order of atoms</td>
+		<td>the  E(+) order index of the atom<br>
+		(<code>0</code>, <code>1</code>, <code>2</code>, ...),<br></td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ordernudesc"></a><a href="#ordernuex">nucleophilicityOrder<br>
+		orderNu</a></td>
+		<td>calculates Nu(-) order of atoms</td>
+		<td>the Nu(-) order index of the atom<br>
+		(<code>0</code>, <code>1</code>, <code>2</code>, ...),<br></td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="energyedesc"></a><a href="#energyeex">electrophilicLocalizationEnergy<br>
+		energyE</a></td>
+		<td>calculates localization energy L(+) of atoms</td>
+		<td>the localization energy L(+) of the atom,<br>
+		<code>NaN</code> for non-aromatic atoms</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="energynudesc"></a><a href="#energynuex">nucleophilicLocalizationEnergy<br>
+		energyNu</a></td>
+		<td>calculates localization energy L(-) of atoms</td>
+		<td>the localization energy L(-) of the atom,<br>
+		<code>NaN</code> for non-aromatic atoms</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="pienergydesc"></a><a href="#pienergyex">piEnergy</a></td>
+		<td>calculates the pi energy of the molecule</td>
+		<td>the pi energy of the molecule</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="pichgdensitydesc"></a><a href="#pichgdensityex">electronDensity<br>
+		piChargeDensity</a></td>
+		<td>calculates the electron density of atoms</td>
+		<td>the electron density of the atom,<br>
+		<code>NaN</code> for non-existing values</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="totalchgdensitydesc"></a><a href="#totalchgdensityex">chargeDensity<br>
+		totalChargeDensity</a></td>
+		<td>calculates the charge density of atoms</td>
+		<td>the charge density of the atom,<br>
+		<code>NaN</code> for non-existing values</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="psadesc"></a><a href="#psaex">topologicalPolarSurfaceArea<br>
+		PSA</a></td>
+		<td>calculates the topological polar surface area (2D)</td>
+		<td>the polar surface area (2D)</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="msadesc"></a><a href="#msaex">vanDerWaalsSurfaceArea</a></td>
+		<td>calculates the van der Waals surface area</td>
+		<td>the molecular surface area</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="asadesc"></a><a href="#asaex">solventAccessibleSurfaceArea / waterAccessibleSurfaceArea / ASA</a></td>
+		<td>calculates the solvent accessible / water accessible molecular surface area</td>
+		<td>the molecular surface area</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="asaplusdesc"></a><a href="#asaplusex"> ASAPlus</a></td>
+		<td>calculates the water accessible molecular surface area of all atoms with positive partial charge</td>
+		<td>the molecular surface area</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="asanegativedesc"></a><a href="#asanegativeex"> ASANegative</a></td>
+		<td>calculates the water accessible molecular surface area of all atoms with negative partial charge</td>
+		<td>the molecular surface area</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="asapolardesc"></a><a href="#asapolarex"> ASAPolar</a></td>
+		<td>calculates the water accessible molecular surface area of all polar atoms</td>
+		<td>the molecular surface area</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="asahydrophobicdesc"></a><a href="#asahydrophobicex"> ASAHydrophobic</a></td>
+		<td>calculates the water accessible molecular surface area of all hydrophobic atoms</td>
+		<td>the molecular surface area</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="massdesc"></a><a href="#massex">mass / exactMass</a></td>
+		<td>calculates the molecule mass / exactmass</td>
+		<td>the mass / exactmass</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="formuladesc"></a><a href="#formulaex">formula</a></td>
+		<td>returns the formula</td>
+		<td>the formula</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="isotopeformuladesc"></a><a href="#isotopeformulaex">isotopeFormula</a></td>
+		<td>returns the isotope formula</td>
+		<td>the isotope formula</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dotdisconnectedformuladesc"></a><a href="#dotdisconnectedformulaex">dotDisconnectedFormula</a></td>
+		<td>returns the dot-disconnected formula</td>
+		<td>the dot-disconnected formula</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dotdisconnectedisotopeformuladesc"></a><a href="#dotdisconnectedisotopeformulaex">dotDisconnectedIsotopeFormula</a></td>
+		<td>returns the dot-disconnected isotope formula</td>
+		<td>the dot-disconnected isotope formula</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="compositiondesc"></a><a href="#compositionex">composition</a></td>
+		<td>returns the composition</td>
+		<td>the composition</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="isotopecompositiondesc"></a><a href="#isotopecompositionex">isotopeComposition</a></td>
+		<td>returns the isotope composition</td>
+		<td>the isotope composition</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="atomcountdesc"></a><a href="#atomcountex">atomCount</a></td>
+		<td>calculates the number of atoms (all atoms or specific atoms)</td>
+		<td>the atom count</td>
+		<td>
+		<ul>
+			<li>atomic number (optional) and mass number (optional) as a single string, separated by "." (e.g. "6" for the
+			number of carbon atoms, "6.12" for the number of carbon atoms with mass number <code>12</code>) - if omitted, all
+			atoms are counted, if the mass number is set to <code>0</code> then all non-isotope atoms are counted
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aliphaticatomcountdesc"></a><a href="#aliphaticatomcountex">aliphaticAtomCount</a></td>
+		<td>calculates the aliphatic atom count</td>
+		<td>the aliphatic atom count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aromaticatomcountdesc"></a><a href="#aromaticatomcountex">aromaticAtomCount</a></td>
+		<td>calculates the aromatic atom count</td>
+		<td>the aromatic atom count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="bondcountdesc"></a><a href="#bondcountex">bondCount</a></td>
+		<td>calculates the bond count</td>
+		<td>the bond count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aliphaticbondcountdesc"></a><a href="#aliphaticbondcountex">aliphaticBondCount</a></td>
+		<td>calculates the aliphatic bond count</td>
+		<td>the aliphatic bond count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aromaticbondcountdesc"></a><a href="#aromaticbondcountex">aromaticBondCount</a></td>
+		<td>calculates the aromatic bond count</td>
+		<td>the aromatic bond count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="rotatablebondcountdesc"></a><a href="#rotatablebondcountex">rotatableBondCount</a></td>
+		<td>calculates the rotatable bond count</td>
+		<td>the rotatable bond count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="fragmentcountdesc"></a><a href="#fragmentcountex">fragmentCount</a></td>
+		<td>returns the number of fragments (disconnected parts)</td>
+		<td>the fragment count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringcountdesc"></a><a href="#ringcountex">ringCount</a></td>
+		<td>calculates the ring count</td>
+		<td>the ring count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringcountofsizedesc"></a><a href="#ringcountofsizeex">ringCountOfSize</a></td>
+		<td>calculates the number of rings of given size</td>
+		<td>the number of rings of given size</td>
+		<td align="center">the ring size</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aliphaticringcountdesc"></a><a href="#aliphaticringcountex">aliphaticRingCount</a></td>
+		<td>calculates the aliphatic ring count</td>
+		<td>the aliphatic ring count</td>
+		<td align="center">-</td>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="aliphaticringcountofsizedesc"></a><a href="#aliphaticringcountofsizeex">aliphaticRingCountOfSize</a></td>
+		<td>calculates the number of aliphatic rings of given size</td>
+		<td>the number of aliphatic rings of given size</td>
+		<td align="center">the ring size</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aromaticringcountdesc"></a><a href="#aromaticringcountex">aromaticRingCount</a></td>
+		<td>calculates the aromatic ring count</td>
+		<td>the aromatic ring count</td>
+		<td align="center">-</td>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="aromaticringcountofsizedesc"></a><a href="#aromaticringcountofsizeex">aromaticRingCountOfSize</a></td>
+		<td>calculates the number of aromatic rings of given size</td>
+		<td>the number of aromatic rings of given size</td>
+		<td align="center">the ring size</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="heteroringcountdesc"></a><a href="#heteroringcountex">heteroRingCount</a></td>
+		<td>calculates the hetero ring count</td>
+		<td>the hetero ring count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="heteroaromaticringcountdesc"></a><a href="#heteroaromaticringcountex">heteroaromaticRingCount</a></td>
+		<td>calculates the heteroaromatic ring count</td>
+		<td>the heteroaromatic ring count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="carboringcountdesc"></a><a href="#carboringcountex">carboRingCount</a></td>
+		<td>calculates the carbo ring count</td>
+		<td>the carbo ring count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="carboaromaticringcountdesc"></a><a href="#carboaromaticringcountex">carboaromaticRingCount</a></td>
+		<td>calculates the carboaromatic ring count</td>
+		<td>the carboaromatic ring count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringatomcountdesc"></a><a href="#ringatomcountex">ringAtomCount</a></td>
+		<td>calculates the ring atom count</td>
+		<td>the ring atom count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringbondcountdesc"></a><a href="#ringbondcountex">ringBondCount</a></td>
+		<td>calculates the ring bond count</td>
+		<td>the ring bond count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chainatomcountdesc"></a><a href="#chainatomcountex">chainAtomCount</a></td>
+		<td>calculates the chain atom count</td>
+		<td>the chain atom count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chainbondcountdesc"></a><a href="#chainbondcountex">chainBondCount</a></td>
+		<td>calculates the chain bond count</td>
+		<td>the chain bond count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringsizedesc"></a><a href="#ringsizeex">smallestRingSize / largestRingSize</a></td>
+		<td>calculates the smallest / largest ring size</td>
+		<td>the smallest / largest ring size</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="fusedringcountdesc"></a><a href="#fusedringcountex">fusedRingCount</a></td>
+		<td>calculates the number of fused rings<br>
+		(SSSR smallest set of smallest rings)</td>
+		<td>the fused ring count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="fusedaliphaticringcountdesc"></a><a href="#fusedaliphaticringcountex">fusedAliphaticRingCount</a></td>
+		<td>calculates the number of fused aliphatic rings<br>
+		(SSSR smallest set of smallest aliphatic rings)</td>
+		<td>the fused aliphatic ring count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="fusedaromaticringcountdesc"></a><a href="#fusedaromaticringcountex">fusedAromaticRingCount</a></td>
+		<td>calculates the number of fused aromatic rings<br>
+		(SSSR smallest set of smallest aromatic rings)</td>
+		<td>the fused aromatic ring count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringsystemcountdesc"></a><a href="#ringsystemcountex">ringSystemCount</a></td>
+		<td>calculates the number of rings systems</td>
+		<td>the number of rings systems</td>
+		<td align="center">-</td>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="ringsystemcountofsizedesc"></a><a href="#ringsystemcountofsizeex">ringSystemCountOfSize</a></td>
+		<td>calculates the number of rings systems of given size</td>
+		<td>the number of rings systems of given size</td>
+		<td align="center">the ring system size</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="smallestringsystemsizedesc"></a><a href="#smallestringsystemsizeex">smallestRingSystemSize</a></td>
+		<td>calculates the size of the smallest ring system (number of rings)</td>
+		<td>the size of the smallest ring system</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="largestringsystemsizedesc"></a><a href="#largestringsystemsizeex">largestRingSystemSize</a></td>
+		<td>calculates the size of the largest ring system (number of rings)</td>
+		<td>the size of the largest ring system</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="asymmetricatomcountdesc"></a><a href="#asymmetricatomcountex">asymmetricAtomCount</a></td>
+		<td>calculates the number of asymmetric atoms</td>
+		<td>the asymmetric atom count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chiralcentercountdesc"></a><a href="#chiralcentercountex">chiralCenterCount</a></td>
+		<td>calculates the number of tetrahedral stereogenic center atoms</td>
+		<td>the tetrahedral stereogenic center count</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aromaticatomdesc"></a><a href="#aromaticatomex">aromaticAtom</a></td>
+		<td>checks if the specified atom is aromatic</td>
+		<td><code>true</code> for aromatic atoms,<br>
+		<code>false</code> for non-aromatic atoms</td>
+		<td align="center">
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aliphaticatomdesc"></a><a href="#aliphaticatomex">aliphaticAtom</a></td>
+		<td>checks if the specified atom is aliphatic</td>
+		<td><code>true</code> for aliphatic atoms,<br>
+		<code>false</code> for non-aliphatic atoms</td>
+		<td align="center">
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chainatomdesc"></a><a href="#chainatomex">chainAtom</a></td>
+		<td>checks if the specified atom is a chain atom</td>
+		<td><code>true</code> for chain atoms,<br>
+		<code>false</code> for non-chain atoms</td>
+		<td align="center">
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringatomdesc"></a><a href="#ringatomex">ringAtom</a></td>
+		<td>checks if the specified atom is a ring atom</td>
+		<td><code>true</code> for ring atoms,<br>
+		<code>false</code> for non-ring atoms</td>
+		<td align="center">
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="asymmetricatomdesc"></a><a href="#asymmetricatomex">asymmetricAtom</a></td>
+		<td>checks if the specified atom is an asymmetric atom</td>
+		<td><code>true</code> for asymmetric atoms,<br>
+		<code>false</code> for symmetric atoms</td>
+		<td align="center">
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chiralcenterdesc"></a><a href="#chiralcenterex">chiralCenter</a></td>
+		<td>checks if the specified atom is a tetrahedral stereogenic center</td>
+		<td><code>true</code> for tetrahedral stereogenic center atoms</td>
+		<td align="center">
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="cyclomaticnumberdesc"></a><a href="#cyclomaticnumberex">cyclomaticNumber</a></td>
+		<td>calculates the cyclomatic number</td>
+		<td>the cyclomatic number</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="plattindexdesc"></a><a href="#plattindexex">plattIndex</a></td>
+		<td>calculates the Platt index</td>
+		<td>the Platt index</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="randicindexdesc"></a><a href="#randicindexex">randicIndex</a></td>
+		<td>calculates the Randic index</td>
+		<td>the Randic index</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="balabanindexdesc"></a><a href="#balabanindexex">balabanIndex</a></td>
+		<td>calculates the Balaban index</td>
+		<td>the Balaban index</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="distancedegreedesc"></a><a href="#distancedegreeex">distanceDegree</a></td>
+		<td>calculates the distance degree of an atom</td>
+		<td>the distance degree</td>
+		<td align="center">
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="eccentricitydesc"></a><a href="#eccentricityex">eccentricity</a></td>
+		<td>calculates the eccentricity of an atom</td>
+		<td>the eccentricity of an atom</td>
+		<td align="center">
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="hararyindexdesc"></a><a href="#hararyindexex">hararyIndex</a></td>
+		<td>calculates the Harary index</td>
+		<td>the Harary index</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="hyperwienerindexdesc"></a><a href="#hyperwienerindexex">hyperWienerIndex</a></td>
+		<td>calculates the Hyper Wiener index</td>
+		<td>the Hyper Wiener index</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="szegedindexdesc"></a><a href="#szegedindexex">szegedIndex</a></td>
+		<td>calculates the Szeged index</td>
+		<td>the Szeged index</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="wienerindexdesc"></a><a href="#wienerindexex">wienerIndex</a></td>
+		<td>calculates the Wiener index</td>
+		<td>the Wiener index</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="wienerpolaritydesc"></a><a href="#wienerpolarityex">wienerPolarity</a></td>
+		<td>calculates the Wiener polarity</td>
+		<td>the Wiener polarity</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="stericeffectindexdesc"></a><a href="#stericeffectindexex">stericEffectIndex</a></td>
+		<td>calculates the steric effect index of an atom</td>
+		<td>the steric effect index of an atom</td>
+		<td align="center">
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="atomringsizedesc"></a><a href="#atomringsizeex">smallestAtomRingSize / largestAtomRingSize</a></td>
+		<td>calculates the size of the smallest / largest ring containing the specified atom</td>
+		<td>the size of the smallest / largest ring containing the specified atom</td>
+		<td align="center">
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="shortestpathdesc"></a><a href="#shortestpathex">shortestPath</a></td>
+		<td>calculates the length of the shortest path between two atoms</td>
+		<td>the length of the shortest path between two atoms, <code>Integer.MAX_VALUE</code> if disconnected</td>
+		<td align="center">
+		<ul>
+			<li>the (1-based) atom indexes of the two atoms in a string: "index1-index2" (e.g. '2-3')
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="connecteddesc"></a><a href="#connectedex">connected</a></td>
+		<td>checks if two atoms are connected</td>
+		<td><code>true</code> if the two atoms belong to the same connected component, <code>false</code> otherwise</td>
+		<td align="center">
+		<ul>
+			<li>the (1-based) atom indexes of the two atoms in a string: "index1-index2" (e.g. '2-3')
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="desc"></a><a href="#connectedgraphex">connectedGraph</a></td>
+		<td>checks whether the molecule graph is connected</td>
+		<td><code>true</code> if the molecule graph is connected, <code>false</code> otherwise</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="bondtypedesc"></a><a href="#bondtypeex">bondType</a></td>
+		<td>returns the bond type between two atoms</td>
+		<td>the bond type between two atoms, <code>-1</code> if there is no bond between the two atoms</td>
+		<td align="center">
+		<ul>
+			<li>the (1-based) atom indexes of the two atoms in a string: "index1-index2" (e.g. '2-3')
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chainbonddesc"></a><a href="#chainbondex">chainBond</a></td>
+		<td>checks if two atoms are connected by a chain bond</td>
+		<td><code>true</code> if the two atoms are connected by a chain bond, <code>false</code> otherwise</td>
+		<td align="center">
+		<ul>
+			<li>the (1-based) atom indexes of the two atoms in a string: "index1-index2" (e.g. '2-3')
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringbonddesc"></a><a href="#ringbondex">ringBond</a></td>
+		<td>checks if two atoms are connected by a ring bond</td>
+		<td><code>true</code> if the two atoms are connected by a ring bond, <code>false</code> otherwise</td>
+		<td align="center">
+		<ul>
+			<li>the (1-based) atom indexes of the two atoms in a string: "index1-index2" (e.g. '2-3')
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="rotatablebonddesc"></a><a href="#rotatablebondex">rotatableBond</a></td>
+		<td>checks if two atoms are connected by a rotatable bond</td>
+		<td><code>true</code> if the two atoms are connected by a rotatable bond, <code>false</code> otherwise</td>
+		<td align="center">
+		<ul>
+			<li>the (1-based) atom indexes of the two atoms in a string: "index1-index2" (e.g. '2-3')
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringcountofatomdesc"></a><a href="#ringcountofatomex">ringCountOfAtom</a></td>
+		<td>calculates the number of rings passing through an atom</td>
+		<td>the number of rings passing through an atom</td>
+		<td align="center">
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="hasvalenceerrordesc"></a><a href="#hasvalenceerrorex">hasValenceError()</a></td>
+		<td>determines if any atom in the molecule has valence error</td>
+		<td>true in case of valence error, false otherwise</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="accdondesc"></a><a href="#accdonex">acceptor / donor<br>
+		acc / don</a></td>
+		<td>calculates atomic hydrogen bond acceptor / donor multiplicity</td>
+		<td>the atomic hydrogen bond acceptor / donor multiplicity</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="accdonsitecountdesc"></a><a href="#accdonsitecountex">acceptorSiteCount / donorSiteCount<br>
+		accSiteCount / donSiteCount</a></td>
+		<td>calculates molecular hydrogen bond acceptor / donor multiplicity (the sum of atomic multiplicities)</td>
+		<td>the molecular hydrogen bond acceptor / donor multiplicity</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="accdonatomcountdesc"></a><a href="#accdonatomcountex">acceptorCount / donorCount</a></td>
+		<td>calculates molecular hydrogen bond acceptor / donor count (the number of acceptor / donor atoms)</td>
+		<td>the molecular hydrogen bond acceptor / donor count</td>
+		<td>
+		<ul>
+			<li>the major microspecies pH (takes the input molecule itself if omitted)
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="refracdesc"></a><a href="#refracex">refractivity<br>
+		refrac</a></td>
+		<td>calculates molar refractivity</td>
+		<td>the refractivity value</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="refracidesc"></a><a href="#refraciex">refractivityIncrements<br>
+		refraci</a></td>
+		<td>calculates atomic refractivity increments</td>
+		<td>the atomic refractivity increment</td>
+		<td>
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="pidesc"></a><a href="#piex">isoelectricPoint<br>
+		pI</a></td>
+		<td>calculates isoelectric point</td>
+		<td>the isoelectric point</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="stereoisomercountdesc"></a><a href="#stereoisomercountex">stereoisomerCount</a></td>
+		<td>returns the number of generated stereoisomers</td>
+		<td>the number of generated stereoisomers</td>
+		<td>
+		<ul>
+			<li>the maximum number of stereoisomers to generate (optional, default: all) as a string in format: "max-" ,
+			where max is an integer followed by a minus sign (e.g. '250-')
+		</ul>
+		Note: the returned stereoisomerCount is smaller or equal then the maximum number of stereoisomers set in the option
+		string.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="stereoisomerdesc"></a><a href="#stereoisomerex">stereoisomer</a></td>
+		<td>generates a stereoisomer of the molecule</td>
+		<td>the stereoisomer</td>
+		<td>
+		<ul>
+			<li>the stereoisomer index (0-based)
+			<li>the maximum number of stereoisomers to generate (optional, default: all) as a string in format: "max-" ,
+			where max is an integer followed by a minus sign (e.g. '250-')
+		</ul>
+		Note: the number of generated stereoisomers is smaller or equal then the maximum number of stereoisomers set in the
+		option string.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="stereoisomersdesc"></a><a href="#stereoisomersex">stereoisomers</a></td>
+		<td>generates stereoisomers of the molecule (maximum number of stereoisomers to be generated can be set, default:
+		all)</td>
+		<td>the stereoisomer array</td>
+		<td>
+		<ul>
+			<li>the maximum number of stereoisomers to generate (optional, default: all) as a string in format: "max-" ,
+			where max is an integer followed by a minus sign (e.g. '250-')
+		</ul>
+		Note: the number of generated stereoisomers is smaller or equal then the maximum number of stereoisomers set in the
+		option string.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="doublebondstereoisomercountdesc"></a><a href="#doublebondstereoisomercountex">doubleBondStereoisomerCount</a></td>
+		<td>returns the number of generated double bond stereoisomers</td>
+		<td>the number of generated double bond stereoisomers</td>
+		<td>
+		<ul>
+			<li>the maximum number of double bond stereoisomers to generate (optional, default: all) as a string in format:
+			"max-" , where max is an integer followed by a minus sign (e.g. '250-')
+		</ul>
+		Note: the returned doubleBondStereoisomerCount is smaller or equal then the maximum number of double bond
+		stereoisomers set in the option string.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="doublebondstereoisomerdesc"></a><a href="#doublebondstereoisomerex">doubleBondStereoisomer</a></td>
+		<td>generates a double bond stereoisomer of the molecule</td>
+		<td>the double bond stereoisomer</td>
+		<td>
+		<ul>
+			<li>the double bond stereoisomer index (0-based)
+			<li>the maximum number of double bond stereoisomers to generate (optional, default: all) as a string in format:
+			"max-" , where max is an integer followed by a minus sign (e.g. '250-')
+		</ul>
+		Note: the number of generated double bond stereoisomers is smaller or equal then the maximum number of double bond
+		stereoisomers set in the option string.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="doublebondstereoisomersdesc"></a><a href="#doublebondstereoisomersex">doubleBondStereoisomers</a></td>
+		<td>generates double bond stereoisomers of the molecule (maximum number of double bond stereoisomers to be
+		generated can be set, default: all)</td>
+		<td>the double bond stereoisomer array</td>
+		<td>
+		<ul>
+			<li>the maximum number of double bond stereoisomers to generate (optional, default: all) as a string in format:
+			"max-" , where max is an integer followed by a minus sign (e.g. '250-')
+		</ul>
+		Note: the number of generated double bond stereoisomers is smaller or equal then the maximum number of double bond
+		stereoisomers set in the option string.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="tetrahedralstereoisomercountdesc"></a><a href="#tetrahedralstereoisomercountex">tetrahedralStereoisomerCount</a></td>
+		<td>returns the number of generated tetrahedral stereoisomers</td>
+		<td>the number of generated tetrahedral stereoisomers</td>
+		<td>
+		<ul>
+			<li>the maximum number of tetrahedral stereoisomers to generate (optional, default: all) as a string in format:
+			"max-" , where max is an integer followed by a minus sign (e.g. '250-')
+		</ul>
+		Note: the returned tetrahedralStereoisomerCount is smaller or equal then the maximum number of tetrahedral
+		stereoisomers set in the option string.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="tetrahedralstereoisomerdesc"></a><a href="#tetrahedralstereoisomerex">tetrahedralStereoisomer</a></td>
+		<td>generates a tetrahedral stereoisomer of the molecule</td>
+		<td>the tetrahedral stereoisomer</td>
+		<td>
+		<ul>
+			<li>the tetrahedral stereoisomer index (0-based)
+			<li>the maximum number of tetrahedral stereoisomers to generate (optional, default: all) as a string in format:
+			"max-" , where max is an integer followed by a minus sign (e.g. '250-')
+		</ul>
+		Note: the number of generated tetrahedral stereoisomers is smaller or equal then the maximum number of tetrahedral
+		stereoisomers set in the option string.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="tetrahedralstereoisomersdesc"></a><a href="#tetrahedralstereoisomersex">tetrahedralStereoisomers</a></td>
+		<td>generates tetrahedral stereoisomers of the molecule (maximum number of tetrahedral stereoisomers to be
+		generated can be set, default: all)</td>
+		<td>the tetrahedral stereoisomer array</td>
+		<td>
+		<ul>
+			<li>the maximum number of tetrahedral stereoisomers to generate (optional, default: all) as a string in format:
+			"max-" , where max is an integer followed by a minus sign (e.g. '250-')
+		</ul>
+		Note: the number of generated tetrahedral stereoisomers is smaller or equal then the maximum number of tetrahedral
+		stereoisomers set in the option string.</td>
+	</tr>
+
+
+	<tr valign="top">
+		<td><a name="conformercountdesc"></a><a href="#conformercountex">conformerCount</a></td>
+		<td>returns the number of calculated conformers</td>
+		<td>the number of calculated conformers</td>
+		<td>
+		<ul>
+			<li>the maximum number of conformers to calculate (optional, default: 100) as a string in format: "max-" , where
+			max is an integer followed by a minus sign (e.g. '250-')
+		</ul>
+		Note: the returned conformerCount is smaller or equal then the maximum number of conformers set in the option string.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="conformerdesc"></a><a href="#conformerex">conformer</a></td>
+		<td>calculates a conformer of the molecule</td>
+		<td>the conformer</td>
+		<td>
+		<ul>
+			<li>the conformer index (0-based)
+			<li>the maximum number of conformers to calculate (optional, default: 100) as a string in format: "max-" , where
+			max is an integer followed by a minus sign (e.g. '250-')
+		</ul>
+		Note: the number of calculated conformers is smaller or equal then the maximum number of conformers set in the option
+		string.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="conformersdesc"></a><a href="#conformersex">conformers</a></td>
+		<td>calculates conformers of the molecule (maximum number of conformers to be calculated can be set, default:
+		100)</td>
+		<td>the conformer array</td>
+		<td>
+		<ul>
+			<li>the maximum number of conformers to calculate (optional, default: 100) as a string in format: "max-" , where
+			max is an integer followed by a minus sign (e.g. '250-')
+		</ul>
+		Note: the number of calculated conformers is smaller or equal then the maximum number of conformers set in the option
+		string.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="leconformerdesc"></a><a href="#leconformerex">lowestEnergyConformer<br>
+		leconformer</a></td>
+		<td>calculates the lowest energy conformer of the molecule</td>
+		<td>the lowest energy conformer</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="hasvalidconformerdesc"></a><a href="#hasvalidconformerex">hasValidConformer</a></td>
+		<td>returns true if the input molecule exist in 3D space (has a valid conformer)</td>
+		<td>true if the input molecule exist in 3D space</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dreidingenergydesc"></a><a href="#dreidingenergyex">dreidingEnergy</a></td>
+		<td>returns the Dreiding energy of the input molecule (conformer)</td>
+		<td>the dreiding energy</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="minimalprojectionareadesc"></a><a href="#minimalprojectionareaex">minimalProjectionArea</a></td>
+		<td>returns the minimal projection area</td>
+		<td>the minimal projection area</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="maximalprojectionareadesc"></a><a href="#maximalprojectionareaex">maximalProjectionArea</a></td>
+		<td>returns the maximal projection area</td>
+		<td>the maximal projection area</td>
+		<td align="center">-</td>
+	</tr>
+
+    <tr valign="top">
+		<td><a name="minimalprojectionradiusdesc"></a><a href="#minimalprojectionradiusex">minimalProjectionRadius</a></td>
+		<td>returns the minimal projection radius</td>
+		<td>the minimal projection radius</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="maximalprojectionradiusdesc"></a><a href="#maximalprojectionradiusex">maximalProjectionRadius</a></td>
+		<td>returns the maximal projection radius</td>
+		<td>the maximal projection radius</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="distancedesc"></a><a href="#distanceex">distance</a></td>
+		<td>calculates the distance between two atoms</td>
+		<td>the distance between two atoms</td>
+		<td align="center">
+		<ul>
+			<li>the (1-based) atom indexes of the two atoms in a string: "index1-index2" (e.g. '2-3')
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="angledesc"></a><a href="#angleex">angle</a></td>
+		<td>calculates the angle between three atoms</td>
+		<td>the angle between three atoms</td>
+		<td align="center">
+		<ul>
+			<li>the (1-based) atom indexes of the three atoms in a string: "index1-index2-index3" (e.g. '2-3-5')
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dihedralsc"></a><a href="#dihedralex">dihedral</a></td>
+		<td>calculates the dihedral of four atoms</td>
+		<td>the dihedral of four atoms</td>
+		<td align="center">
+		<ul>
+			<li>the (1-based) atom indexes of the four atoms in a string: "index1-index2-index3-index4" (e.g. '2-3-7-4')
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="sterichindrancedesc"></a><a href="#sterichindranceex">stericHindrance</a></td>
+		<td>calculates the steric hindrance of an atom</td>
+		<td>the steric hindrance of an atom</td>
+		<td align="center">
+		<ul>
+			<li>the atom index / MolAtom object
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="namedesc"></a><a href="#nameex">name</a></td>
+		<td>returns the preferred IUPAC name of the molecule</td>
+		<td>the preferred IUPAC name of the molecule</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="traditionalnamedesc"></a><a href="#traditionalnameex">traditionalName</a></td>
+		<td>returns the traditional name of the molecule</td>
+		<td>the traditional name of the molecule</td>
+		<td align="center">-</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="molformatdesc"></a><a href="#molformatex">molFormat<br>
+		molString</a></td>
+		<td>returns the string representation of the molecule in specified molecule format</td>
+		<td>the string representation of the molecule</td>
+		<td align="center">
+		<ul>
+			<li>the molecule format (e.g. "mol", "sdf", "mrv", "smiles")
+		</ul>
+		</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="molimagedesc"></a><a href="#molimageex">molBinFormat<br>
+		molImage</a></td>
+		<td>returns the binary representation (image, pdf, GZIP compressed molecule file) of the molecule in specified format</td>
+		<td>the binary representation (image, pdf, GZIP compressed molecule file) of the molecule</td>
+		<td align="center">
+		<ul>
+			<li>the binary format with options (e.g. "jpeg", "png:w150,h150", "pdf", "gzip:sdf")
+		</ul>
+		</td>
+	</tr>
+
+
+</table>
+
+<br>
+
+<p><a name="pluginex"></a>
+<table border="0" cellspacing="0" cellpadding="5" id="grid" align="center">
+	<caption><b>Calculated function examples</b></caption>
+	<tr>
+		<th>Built-in name</th>
+		<th><a href="ChemicalTerms.html#molcontext">Molecule Context</a> Example</th>
+		<th><a href="ChemicalTerms.html#reactioncontext">Reaction Context</a> Example</th>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="majormsex"></a><a href="#majormsdesc">majorMicrospecies<br>
+		majorMs</a></td>
+		<td><pre>majorMicrospecies("7.4")</pre> returns the major microspecies of the input molecule at pH <code>7.4</code></td>
+		<td><pre>majorMicrospecies(reactant(0), "7.4")</pre> returns the major microspecies of the first reactant at pH <code>7.4</code>
+		<pre>majorMicrospecies(product(1), "7.4")</pre> returns the major microspecies of the second product at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="mscountex"></a><a href="#mscountdesc">microspeciesCount<br>
+		msCount</a></td>
+		<td><pre>microspeciesCount()</pre> returns the number of microspecies of the input molecule</td>
+		<td><pre>microspeciesCount(reactant(0))</pre> returns the number of microspecies of the first reactant <pre>microspeciesCount(product(1))</pre>
+		returns the number of microspecies of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="msex"></a><a href="#msdesc">microspecies<br>
+		ms</a></td>
+		<td><pre>microspecies("7.4", 1)</pre> returns the microspecies of the input molecule with second largest distribution at pH
+		<code>7.4</code></td>
+		<td><pre>microspecies(reactant(0), "7.4", 2)</pre> returns the microspecies of the first reactant with third largest
+		distribution at pH <code>7.4</code> <pre>microspecies(product(1), "7.4", 1)</pre> returns the microspecies of the second product
+		with second largest distribution at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="msdistrex"></a><a href="#msdistrdesc">microspeciesDistribution<br>
+		msDistr</a></td>
+		<td><pre>microspeciesDistribution("5.4", 0)</pre> returns the largest microspecies distribution of the input molecule at pH <code>5.4</code></td>
+		<td><pre>microspeciesDistribution(reactant(0), "5.4", 2)</pre> returns the third largest microspecies distribution of the first
+		reactant at pH <code>5.4</code> <pre>microspeciesDistribution(product(1), "3.2", 1)</pre> returns the second largest microspecies
+		distribution of the second product at pH <code>3.2</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="tautomerex"></a><a href="#tautomerdesc">tautomer</a></td>
+		<td><pre>tautomer(0)</pre> returns the first tautomer of the input molecule</td>
+		<td><pre>tautomer(reactant(0), 1)</pre> returns the second tautomer of the first reactant</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="tautomersex"></a><a href="#tautomersdesc">tautomers</a></td>
+		<td><pre>tautomers()</pre> returns all tautomers of the input molecule in an array</td>
+		<td><pre>tautomers(reactant(0))</pre> returns all tautomers of the first reactant in an array</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="tautomercountex"></a><a href="#tautomercountdesc">tautomerCount</a></td>
+		<td><pre>tautomerCount()</pre> returns the number of tautomers of the input molecule</td>
+		<td><pre>tautomerCount(reactant(0))</pre> returns the number of tautomers of the first reactant</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dominanttautomerex"></a><a href="#dominanttautomerdesc">dominantTautomer</a></td>
+		<td><pre>dominantTautomer(0)</pre> returns the first dominant tautomer of the input molecule <pre>dominantTautomer(1, "2.0")</pre> returns
+		the second dominant tautomer of the input molecule, considering pH effect at pH <code>2.0</code> <!-- <br><br>Dominant tautomers are ordered by distribution. --> </td>
+		<td><pre>dominantTautomer(reactant(0), 1)</pre> returns the second dominant tautomer of the first reactant <pre>dominantTautomer(product(1), 0, "7.4")</pre>
+		returns the first dominant tautomer of the second product, considering pH effect at pH <code>7.4</code> <!-- <br><br>Dominant tautomers are ordered by distribution. --> </td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dominanttautomersex"></a><a href="#dominanttautomersdesc">dominantTautomers</a></td>
+		<td><pre>dominantTautomers()</pre> returns all dominant tautomers of the input molecule in an array <pre>dominantTautomers("2.0")</pre>
+		returns all dominant tautomers of the input molecule in an array, considering pH effect at pH <code>2.0</code> <!-- <br><br>Dominant tautomers are ordered by distribution. --> </td>
+		<td><pre>dominantTautomers(reactant(0))</pre> returns all dominant tautomers of the first reactant in an array <pre>dominantTautomers(product(1), "7.4")</pre>
+		returns all dominant tautomers of the second product in an array, considering pH effect at pH <code>7.4</code> <!-- <br><br>Dominant tautomers are ordered by distribution. --> </td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dominanttautomercountex"></a><a href="#dominanttautomercountdesc">dominantTautomerCount</a></td>
+		<td><pre>dominantTautomerCount()</pre> returns the number of dominant tautomers of the input molecule <pre>dominantTautomerCount("7.4")</pre>
+		returns the number of dominant tautomers of the input molecule, considering pH effect at pH <code>7.4</code></td>
+		<td><pre>dominantTautomerCount(reactant(0))</pre> returns the number of dominant tautomers of the first reactant <pre>dominantTautomerCount(product(1), "2.5")</pre>
+		returns the number of dominant tautomers of the second product, considering pH effect at pH <code>2.5</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="canonicaltautomerex"></a><a href="#canonicaltautomerdesc">canonicalTautomer</a></td>
+		<td><pre>canonicalTautomer()</pre> returns the canonical tautomer structure of the input molecule</td>
+		<td><pre>canonicalTautomer(reactant(0))</pre> returns the canonical tautomer structure of the first reactant/td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="generictautomerex"></a><a href="#generictautomerdesc">genericTautomer</a></td>
+		<td><pre>genericTautomer()</pre> returns the generic tautomer structure of the input molecule</td>
+		<td><pre>genericTautomer(reactant(0))</pre> returns the generic tautomer structure of the first reactant/td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="moststabletautomerex"></a><a href="#moststabletautomerdesc">mostStableTautomer</a></td>
+		<td><pre>mostStableTautomer()</pre> returns the most stable tautomer structure of the input molecule</td>
+		<td><pre>mostStableTautomer(reactant(0))</pre> returns the most stable tautomer structure of the first reactant/td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="resonantcountex"></a><a href="#resonantcountdesc">resonantCount</a></td>
+		<td><pre>resonantCount()</pre> returns the number of resonant structures of the input molecule</td>
+		<td><pre>resonantCount(reactant(0))</pre> returns the number of resonant structures of the first reactant</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="resonantex"></a><a href="#resonantdesc">resonant</a></td>
+		<td><pre>resonant(0)</pre> returns the first resonant structure of the input molecule</td>
+		<td><pre>resonant(reactant(0), 1)</pre> returns the second resonant structure of the first reactant</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="canonicalresonantex"></a><a href="#canonicalresonantdesc">canonicalResonant</a></td>
+		<td><pre>canonicalResonant()</pre> returns the canonical resonant structure of the input molecule</td>
+		<td><pre>canonicalResonant(reactant(0))</pre> returns the canonical resonant structure of the first reactant</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="resonantsex"></a><a href="#resonantsdesc">resonants</a></td>
+		<td><pre>resonants()</pre> returns all resonants of the input molecule in an array</td>
+		<td><pre>resonants(reactant(0))</pre> returns all resonants of the first reactant in an array</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="markushenumerationcountex"></a><a href="#markushenumerationcountdesc">markushEnumerationCount</a></td>
+		<td><pre>markushEnumerationCount()</pre> returns the number of Markush enumerated structures of the input molecule <pre>markushEnumerationCount('4,5')</pre>
+		returns the number of Markush enumerated structures of the input molecule, enumerating only atoms 4, 5 (1-based)</td>
+		<td><pre>markushEnumerationCount(reactant(0))</pre> returns the number of Markush enumerated structures of the first reactant <pre>markushEnumerationCount(product(1), atoms(3,4))</pre>
+		returns the number of Markush enumerated structures of the second product, enumerating only atoms 4, 5 (1-based) (the <code>atoms()</code> function converts 0-based indexes to a '-'-separated 1-based atom index string)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="randommarkushenumerationsex"></a><a href="#randommarkushenumerationsdesc">randomMarkushEnumerations</a></td>
+		<td><pre>randomMarkushEnumerations()</pre>
+		returns a randomly constructed enumerated structure of the input molecule <pre>randomMarkushEnumerations(4, '2,3')</pre> returns 4 randomly constructed enumerated structures of the input molecule, enumerating only atoms 2, 3 (1-based) </td>
+		<td><pre>randomMarkushEnumerations(reactant(0), 100)</pre> returns 100 randomly constructed enumerated structures of the first reactant <pre>randomMarkushEnumerations(product(1), '3,4,5')</pre>
+		returns a randomly constructed enumerated structure of the second product, enumerating atoms 3, 4, 5 (1-based)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="randommarkushenumerationsdisplayex"></a><a href="#randommarkushenumerationsdisplaydesc">randomMarkushEnumerationsDisplay</a></td>
+		<td><pre>randomMarkushEnumerationsDisplay()</pre>
+		returns a randomly constructed enumerated structure of the input molecule, with scaffold alignment and scaffold/R-group coloring data<pre>randomMarkushEnumerationsDisplay(4, '2,3')</pre> returns 4 randomly constructed enumerated structures of the input molecule, enumerating only atoms 2, 3 (1-based), with scaffold alignment and coloring data</td>
+		<td><pre>randomMarkushEnumerationsDisplay(reactant(0), 100)</pre> returns 100 randomly constructed enumerated structures of the first reactant, with scaffold alignment and coloring data <pre>randomMarkushEnumerationsDisplay(product(1), '3,4,5')</pre>
+		returns a randomly constructed enumerated structure of the second product, enumerating atoms 3, 4, 5 (1-based), with scaffold alignment and coloring data</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="markushenumerationsex"></a><a href="#markushenumerationsdesc">markushEnumerations</a></td>
+		<td><pre>markushEnumerations()</pre> returns all Markush enumerated structures of the input molecule <pre>markushEnumerations(1, '2,3')</pre>
+		returns one Markush enumerated structure of the input molecule, enumerating atoms 2, 3 (1-based)</td>
+		<td><pre>markushEnumerations(reactant(0), 1)</pre> returns one Markush enumerated structure of the first reactant <pre>markushEnumerations(product(1), 2, '2,3')</pre>
+		returns two Markush enumerated structures of the second product, enumerating atoms 2, 3 (1-based)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="markushenumerationsdisplayex"></a><a href="#markushenumerationsdisplaydesc">markushEnumerationsDisplay</a></td>
+		<td><pre>markushEnumerationsDisplay()</pre> returns all Markush enumerated structures of the input molecule, with scaffold alignment and coloring data <pre>markushEnumerationsDisplay(1, '2,3')</pre>
+		returns one Markush enumerated structure of the input molecule, enumerating atoms 2, 3 (1-based), with scaffold alignment and coloring data </td>
+		<td><pre>markushEnumerationsDisplay(reactant(0), 1)</pre> returns one Markush enumerated structure of the first reactant, with scaffold alignment and coloring data with scaffold alignment and coloring data <pre>markushEnumerationsDisplay(product(1), 2, '2,3')</pre>
+		returns two Markush enumerated structures of the second product, enumerating atoms 2, 3 (1-based), with scaffold alignment and coloring data </td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chargeex"></a><a href="#chargedesc">charge</a></td>
+		<td><pre>charge(0)</pre> returns the partial charge on atom <code>0</code> of the input molecule <pre>charge(2, "pi", "7.4")</pre>
+		returns the partial "pi" charge on atom <code>2</code> of the major microspecies taken at pH <code>7.4</code></td>
+		<td><pre>charge(ratom(1), "aromaticsystem")</pre> returns the sum of partial pi charges in the aromatic system
+		containing the reactant atom matching map <code>1</code> in the reaction equation <pre>charge(patom(2), "aromaticring", "7.4")</pre>
+		returns the sum of partial charges in the smallest aromatic ring containing the product atom matching map <code>2</code>
+		in the major microspecies taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="resonantchargeex"></a><a href="#resonantchargedesc">resonantCharge</a></td>
+		<td><pre>resonantCharge(0)</pre> returns the partial charge on atom <code>0</code> of the input molecule considering resonance effect<pre>resonantCharge(2, "pi", "7.4")</pre>
+		returns the partial "pi" charge on atom <code>2</code> of the major microspecies taken at pH <code>7.4</code> considering resonance effect</td>
+		<td><pre>resonantCharge(ratom(1), "aromaticsystem")</pre> returns the sum of partial pi charges in the aromatic system
+		containing the reactant atom matching map <code>1</code> in the reaction equation considering resonance effect<pre>resonantCharge(patom(2), "aromaticring", "7.4")</pre>
+		returns the sum of partial charges in the smallest aromatic ring containing the product atom matching map <code>2</code>
+		in the major microspecies taken at pH <code>7.4</code> considering resonance effect</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="totalchargeex"></a><a href="#totalchargedesc">totalCharge</a></td>
+		<td><pre>totalCharge()</pre> returns the total charge of the input molecule <pre>totalCharge(majorms("7.4"))</pre>
+		returns the total charge of the major microspecies of the input molecule at pH <code>7.4</code></td>
+		<td><pre>totalCharge(reactant(0))</pre> returns the total charge of the first reactant
+		<pre>totalCharge(majorms(product(1), "7.4"))</pre>
+		returns the total charge of the major microspecies of the second product at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="soenex"></a><a href="#soendesc">sigmaOrbitalElectronegativity<br>
+		sOEN</a></td>
+		<td><pre>sigmaOrbitalElectronegativity(0)</pre> returns the sigma orbital electronegativity of atom <code>0</code>
+		of the input molecule <pre>sigmaOrbitalElectronegativity(2, "7.4")</pre> returns the sigma orbital electronegativity
+		of atom <code>2</code> of the major microspecies taken at pH <code>7.4</code></td>
+		<td><pre>sOEN(ratom(1))</pre> returns the sigma orbital electronegativity of reactant atom matching map <code>1</code>
+		in the reaction equation <pre>sOEN(patom(2), "7.4")</pre> returns the sigma orbital electronegativity of the product
+		atom matching map <code>2</code> of the major microspecies taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="poenex"></a><a href="#poendesc">piOrbitalElectronegativity<br>
+		sOEN</a></td>
+		<td><pre>piOrbitalElectronegativity(0)</pre> returns the pi orbital electronegativity of atom <code>0</code> of
+		the input molecule <pre>piOrbitalElectronegativity(2, "7.4")</pre> returns the pi orbital electronegativity of atom <code>2</code>
+		of the major microspecies taken at pH <code>7.4</code></td>
+		<td><pre>pOEN(ratom(1))</pre> returns the pi orbital electronegativity of reactant atom matching map <code>1</code>
+		in the reaction equation <pre>pOEN(patom(2), "7.4")</pre> returns the pi orbital electronegativity of the product atom
+		matching map <code>2</code> of the major microspecies taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="polex"></a><a href="#poldesc">atomicPolarizability<br>
+		polarizability<br>
+		pol<br>
+		atomPol</a></td>
+		<td><pre>atomicPolarizability(0)</pre> returns the polarizability of atom <code>0</code> of the input molecule <pre>atomicPolarizability(2, "7.4")</pre>
+		returns the polarizability of atom <code>2</code> of the major microspecies taken at pH <code>7.4</code></td>
+		<td><pre>atomicPolarizability(ratom(1))</pre> returns the polarizability of reactant atom matching map <code>1</code> in the
+		reaction equation <pre>atomicPolarizability(patom(2), "7.4")</pre> returns the polarizability of the product atom matching map <code>2</code>
+		of the major microspecies taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="molpolex"></a><a href="#molpoldesc">molecularPolarizability<br>
+		molPol</a></td>
+		<td><pre>molecularPolarizability()</pre> returns the molecular polarizability of the input molecule <pre>molecularPolarizability("7.4")</pre>
+		returns the molecular polarizability of the major microspecies taken at pH <code>7.4</code></td>
+		<td><pre>molecularPolarizability(reactant(1))</pre> returns the molecular polarizability of the second reactant in the reaction
+		equation <pre>molecularPolarizability(product(0), "7.4")</pre> returns the molecular polarizability of the first product major
+		microspecies taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="avgpolex"></a><a href="#avgpoldesc">averagePolarizability<br>
+		averagePol<br>
+		avgPol</a></td>
+		<td><pre>averagePolarizability()</pre> returns the average polarizability component of the input molecule <pre>averagePolarizability("7.4")</pre>
+		returns the average polarizability component of the major microspecies taken at pH <code>7.4</code></td>
+		<td><pre>averagePolarizability(reactant(1))</pre> returns the average polarizability component of the second reactant in the
+		reaction equation <pre>averagePolarizability(product(0), "7.4")</pre> returns the average polarizability component of the first
+		product major microspecies taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="principalpolex"></a><a href="#principalpoldesc">axxPol<br>
+		ayyPol<br>
+		azzPol</a></td>
+		<td><pre>axxPol()</pre> returns the principal component <code>a(xx)</code> of polarizability tensor of the input
+		molecule <pre>ayyPol("7.4")</pre> returns the principal component <code>a(yy)</code> of polarizability tensor of the
+		major microspecies taken at pH <code>7.4</code></td>
+		<td><pre>azzPol(reactant(1))</pre> returns the principal component <code>a(zz)</code> of polarizability tensor of
+		the second reactant in the reaction equation <pre>azzPol(product(0), "7.4")</pre> returns the principal component <code>a(zz)</code>
+		of polarizability tensor of the first product major microspecies taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="pkaex"></a><a href="#pkadesc">pKa</a></td>
+		<td><pre>pKa(0)</pre> returns the p<i>K</i><sub>a</sub> of atom <code>0</code> of the input molecule <pre>pKa("acidic", "2")</pre>
+		returns the second strongest acidic p<i>K</i><sub>a</sub> value</td>
+		<td><pre>pKa(ratom(1))</pre> returns the p<i>K</i><sub>a</sub> of reactant atom matching map <code>1</code> in
+		the reaction equation <pre>pKa(product(0), "basic", "1")</pre> returns the strongest basic p<i>K</i><sub>a</sub> value
+		in the first product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="apkaex"></a><a href="#apkadesc">acidicpKa()<br>
+		apKa</a></td>
+		<td><pre>acidicpKa(0)</pre> returns the acidic p<i>K</i><sub>a</sub> of atom <code>0</code> of the input molecule <pre>acidicpKa("2")</pre>
+		returns the second strongest acidic p<i>K</i><sub>a</sub> value</td>
+		<td><pre>acidicpKa(ratom(1))</pre> returns the acidic p<i>K</i><sub>a</sub> of reactant atom matching map <code>1</code>
+		in the reaction equation <pre>acidicpKa(product(0), "1")</pre> returns the strongest basic p<i>K</i><sub>a</sub> value in
+		the first product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="bpkaex"></a><a href="#bpkadesc">basicpKa<br>
+		bpKa</a></td>
+		<td><pre>basicpKa(0)</pre> returns the basic p<i>K</i><sub>a</sub> of atom <code>0</code> of the input molecule 
+		<pre>basicpKa("2")</pre> returns the second strongest basic p<i>K</i><sub>a</sub> value</td>
+		<td><pre>basicpKa(ratom(1))</pre> returns the basic p<i>K</i><sub>a</sub> of reactant atom matching map <code>1</code>
+		in the reaction equation <pre>basicpKa(product(0), "1")</pre> returns the strongest basic p<i>K</i><sub>a</sub> value in
+		the first product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="apkalargeex"></a><a href="#apkalargedesc">acidicpKaLargeModel</a></td>
+		<td><pre>acidicpKaLargeModel(0)</pre> returns the acidic p<i>K</i><sub>a</sub> of atom <code>0</code> of the input molecule 
+		<pre>acidicpKaLargeModel("2")</pre>	returns the second strongest acidic p<i>K</i><sub>a</sub> value</td>
+		<td><pre>acidicpKaLargeModel(ratom(1))</pre> returns the acidic p<i>K</i><sub>a</sub> of reactant atom matching map <code>1</code>
+		in the reaction equation <pre>acidicpKaLargeModel(product(0), "1")</pre> returns the strongest basic p<i>K</i><sub>a</sub> value in
+		the first product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="bpkalargeex"></a><a href="#bpkalargedesc">basicpKaLargeModel</a></td>
+		<td><pre>basicpKaLargeModel(0)</pre> returns the basic p<i>K</i><sub>a</sub> of atom <code>0</code> of the input molecule 
+		<pre>basicpKaLargeModel("2")</pre>	returns the second strongest basic p<i>K</i><sub>a</sub> value</td>
+		<td><pre>basicpKaLargeModel(ratom(1))</pre> returns the basic p<i>K</i><sub>a</sub> of reactant atom matching map <code>1</code>
+		in the reaction equation <pre>basicpKaLargeModel(product(0), "1")</pre> returns the strongest basic p<i>K</i><sub>a</sub> value in
+		the first product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="logdex"></a><a href="#logddesc">logD</a></td>
+		<td><pre>logD('7.4')</pre> returns the log<i>D</i> at pH <code>7.4</code> of the input molecule</td>
+		<td><pre>logD(reactant(1), '7.4')</pre> returns the log<i>D</i> at pH <code>7.4</code> of the second reactant</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="logpex"></a><a href="#logpdesc">logP</a></td>
+		<td><pre>logP()</pre> returns the most typical log<i>P</i> out of the input molecule log<i>P</i>, the log<i>P</i>
+		of the nonionic species and log<i>D</i> at p<i>I</i> <pre>logP('logPMicro')</pre> returns the log<i>P</i> of the input
+		molecule itself</td>
+		<td><pre>logP(reactant(1), 'logDpI')</pre> returns the log<i>D</i> at p<i>I</i> of the second reactant <pre>logP(product(1), 'logPNonionic')</pre>
+		returns log<i>P</i> of the nonionic species of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="logpiex"></a><a href="#logpidesc">logPincrement<br>
+		logPi</a></td>
+		<td><pre>logPincrement(2)</pre> returns the log<i>P</i> increment on atom <code>2</code> of the input molecule</td>
+		<td><pre>logPincrement(ratom(1))</pre> returns the log<i>P</i> increment on the reactant atom matching map <code>1</code>
+		in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="solubilityex"></a><a href="#solubilitydesc">solubility<br>
+		logS</a></td>
+		<td><pre>solubility('7.4')</pre> returns the log<i>S</i> at pH <code>7.4</code> of the input molecule</td>
+		<td><pre>solubility(reactant(1), '7.4')</pre> returns the log<i>S</i> at pH <code>7.4</code> of the second reactant</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="logstrueex"></a><a href="#logstruedesc">solubilityAtIsoelectricPoint<br>
+		logSTue</a></td>
+		<td><pre>solubilityAtIsoelectricPoint()</pre> returns the log<i>S</i> at isoelectric point of the input molecule</td>
+		<td><pre>solubilityAtIsoelectricPoint(reactant(1))</pre> returns the log<i>S</i> at isoelectric point of the second reactant</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="logsmicroex"></a><a href="#logsmicrodesc">solubilityOfMicroSpecies<br>
+		logSMicro</a></td>
+		<td><pre>solubilityOfMicroSpecies()</pre> returns the log<i>S</i> of the input molecule</td>
+		<td><pre>solubilityOfMicroSpecies(reactant(1))</pre> returns the log<i>S</i> of the second reactant</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="logsneutralex"></a><a href="#logsneutraldesc">solubilityOfNeutral<br>
+		logSNeutral</a></td>
+		<td><pre>solubilityOfNeutral()</pre> returns the log<i>S</i> of the neutralized form of the input molecule</td>
+		<td><pre>solubilityOfNeutral(reactant(1))</pre> returns the log<i>S</i> of the neutralized form of the second reactant</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ordereex"></a><a href="#orderedesc">electrophilicityOrder<br>
+		orderE</a></td>
+		<td><pre>electrophilicityOrder(2)</pre> returns the E(+) order index of atom <code>2</code> of the input molecule, e.g. returns
+		<code>0</code> if atom <code>2</code> is the most electrophilic atom, <code>1</code> if atom <code>2</code> is the
+		second strongest electrophilic atom, etc.,</td>
+		<td><pre>electrophilicityOrder(ratom(1))</pre> returns the E(+) order index of the reactant atom matching map <code>1</code> in
+		the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ordernuex"></a><a href="#ordernudesc">nucleophilicityOrder<br>
+		orderNu</a></td>
+		<td><pre>nucleophilicityOrder(2)</pre> returns the Nu(-) order index of atom <code>2</code> of the input molecule, e.g.
+		returns <code>0</code> if atom <code>2</code> is the most nucleophilic atom, <code>1</code> if atom <code>2</code> is
+		the second strongest nucleophilic atom, etc., </td>
+		<td><pre>nucleophilicityOrder(ratom(1))</pre> returns the Nu(-) order index of the reactant atom matching map <code>1</code>
+		in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="energyeex"></a><a href="#energyedesc">electrophilicLocalizationEnergy<br>
+		energyE</a></td>
+		<td><pre>electrophilicLocalizationEnergy(2)</pre> returns the electrophilic L(+) localization energy of atom <code>2</code> of the input
+		molecule, <code>NaN</code> if atom <code>2</code> is non-aromatic</td>
+		<td><pre>electrophilicLocalizationEnergy(ratom(1))</pre> returns the electrophilic L(+) localization energy of the reactant atom matching
+		map <code>1</code> in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="energynuex"></a><a href="#energynudesc">nucleophilicLocalizationEnergy<br>
+		energyNu</a></td>
+		<td><pre>nucleophilicLocalizationEnergy(2)</pre> returns the nucleophilic L(-) localization energy of atom <code>2</code> of the input
+		molecule, <code>NaN</code> if atom <code>2</code> is non-aromatic</td>
+		<td><pre>nucleophilicLocalizationEnergy(ratom(1))</pre> returns the nucleophilic L(-) localization energy of the reactant atom matching
+		map <code>1</code> in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="pienergyex"></a><a href="#pienergydesc">piEnergy</a></td>
+		<td><pre>piEnergy()</pre> returns the pi energy of the input molecule</td>
+		<td><pre>piEnergy(product(1))</pre> returns the pi energy of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="pichgdensityex"></a><a href="#pichgdensitydesc">electronDensity<br>
+		piChargeDensity</a></td>
+		<td><pre>electronDensity(2)</pre> returns the electron density of atom <code>2</code> of the input molecule, <code>NaN</code>
+		for non-existing value</td>
+		<td><pre>electronDensity(ratom(1))</pre> returns the electron density of the reactant atom matching map <code>1</code>
+		in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="totalchgdensityex"></a><a href="#totalchgdensitydesc">chargeDensity<br>
+		totalChargeDensity</a></td>
+		<td><pre>chargeDensity(2)</pre> returns the charge density of atom <code>2</code> of the input
+		molecule, <code>NaN</code> for non-existing value</td>
+		<td><pre>chargeDensity(ratom(1))</pre> returns the charge density of the reactant atom matching map <code>1</code>
+		in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="psaex"></a><a href="#psadesc">topologicalPolarSurfaceArea<br>
+		PSA</a></td>
+		<td><pre>topologicalPolarSurfaceArea()</pre> returns the polar surface area of the input molecule 
+		<pre>topologicalPolarSurfaceArea('7.4')</pre> returns the polar	surface area of the major microspecies taken at pH <code>7.4</code></td>
+		<td><pre>topologicalPolarSurfaceArea(reactant(0))</pre> returns the polar surface area of the first reactant 
+		<pre>topologicalPolarSurfaceArea(product(0), '7.4')</pre>
+		returns the polar surface area of the major microspecies of the first product taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="msaex"></a><a href="#msadesc">vanDerWaalsSurfaceArea</a></td>
+		<td><pre>vanDerWaalsSurfaceArea()</pre> returns the van der Waals surface area of the input molecule <pre>vanDerWaalsSurfaceArea('7.4')</pre>
+		returns the van der Waals accessible surface area of the major microspecies taken at pH <code>7.4</code></td>
+		<td><pre>vanDerWaalsSurfaceArea(reactant(0))</pre> returns the van der Waals surface area of the first
+		reactant <pre>vanDerWaalsSurfaceArea(product(0), '7.4')</pre> returns the van der Waals surface area of the major
+		microspecies of the first product taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="asaex"></a><a href="#asadesc">solventAccessibleSurfaceArea / waterAccessibleSurfaceArea / ASA</a></td>
+		<td><pre>waterAccessibleSurfaceArea()</pre> returns the solvent accessible / water accessible surface area of the input molecule 
+		<pre>solventAccessibleSurfaceArea('7.4')</pre>returns the solvent accessible / water accessible surface area of the major microspecies taken at 
+		pH <code>7.4</code></td>
+		<td><pre>waterAccessibleSurfaceArea(reactant(0))</pre> returns the solvent accessible / water accessible surface area of the first
+		reactant<pre>solventAccessibleSurfaceArea(product(0), '7.4')</pre> returns the solvent accessible / water accessible surface area of the major
+		microspecies of the first product taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="asaplusex"></a><a href="#asaplusdesc">ASAPlus</a></td>
+		<td><pre>ASAPlus()</pre> returns the water accessible surface area of all atoms of the input molecule with positive partial charge
+		<pre>ASAPlus('7.4')</pre>returns the water accessible surface area of all atoms with positive partial charge of the major microspecies taken at 
+		pH <code>7.4</code></td>
+		<td><pre>ASAPlus(reactant(0))</pre> returns the water accessible surface area of all atoms of the first reactant with positive partial charge 
+		<pre>ASAPlus(product(0), '7.4')</pre> returns the water accessible surface area of all atoms with positive partial charge  of the major
+		microspecies of the first product taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="asanegativeex"></a><a href="#asanegativedesc">ASANegative</a></td>
+		<td><pre>ASANegative()</pre> returns the water accessible surface area of all atoms of the input molecule with negative partial charge
+		<pre>ASANegative('7.4')</pre>returns the water accessible surface area of all atoms with negative partial charge of the major microspecies taken at 
+		pH <code>7.4</code></td>
+		<td><pre>ASANegative(reactant(0))</pre> returns the water accessible surface area of all atoms of the first reactant with negative partial charge 
+		<pre>ASANegative(product(0), '7.4')</pre> returns the water accessible surface area of all atoms with negative partial charge  of the major
+		microspecies of the first product taken at pH <code>7.4</code></td>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="asahydrophobicex"></a><a href="#asahydrophobicdesc">ASAHydrophobic</a></td>
+		<td><pre>ASAHydrophobic()</pre> returns the water accessible surface area of all atoms of the input molecule with hydrophobic partial charge
+		<pre>ASAHydrophobic('7.4')</pre>returns the water accessible surface area of all atoms with hydrophobic partial charge of the major microspecies taken at 
+		pH <code>7.4</code></td>
+		<td><pre>ASAHydrophobic(reactant(0))</pre> returns the water accessible surface area of all atoms of the first reactant with hydrophobic partial charge 
+		<pre>ASAHydrophobic(product(0), '7.4')</pre> returns the water accessible surface area of all atoms with hydrophobic partial charge  of the major
+		microspecies of the first product taken at pH <code>7.4</code></td>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="asapolarex"></a><a href="#asapolardesc">ASAPolar</a></td>
+		<td><pre>ASAPolar()</pre> returns the water accessible surface area of all atoms of the input molecule with polar partial charge
+		<pre>ASAPolar('7.4')</pre>returns the water accessible surface area of all atoms with polar partial charge of the major microspecies taken at 
+		pH <code>7.4</code></td>
+		<td><pre>ASAPolar(reactant(0))</pre> returns the water accessible surface area of all atoms of the first reactant with polar partial charge 
+		<pre>ASAPolar(product(0), '7.4')</pre> returns the water accessible surface area of all atoms with polar partial charge  of the major
+		microspecies of the first product taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="massex"></a><a href="#massdesc">mass / exactMass</a></td>
+		<td><pre>mass()</pre> returns the mass of the input molecule <pre>exactMass()</pre> returns the exact mass of the
+		input molecule</td>
+		<td><pre>mass(reactant(0))</pre> returns the mass of the first reactant <pre>exactMass(product(1))</pre> returns
+		the exact mass of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="formulaex"></a><a href="#formuladesc">formula</a></td>
+		<td><pre>formula()</pre> returns the formula of the input molecule</td>
+		<td>N / A (reaction rules are numerical)
+	</tr>
+
+	<tr valign="top">
+		<td><a name="isotopeformulaex"></a><a href="#isotopeformuladesc">isotopeFormula</a></td>
+		<td><pre>isotopeFormula()</pre> returns the isotope formula of the input molecule</td>
+		<td>N / A (reaction rules are numerical)
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dotdisconnectedformulaex"></a><a href="#dotdisconnectedformuladesc">dotDisconnectedFormula</a></td>
+		<td><pre>dotDisconnectedFormula()</pre> returns the dot-disconnected formula of the input molecule</td>
+		<td>N / A (reaction rules are numerical)
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dotdisconnectedisotopeformulaex"></a><a href="#dotdisconnectedisotopeformuladesc">dotDisconnectedIsotopeFormula</a></td>
+		<td><pre>dotDisconnectedIsotopeFormula()</pre> returns the dot-disconnected isotope formula of the input molecule</td>
+		<td>N / A (reaction rules are numerical)
+	</tr>
+
+	<tr valign="top">
+		<td><a name="compositionex"></a><a href="#compositiondesc">composition</a></td>
+		<td><pre>composition()</pre> returns the composition of the input molecule</td>
+		<td>N / A (reaction rules are numerical)
+	</tr>
+
+	<tr valign="top">
+		<td><a name="isotopecompositionex"></a><a href="#isotopecompositiondesc">isotopeComposition</a></td>
+		<td><pre>isotopeComposition()</pre> returns the isotope composition of the input molecule</td>
+		<td>N / A (reaction rules are numerical)
+	</tr>
+
+	<tr valign="top">
+		<td><a name="atomcountex"></a><a href="#atomcountdesc">atomCount</a></td>
+		<td><pre>atomCount()</pre> returns the number of atoms in the input molecule <pre>atomCount("6")</pre> returns
+		the number of carbon atoms in the input molecule</td>
+		<td><pre>atomCount(reactant(0), "7")</pre> returns the number of nitrogen atoms in the first reactant <pre>atomCount(product(1), "7.14")</pre>
+		returns the number of nitrogen atoms with mass number <code>14</code> in the second product <pre>atomCount(product(1), "7.0")</pre>
+		returns the number of non-isotope nitrogen atoms in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aliphaticatomcountex"></a><a href="#aliphaticatomcountdesc">aliphaticAtomCount</a></td>
+		<td><pre>aliphaticAtomCount()</pre> returns the number of aliphatic atoms in the input molecule</td>
+		<td><pre>aliphaticAtomCount(reactant(0))</pre> returns the number of aliphatic atoms in the first reactant <pre>aliphaticAtomCount(product(1))</pre>
+		returns the number of aliphatic atoms in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aromaticatomcountex"></a><a href="#aromaticatomcountdesc">aromaticAtomCount</a></td>
+		<td><pre>aromaticAtomCount()</pre> returns the number of aromatic atoms in the input molecule</td>
+		<td><pre>aromaticAtomCount(reactant(0))</pre> returns the number of aromatic atoms in the first reactant <pre>aromaticAtomCount(product(1))</pre>
+		returns the number of aromatic atoms in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="bondcountex"></a><a href="#bondcountdesc">bondCount</a></td>
+		<td><pre>bondCount()</pre> returns the number of bonds in the input molecule</td>
+		<td><pre>bondCount(reactant(0))</pre> returns the number of bonds in the first reactant <pre>bondCount(product(1))</pre>
+		returns the number of bonds in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aliphaticbondcountex"></a><a href="#aliphaticbondcountdesc">aliphaticBondCount</a></td>
+		<td><pre>aliphaticBondCount()</pre> returns the number of bonds in the input molecule</td>
+		<td><pre>aliphaticBondCount(reactant(0))</pre> returns the number of aliphatic bonds in the first reactant <pre>aliphaticBondCount(product(1))</pre>
+		returns the number of aliphatic bonds in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aromaticbondcountex"></a><a href="#aromaticbondcountdesc">aromaticBondCount</a></td>
+		<td><pre>aromaticBondCount()</pre> returns the number of aromatic bonds in the input molecule</td>
+		<td><pre>aromaticBondCount(reactant(0))</pre> returns the number of aromatic bonds in the first reactant <pre>aromaticBondCount(product(1))</pre>
+		returns the number of aromatic bonds in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="rotatablebondcountex"></a><a href="#rotatablebondcountdesc">rotatableBondCount</a></td>
+		<td><pre>rotatableBondCount()</pre> returns the number of rotatable bonds in the input molecule</td>
+		<td><pre>rotatableBondCount(reactant(0))</pre> returns the number of rotatable bonds in the first reactant <pre>rotatableBondCount(product(1))</pre>
+		returns the number of rotatable bonds in the second product</td>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="fragmentcountex"></a><a href="#fragmentcountdesc">fragmentCount</a></td>
+		<td><pre>fragmentCount()</pre> returns the number of fragments in the input molecule</td>
+		<td><pre>fragmentCount(reactant(0))</pre> returns the number of fragments in the first reactant <pre>fragmentCount(product(1))</pre>
+		returns the number of fragments in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringcountex"></a><a href="#ringcountdesc">ringCount</a></td>
+		<td><pre>ringCount()</pre> returns the number of rings in the input molecule</td>
+		<td><pre>ringCount(reactant(0))</pre> returns the number of rings in the first reactant <pre>ringCount(product(1))</pre>
+		returns the number of rings in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringcountofsizeex"></a><a href="#ringcountofsizedesc">ringCountOfSize</a></td>
+		<td><pre>ringCountOfSize(6)</pre> returns the number of rings of size 6 in the input molecule</td>
+		<td><pre>ringCountOfSize(reactant(0), 5)</pre> returns the number of rings of size 5 in the first reactant 
+		<pre>ringCountOfSize(product(1), 5)</pre> returns the number of rings of size 5 in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aliphaticringcountex"></a><a href="#aliphaticringcountdesc">aliphaticRingCount</a></td>
+		<td><pre>aliphaticRingCount()</pre> returns the number of aliphatic rings in the input molecule</td>
+		<td><pre>aliphaticRingCount(reactant(0))</pre> returns the number of aliphatic rings in the first reactant <pre>aliphaticRingCount(product(1))</pre>
+		returns the number of aliphatic rings in the second product</td>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="aliphaticringcountofsizeex"></a><a href="#aliphaticringcountofsizedesc">aliphaticRingCountOfSize</a></td>
+		<td><pre>aliphaticRingCountOfSize(6)</pre> returns the number of aliphatic rings of size 6 in the input molecule</td>
+		<td><pre>aliphaticRingCountOfSize(reactant(0), 5)</pre> returns the number of aliphatic rings of size 5 in the first reactant 
+		<pre>aliphaticRingCountOfSize(product(1), 5)</pre> returns the number of aliphatic rings of size 5 in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aromaticringcountex"></a><a href="#aromaticringcountdesc">aromaticRingCount</a></td>
+		<td><pre>aromaticRingCount()</pre> returns the number of aromatic rings in the input molecule</td>
+		<td><pre>aromaticRingCount(reactant(0))</pre> returns the number of aromatic rings in the first reactant <pre>aromaticRingCount(product(1))</pre>
+		returns the number of aromatic rings in the second product</td>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="aromaticringcountofsizeex"></a><a href="#aromaticringcountofsizedesc">aromaticRingCountOfSize</a></td>
+		<td><pre>aromaticRingCountOfSize(6)</pre> returns the number of aromatic rings of size 6 in the input molecule</td>
+		<td><pre>aromaticRingCountOfSize(reactant(0), 5)</pre> returns the number of aromatic rings of size 5 in the first reactant 
+		<pre>aromaticRingCountOfSize(product(1), 5)</pre> returns the number of aromatic rings of size 5 in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="heteroringcountex"></a><a href="#heteroringcountdesc">heteroRingCount</a></td>
+		<td><pre>heteroRingCount()</pre> returns the number of hetero rings in the input molecule</td>
+		<td><pre>heteroRingCount(reactant(0))</pre> returns the number of hetero rings in the first reactant <pre>heteroRingCount(product(1))</pre>
+		returns the number of hetero rings in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="heteroaromaticringcountex"></a><a href="#heteroaromaticringcountdesc">heteroaromaticRingCount</a></td>
+		<td><pre>heteroaromaticRingCount()</pre> returns the number of heteroaromatic rings in the input molecule</td>
+		<td><pre>heteroaromaticRingCount(reactant(0))</pre> returns the number of heteroaromatic rings in the first
+		reactant <pre>heteroaromaticRingCount(product(1))</pre> returns the number of heteroaromatic rings in the second
+		product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="carboringcountex"></a><a href="#carboringcountdesc">carboRingCount</a></td>
+		<td><pre>carboRingCount()</pre> returns the number of carbo rings in the input molecule</td>
+		<td><pre>carboRingCount(reactant(0))</pre> returns the number of carbo rings in the first reactant <pre>carboRingCount(product(1))</pre>
+		returns the number of carbo rings in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="carboaromaticringcountex"></a><a href="#carboaromaticringcountdesc">carboaromaticRingCount</a></td>
+		<td><pre>carboaromaticRingCount()</pre> returns the number of carboaromatic rings in the input molecule</td>
+		<td><pre>carboaromaticRingCount(reactant(0))</pre> returns the number of carboaromatic rings in the first
+		reactant <pre>carboaromaticRingCount(product(1))</pre> returns the number of carboaromatic rings in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringatomcountex"></a><a href="#ringatomcountdesc">ringAtomCount</a></td>
+		<td><pre>ringAtomCount()</pre> returns the number of ring atoms in the input molecule</td>
+		<td><pre>ringAtomCount(reactant(0))</pre> returns the number of ring atoms in the first reactant <pre>ringAtomCount(product(1))</pre>
+		returns the number of ring atoms in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringbondcountex"></a><a href="#ringbondcountdesc">ringBondCount</a></td>
+		<td><pre>ringBondCount()</pre> returns the number of ring bonds in the input molecule</td>
+		<td><pre>ringBondCount(reactant(0))</pre> returns the number of ring bonds in the first reactant <pre>ringBondCount(product(1))</pre>
+		returns the number of ring bonds in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chainatomcountex"></a><a href="#chainatomcountdesc">chainAtomCount</a></td>
+		<td><pre>chainAtomCount()</pre> returns the number of chain atoms in the input molecule</td>
+		<td><pre>chainAtomCount(reactant(0))</pre> returns the number of chain atoms in the first reactant <pre>chainAtomCount(product(1))</pre>
+		returns the number of chain atoms in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chainbondcountex"></a><a href="#chainbondcountdesc">chainBondCount</a></td>
+		<td><pre>chainBondCount()</pre> returns the number of chain bonds in the input molecule</td>
+		<td><pre>chainBondCount(reactant(0))</pre> returns the number of chain bonds in the first reactant <pre>chainBondCount(product(1))</pre>
+		returns the number of chain bonds in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringatomcountex"></a><a href="#ringatomcountdesc">ringAtomCount</a></td>
+		<td><pre>ringAtomCount()</pre> returns the number of ring atoms in the input molecule</td>
+		<td><pre>ringAtomCount(reactant(0))</pre> returns the number of ring atoms in the first reactant <pre>ringAtomCount(product(1))</pre>
+		returns the number of ring atoms in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringsizeex"></a><a href="#ringsizedesc">smallestRingSize / largestRingSize</a></td>
+		<td><pre>smallestRingSize()</pre> returns the size of the smallest ring in the input molecule <pre>largestRingSize()</pre>
+		returns the size of the largest ring in the input molecule</td>
+		<td><pre>smallestRingSize(reactant(0))</pre> returns the size of the smallest ring in the first reactant <pre>largestRingSize(product(1))</pre>
+		returns the size of the largest ring in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="fusedringcountex"></a><a href="#fusedringcountdesc">fusedRingCount</a></td>
+		<td><pre>fusedRingCount()</pre> returns the number of fused rings in the input molecule</td>
+		<td><pre>fusedRingCount(reactant(0))</pre> returns the number of fused rings in the first reactant <pre>fusedRingCount(product(1))</pre>
+		returns the number of fused rings in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="fusedaliphaticringcountex"></a><a href="#fusedaliphaticringcountdesc">fusedAliphaticRingCount</a></td>
+		<td><pre>fusedAliphaticRingCount()</pre> returns the number of fused aliphatic rings in the input molecule</td>
+		<td><pre>fusedAliphaticRingCount(reactant(0))</pre> returns the number of fused aliphatic rings in the first
+		reactant <pre>fusedAliphaticRingCount(product(1))</pre> returns the number of fused aliphatic rings in the second
+		product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="fusedaromaticringcountex"></a><a href="#fusedaromaticringcountdesc">fusedAromaticRingCount</a></td>
+		<td><pre>fusedAromaticRingCount()</pre> returns the number of fused aromatic rings in the input molecule</td>
+		<td><pre>fusedAromaticRingCount(reactant(0))</pre> returns the number of fused aromatic rings in the first
+		reactant <pre>fusedAromaticRingCount(product(1))</pre> returns the number of fused aromatic rings in the second
+		product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringsystemcountofsizeex"></a><a href="#ringsystemcountofsizedesc">ringSystemCountOfSize</a></td>
+		<td><pre>ringSystemCountOfSize(4)</pre> returns the number of four-membered ring systems in the input molecule</td>
+		<td><pre>ringSystemCountOfSize(reactant(0),3)</pre> returns the number of three-membered ring systems in the first reactant 
+		<pre>ringsystemCountOfSize(product(1),3)</pre> returns the number of three-membered ring systems in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringsystemcountex"></a><a href="#ringsystemcountdesc">ringSystemCount</a></td>
+		<td><pre>ringSystemCount()</pre> returns the number of ring systems in the input molecule</td>
+		<td><pre>ringSystemCount(reactant(0))</pre> returns the number of ring systems in the first reactant <pre>ringsystemCount(product(1))</pre>
+		returns the number of ring systems in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="smallestringsystemsizeex"></a><a href="#smallestringsystemsizedesc">smallestRingSystemSize</a></td>
+		<td><pre>smallestRingSystemSize()</pre> returns the size of the smallest ring system in the input molecule</td>
+		<td><pre>smallestRingSystemSize(reactant(0))</pre> returns the size of the smallest ring system in the first reactant <pre>smallestringsystemsize(product(1))</pre>
+		returns the size of the smallest ring system in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="largestringsystemsizeex"></a><a href="#largestringsystemsizedesc">largestRingSystemSize</a></td>
+		<td><pre>largestRingSystemSize()</pre> returns the size of the largest ring system in the input molecule</td>
+		<td><pre>largestRingSystemSize(reactant(0))</pre> returns the size of the largest ring system in the first reactant <pre>largestringsystemsize(product(1))</pre>
+		returns the size of the largest ring system in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="asymmetricatomcountex"></a><a href="#asymmetricatomcountdesc">asymmetricAtomCount</a></td>
+		<td><pre>asymmetricAtomCount()</pre> returns the number of asymmetric atoms in the input molecule</td>
+		<td><pre>asymmetricAtomCount(reactant(0))</pre> returns the number of asymmetric atoms in the first reactant <pre>asymmetricAtomCount(product(1))</pre>
+		returns the number of asymmetric atoms in the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chiralcentercountex"></a><a href="#chiralcentercountdesc">chiralCenterCount</a></td>
+		<td><pre>chiralCenterCount()</pre> returns the number of tetrahedral stereogenic centers in the input molecule</td>
+		<td><pre>chiralCenterCount(reactant(0))</pre> returns the number of tetrahedral stereogenic centers in the first
+		reactant <pre>chiralCenterCount(product(1))</pre> returns the number of tetrahedral stereogenic centers in the second
+		product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aromaticatomex"></a><a href="#aromaticatomdesc">aromaticAtom</a></td>
+		<td><pre>aromaticAtom(2)</pre> returns <code>true</code> if atom <code>2</code> of the input molecule is
+		aromatic, <code>false</code> otherwise</td>
+		<td><pre>aromaticAtom(ratom(2))</pre> returns <code>true</code> if the reactant atom matching map <code>2</code>
+		in the reaction equation is aromatic, <code>false</code> otherwise <pre>aromaticAtom(patom(1))</pre> returns <code>true</code>
+		if the product atom matching map <code>1</code> in the reaction equation is aromatic, <code>false</code> otherwise</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="aliphaticatomex"></a><a href="#aliphaticatomdesc">aliphaticAtom</a></td>
+		<td><pre>aliphaticAtom(2)</pre> returns <code>true</code> if atom <code>2</code> of the input molecule is
+		aliphatic, <code>false</code> otherwise</td>
+		<td><pre>aliphaticAtom(ratom(2))</pre> returns <code>true</code> if the reactant atom matching map <code>2</code>
+		in the reaction equation is aliphatic, <code>false</code> otherwise <pre>aliphaticAtom(patom(1))</pre> returns <code>true</code>
+		if the product atom matching map <code>1</code> in the reaction equation is aliphatic, <code>false</code> otherwise</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chainatomex"></a><a href="#chainatomdesc">chainAtom</a></td>
+		<td><pre>chainAtom(2)</pre> returns <code>true</code> if atom <code>2</code> of the input molecule is a chain
+		atom, <code>false</code> otherwise</td>
+		<td><pre>chainAtom(ratom(2))</pre> returns <code>true</code> if the reactant atom matching map <code>2</code> in
+		the reaction equation is a chain atom, <code>false</code> otherwise <pre>chainAtom(patom(1))</pre> returns <code>true</code>
+		if the product atom matching map <code>1</code> in the reaction equation is a chain atom, <code>false</code> otherwise</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringatomex"></a><a href="#ringatomdesc">ringAtom</a></td>
+		<td><pre>ringAtom(2)</pre> returns <code>true</code> if atom <code>2</code> of the input molecule is a ring atom,
+		<code>false</code> otherwise</td>
+		<td><pre>ringAtom(ratom(2))</pre> returns <code>true</code> if the reactant atom matching map <code>2</code> in
+		the reaction equation is a ring atom, <code>false</code> otherwise <pre>ringAtom(patom(1))</pre> returns <code>true</code>
+		if the product atom matching map <code>1</code> in the reaction equation is a ring atom, <code>false</code> otherwise</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="asymmetricatomex"></a><a href="#asymmetricatomdesc">asymmetricAtom</a></td>
+		<td><pre>asymmetricAtom(2)</pre> returns <code>true</code> if atom <code>2</code> of the input molecule is an
+		asymmetric atom, <code>false</code> otherwise</td>
+		<td><pre>asymmetricAtom(ratom(2))</pre> returns <code>true</code> if the reactant atom matching map <code>2</code>
+		in the reaction equation is an asymmetric atom, <code>false</code> otherwise <pre>asymmetricAtom(patom(1))</pre>
+		returns <code>true</code> if the product atom matching map <code>1</code> in the reaction equation is an asymmetric
+		atom, <code>false</code> otherwise</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chiralcenterex"></a><a href="#chiralcenterdesc">chiralCenter</a></td>
+		<td><pre>chiralCenter(2)</pre> returns <code>true</code> if atom <code>2</code> of the input molecule is a
+		tetrahedral stereogenic center, <code>false</code> otherwise</td>
+		<td><pre>chiralCenter(ratom(2))</pre> returns <code>true</code> if the reactant atom matching map <code>2</code>
+		in the reaction equation is a tetrahedral stereogenic center, <code>false</code> otherwise <pre>chiralCenter(patom(1))</pre>
+		returns <code>true</code> if the product atom matching map <code>1</code> in the reaction equation is a tetrahedral
+		stereogenic center, <code>false</code> otherwise</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="cyclomaticnumberex"></a><a href="#cyclomaticnumberdesc">cyclomaticNumber</a></td>
+		<td><pre>cyclomaticNumber()</pre> returns the cyclomatic number of the input molecule</td>
+		<td><pre>cyclomaticNumber(reactant(0))</pre> returns the cyclomatic number of the first reactant <pre>cyclomaticNumber(product(1))</pre>
+		returns the cyclomatic number of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="plattindexex"></a><a href="#plattindexdesc">plattIndex</a></td>
+		<td><pre>plattIndex()</pre> returns the Platt index of the input molecule</td>
+		<td><pre>plattIndex(reactant(0))</pre> returns the Platt index of the first reactant <pre>plattIndex(product(1))</pre>
+		returns the Platt index of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="randicindexex"></a><a href="#randicindexdesc">randicIndex</a></td>
+		<td><pre>randicIndex()</pre> returns the Randic index of the input molecule</td>
+		<td><pre>randicIndex(reactant(0))</pre> returns the Randic index of the first reactant <pre>randicIndex(product(1))</pre>
+		returns the Randic index of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="balabanindexex"></a><a href="#balabanindexdesc">balabanIndex</a></td>
+		<td><pre>balabanIndex()</pre> returns the Balaban index of the input molecule</td>
+		<td><pre>balabanIndex(reactant(0))</pre> returns the Balaban index of the first reactant <pre>balabanIndex(product(1))</pre>
+		returns the Balaban index of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="distancedegreeex"></a><a href="#distancedegreedesc">distanceDegree</a></td>
+		<td><pre>distanceDegree(2)</pre> returns the distance degree of atom <code>2</code> of the input molecule</td>
+		<td><pre>distanceDegree(ratom(2))</pre> returns the distance degree of the reactant atom matching map <code>2</code>
+		in the reaction equation <pre>distanceDegree(patom(1))</pre> returns the distance degree of the product atom matching
+		map <code>1</code> in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="eccentricityex"></a><a href="#eccentricitydesc">eccentricity</a></td>
+		<td><pre>eccentricity(2)</pre> returns the eccentricity of atom <code>2</code> of the input molecule</td>
+		<td><pre>eccentricity(ratom(2))</pre> returns the eccentricity of the reactant atom matching map <code>2</code>
+		in the reaction equation <pre>eccentricity(patom(1))</pre> returns the distance degree of the product atom matching
+		map <code>1</code> in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="hararyindexex"></a><a href="#hararyindexdesc">hararyIndex</a></td>
+		<td><pre>hararyIndex()</pre> returns the Harary index of the input molecule</td>
+		<td><pre>hararyIndex(reactant(0))</pre> returns the Harary index of the first reactant <pre>hararyIndex(product(1))</pre>
+		returns the Harary index of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="hyperwienerindexex"></a><a href="#hyperwienerindexdesc">hyperWienerIndex</a></td>
+		<td><pre>hyperWienerIndex()</pre> returns the Hyper Wiener index of the input molecule</td>
+		<td><pre>hyperWienerIndex(reactant(0))</pre> returns the Hyper Wiener index of the first reactant <pre>hyperWienerIndex(product(1))</pre>
+		returns the Hyper Wiener index of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="szegedindexex"></a><a href="#szegedindexdesc">szegedIndex</a></td>
+		<td><pre>szegedIndex()</pre> returns the Szeged index of the input molecule</td>
+		<td><pre>szegedIndex(reactant(0))</pre> returns the Szeged index of the first reactant <pre>szegedIndex(product(1))</pre>
+		returns the Szeged index of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="wienerindexex"></a><a href="#wienerindexdesc">wienerIndex</a></td>
+		<td><pre>wienerIndex()</pre> returns the Wiener index of the input molecule</td>
+		<td><pre>wienerIndex(reactant(0))</pre> returns the Wiener index of the first reactant <pre>wienerIndex(product(1))</pre>
+		returns the Wiener index of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="wienerpolarityex"></a><a href="#wienerpolaritydesc">wienerPolarity</a></td>
+		<td><pre>wienerPolarity()</pre> returns the Wiener polarity of the input molecule</td>
+		<td><pre>wienerPolarity(reactant(0))</pre> returns the Wiener polarity of the first reactant <pre>wienerPolarity(product(1))</pre>
+		returns the Wiener polarity of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="stericeffectindexex"></a><a href="#stericeffectindexdesc">stericEffectIndex</a></td>
+		<td><pre>stericEffectIndex(2)</pre> returns the steric effect index of atom <code>2</code> of the input molecule</td>
+		<td><pre>stericEffectIndex(ratom(2))</pre> returns the steric effect index of the reactant atom matching map <code>2</code>
+		in the reaction equation <pre>stericEffectIndex(patom(1))</pre> returns the steric effect index of the product atom
+		matching map <code>1</code> in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="atomringsizeex"></a><a href="#atomringsizedesc">smallestAtomRingSize / largestAtomRingSize</a></td>
+		<td><pre>smallestAtomRingSize(0)</pre> returns the size of the smallest ring containing atom <code>0</code> in
+		the input molecule <pre>largestAtomRingSize(1)</pre> returns the size of the largest ring containing atom <code>1</code>
+		in the input molecule</td>
+		<td><pre>smallestAtomRingSize(ratom(1))</pre> returns the size of the smallest ring containing reactant atom
+		matching map <code>1</code> in the reaction equation <pre>largestRingSize(patom(2))</pre> returns the size of the
+		largest ring containing product atom matching map <code>2</code> in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="shortestpathex"></a><a href="#shortestpathdesc">shortestPath</td>
+		<td><pre>shortestPath('2-3')</pre> and <pre>shortestPath(pair(1, 2))</pre> both return the shortest path length
+		between atoms <code>1</code> and <code>2</code> in the input molecule</td>
+		<td><pre>shortestPath(reactant(0), pair(ratom(1), ratom(2)))</pre> returns the length of the shortest path between reactant
+		atoms matching maps <code>1</code> and <code>2</code> in the reaction equation (<a href="#note1">see note 1</a>) 
+		<pre>shortestPath(product(1), pair(patom(2), patom(3)))</pre> returns the length of the shortest path between product 
+		atoms matching maps <code>2</code> and <code>3</code> in the reaction equation (<a href="#note1">see note 1</a>)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="connectedex"></a><a href="#connecteddesc">connected</a></td>
+		<td><pre>connected('2-3')</pre> and <pre>connected(pair(1, 2))</pre> both return <code>true</code> if atoms <code>1</code>
+		and <code>2</code> are in the same connected component of the input molecule</td>
+		<td><pre>connected(reactant(0), pair(ratom(1), ratom(2)))</pre> returns <code>true</code> if reactant atoms matching maps <code>1</code>
+		and <code>2</code> in the reaction equation are connected in the corresponding reactant molecule (<a href="#note1">see note 1</a>)
+		<pre>connected(product(1), pair(patom(2), patom(3)))</pre> returns <code>true</code> if product atoms matching maps <code>2</code> 
+		and <code>3</code> in the reaction equation are connected in the corresponding product molecule (<a href="#note1">see note 1</a>)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="connectedgraphex"></a><a href="#connectedgraphdesc">conenctedGraph</a></td>
+		<td><pre>connectedGraph()</pre> returns <code>true</code> if the input molecule graph is connected</td>
+		<td><pre>connectedGraph(reactant(0))</pre> returns <code>true</code> if the first reactant is connected <pre>connectedGraph(product(1))</pre>
+		returns <code>true</code> if the second product is connected</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="bondtypeex"></a><a href="#bondtypedesc">bondType</a></td>
+		<td><pre>bondType('2-3')</pre> and <pre>bondType(bond(1, 2))</pre> both return the bond type between atoms <code>1</code>
+		and <code>2</code> in the input molecule</td>
+		<td><pre>bondType(reactant(0), bond(ratom(1), ratom(2)))</pre> returns the bond type between reactant atoms matching maps <code>1</code>
+		and <code>2</code> in the reaction equation (<a href="#note1">see note 1</a>)<pre>bondType(product(1), bond(patom(2), patom(3)))</pre> 
+		returns the bond type between product atoms matching maps <code>2</code> and <code>3</code> in the reaction equation
+		(<a href="#note1">see note 1</a>)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="chainbondex"></a><a href="#chainbonddesc">chainBond</a></td>
+		<td><pre>chainBond('2-3')</pre> and <pre>chainBond(bond(1, 2))</pre> both return <code>true</code> if atoms <code>1</code>
+		and <code>2</code> are connected by a chain bond the input molecule</td>
+		<td><pre>chainBond(reactant(0), bond(ratom(1), ratom(2)))</pre> returns <code>true</code> if reactant atoms matching maps <code>1</code>
+		and <code>2</code> in the reaction equation are connected by a chain bond in the corresponding reactant molecule (<a href="#note1">see note 1</a>)
+		<pre>chainBond(product(1), bond(patom(2), patom(3)))</pre> returns <code>true</code> if product atoms matching maps <code>2</code> and <code>3</code> in the 
+		reaction equation are connected by a chain bond in the corresponding product molecule (<a href="#note1">see note 1</a>)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringbondex"></a><a href="#ringbonddesc">ringBond</a></td>
+		<td><pre>ringBond('2-3')</pre> and <pre>ringBond(bond(1, 2))</pre> both return <code>true</code> if atoms <code>1</code>
+		and <code>2</code> are connected by a ring bond the input molecule</td>
+		<td><pre>ringBond(reactant(0), bond(ratom(1), ratom(2)))</pre> returns <code>true</code> if reactant atoms matching maps <code>1</code>
+		and <code>2</code> in the reaction equation are connected by a ring bond in the corresponding reactant molecule (<a href="#note1">see note 1</a>) 
+		<pre>ringBond(product(1), bond(patom(2), patom(3)))</pre> returns <code>true</code> if product atoms matching maps <code>2</code> and <code>3</code> 
+		in the reaction equation are connected by a ring bond in the corresponding product molecule (<a href="#note1">see note 1</a>)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="rotatablebondex"></a><a href="#rotatablebonddesc">rotatableBond</a></td>
+		<td><pre>rotatableBond('2-3')</pre> and <pre>rotatableBond(bond(1, 2))</pre> both return <code>true</code> if
+		atoms <code>1</code> and <code>2</code> are connected by a rotatable bond the input molecule</td>
+		<td><pre>rotatableBond(reactant(0), bond(ratom(1), ratom(2)))</pre> returns <code>true</code> if reactant atoms matching maps
+		<code>1</code> and <code>2</code> in the reaction equation are connected by a rotatable bond in the corresponding
+		reactant molecule (<a href="#note1">see note 1</a>)
+		<pre>rotatableBond(product(1), bond(patom(2), patom(3)))</pre> returns <code>true</code> if product atoms
+		matching maps <code>2</code> and <code>3</code> in the reaction equation are connected by a rotatable bond in the
+		corresponding product molecule (<a href="#note1">see note 1</a>)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="ringcountofatomex"></a><a href="#ringcountofatomdesc">ringCountOfAtom</a></td>
+		<td><pre>ringCountOfAtom(2)</pre> returns the number of rings passsing through atom <code>2</code> of the input
+		molecule</td>
+		<td><pre>ringCountOfAtom(ratom(2))</pre> returns the number of rings passsing through the reactant atom matching
+		map <code>2</code> in the reaction equation <pre>ringCountOfAtom(patom(1))</pre> returns the number of rings passsing
+		through the product atom matching map <code>1</code> in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="hasvalenceerrorex"></a><a href="#hasvalenceerrordesc">hasValenceError</a></td>
+		<td><pre>hasValenceError()</pre> returns <code>true</code> if any atom in the molecule has valence error,
+		<code>false</code> othervise</td>
+		<td><pre>hasValenceError(reactant(1))</pre> returns <code>true</code> if any atom in the second reactant has valence error,
+		<code>false</code> otherwise <pre>hasValenceError(product(0)</pre> returns <code>true</code> if any atom in the first 
+		product has valence error, <code>false</code> otherwise</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="accdonex"></a><a href="#accdondesc">acceptor / donor<br>
+		acc / don</a></td>
+		<td><pre>acceptor(2)</pre> returns the hydrogen bond acceptor multiplicity on atom <code>2</code> of the input molecule <pre>donor(1, "7.4")</pre>
+		returns the hydrogen bond donor multiplicity on atom <code>1</code> of the major microspecies at pH <code>7.4</code></td>
+		<td><pre>acceptor(ratom(2))</pre> returns the hydrogen bond acceptor multiplicity on the reactant atom matching map <code>2</code>
+		in the reaction equation <pre>donor(patom(3), "7.4")</pre> returns the hydrogen bond donor multiplicity on the product atom matching
+		map <code>3</code> in the reaction equation, taking the major microspecies of the corresponding product at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="accdonsitecountex"></a><a href="#accdonsitecountdesc">acceptorSiteCount / donorSiteCount<br>
+		accSiteCount / donSiteCount</a></td>
+		<td><pre>acceptorSiteCount()</pre> returns the hydrogen bond acceptor multiplicity of the input molecule <pre>donorSiteCount("7.4")</pre>
+		returns the hydrogen bond donor multiplicity of the major microspecies at pH <code>7.4</code></td>
+		<td><pre>acceptorSiteCount(reactant(0))</pre> returns the hydrogen bond acceptor multiplicity of the first reactant <pre>donorSiteCount(product(1), "7.4")</pre>
+		returns the hydrogen bond donor multiplicity of the major microspecies of the first product taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="accdonatomcountex"></a><a href="#accdonatomcountdesc">acceptorCount / donorCount</a></td>
+		<td><pre>acceptorCount()</pre> returns the number of hydrogen bond acceptor atoms in the input molecule <pre>donorCount("7.4")</pre>
+		returns the number of hydrogen bond donor atoms in the major microspecies at pH <code>7.4</code></td>
+		<td><pre>acceptorCount(reactant(0))</pre> returns the number of hydrogen bond acceptor atoms in the first reactant <pre>donorCount(product(1), "7.4")</pre>
+		returns the number of hydrogen bond donor atoms in the major microspecies of the first product taken at pH <code>7.4</code></td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="refracex"></a><a href="#refracdesc">refractivity<br>
+		refrac</a></td>
+		<td><pre>refractivity()</pre> returns the molar refractivity of the input molecule</td>
+		<td><pre>refractivity(reactant(1))</pre> returns the molar refractivity of the second reactant</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="refraciex"></a><a href="#refracidesc">refractivityIncrements<br>
+		refraci</a></td>
+		<td><pre>refractivityIncrements(2)</pre> returns the refractivity increment on atom <code>2</code> of the input molecule</td>
+		<td><pre>refractivityIncrements(ratom(1))</pre> returns the refractivity increment on the reactant atom matching map <code>1</code>
+		in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="piex"></a><a href="#pidesc">isoelectricPoint<br>
+		pI</a></td>
+		<td><pre>isoelectricPoint()</pre> returns the isoelectric point of the input molecule</td>
+		<td><pre>isoelectricPoint(reactant(1))</pre> returns the isoelectric point of the second reactant</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="stereoisomercountex"></a><a href="#stereoisomercountdesc">stereoisomerCount</a></td>
+		<td><pre>stereoisomerCount()</pre> returns the number of generated stereoisomers of the input molecule <pre>stereoisomerCount("250-")</pre>
+		returns the number of geneated stereoisomers of the input molecule; the maximum number of stereoisomers to generate is
+		set to 250, so it returns 250 or - if there are no 250 stereoisomers of the input molecule - less then 250</td>
+		<td><pre>stereoisomerCount(reactant(0))</pre> returns the number of calculated stereoisomers of the first
+		reactant <pre>stereoisomerCount(product(1), "250-")</pre> returns the number of calculated stereoisomers of the the
+		second product; the maximum number of stereoisomers to generate is set to 250, so it returns 250 or - if there are no
+		250 stereoisomers of the second product - less then 250</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="stereoisomerex"></a><a href="#stereoisomerdesc">stereoisomer</a></td>
+		<td><pre>stereoisomer(0)</pre> returns the first stereoisomer of the input molecule <pre>stereoisomer(2, "250-")</pre>
+		returns the third of 250 stereoisomers (or less, if there are no 250 stereoisomers) of the input molecule</td>
+		<td><pre>stereoisomer(reactant(0), 1)</pre> returns the second stereoisomer of the first reactant <pre>stereoisomer(product(1), 0, "250-")</pre>
+		returns the third of 250 stereoisomers (or less, if there are no 250 stereoisomers) of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="stereoisomersex"></a><a href="#stereoisomersdesc">stereoisomers</a></td>
+		<td><pre>stereoisomers()</pre> returns stereoisomers of the input molecule in an array <pre>stereoisomers("250-")</pre>
+		returns 250 stereoisomers (or less, if there are no 250 stereoisomers) of the input molecule in an array</td>
+		<td><pre>stereoisomers(reactant(0))</pre> returns stereoisomers of the first reactant in an array <pre>stereoisomers(product(1), "250-")</pre>
+		returns 250 stereoisomers (or less, if there are no 250 stereoisomers) of the the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="doublebondstereoisomercountex"></a><a href="#doublebondstereoisomercountdesc">doubleBondStereoisomerCount</a></td>
+		<td><pre>doubleBondStereoisomerCount()</pre> returns the number of generated double bond stereoisomers of the
+		input molecule <pre>doubleBondStereoisomerCount("250-")</pre> returns the number of geneated double bond stereoisomers
+		of the input molecule; the maximum number of double bond stereoisomers to generate is set to 250, so it returns 250 or
+		- if there are no 250 double bond stereoisomers of the input molecule - less then 250</td>
+		<td><pre>doubleBondStereoisomerCount(reactant(0))</pre> returns the number of calculated double bond
+		stereoisomers of the first reactant <pre>doubleBondStereoisomerCount(product(1), "250-")</pre> returns the number of
+		calculated double bond stereoisomers of the the second product; the maximum number of double bond stereoisomers to
+		generate is set to 250, so it returns 250 or - if there are no 250 double bond stereoisomers of the second product -
+		less then 250</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="doublebondstereoisomerex"></a><a href="#doublebondstereoisomerdesc">doubleBondStereoisomer</a></td>
+		<td><pre>doubleBondStereoisomer(0)</pre> returns the first double bond stereoisomer of the input molecule <pre>doubleBondStereoisomer(2, "250-")</pre>
+		returns the third of 250 double bond stereoisomers (or less, if there are no 250 double bond stereoisomers) of the
+		input molecule</td>
+		<td><pre>doubleBondStereoisomer(reactant(0), 1)</pre> returns the second double bond stereoisomer of the first
+		reactant <pre>doubleBondStereoisomer(product(1), 0, "250-")</pre> returns the third of 250 double bond stereoisomers
+		(or less, if there are no 250 double bond stereoisomers) of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="doublebondstereoisomersex"></a><a href="#doublebondstereoisomersdesc">doubleBondStereoisomers</a></td>
+		<td><pre>doubleBondStereoisomers()</pre> returns double bond stereoisomers of the input molecule in an array <pre>doubleBondStereoisomers("250-")</pre>
+		returns 250 double bond stereoisomers (or less, if there are no 250 double bond stereoisomers) of the input molecule
+		in an array</td>
+		<td><pre>doubleBondStereoisomers(reactant(0))</pre> returns double bond stereoisomers of the first reactant in an
+		array <pre>doubleBondStereoisomers(product(1), "250-")</pre> returns 250 double bond stereoisomers (or less, if there
+		are no 250 double bond stereoisomers) of the the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="tetrahedralstereoisomercountex"></a><a href="#tetrahedralstereoisomercountdesc">tetrahedralStereoisomerCount</a></td>
+		<td><pre>tetrahedralStereoisomerCount()</pre> returns the number of generated tetrahedral stereoisomers of the
+		input molecule <pre>tetrahedralStereoisomerCount("250-")</pre> returns the number of geneated tetrahedral
+		stereoisomers of the input molecule; the maximum number of tetrahedral stereoisomers to generate is set to 250, so it
+		returns 250 or - if there are no 250 tetrahedral stereoisomers of the input molecule - less then 250</td>
+		<td><pre>tetrahedralStereoisomerCount(reactant(0))</pre> returns the number of calculated tetrahedral
+		stereoisomers of the first reactant <pre>tetrahedralStereoisomerCount(product(1), "250-")</pre> returns the number of
+		calculated tetrahedral stereoisomers of the the second product; the maximum number of tetrahedral stereoisomers to
+		generate is set to 250, so it returns 250 or - if there are no 250 tetrahedral stereoisomers of the second product -
+		less then 250</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="tetrahedralstereoisomerex"></a><a href="#tetrahedralstereoisomerdesc">tetrahedralStereoisomer</a></td>
+		<td><pre>tetrahedralStereoisomer(0)</pre> returns the first tetrahedral stereoisomer of the input molecule <pre>tetrahedralStereoisomer(2, "250-")</pre>
+		returns the third of 250 tetrahedral stereoisomers (or less, if there are no 250 tetrahedral stereoisomers) of the
+		input molecule</td>
+		<td><pre>tetrahedralStereoisomer(reactant(0), 1)</pre> returns the second tetrahedral stereoisomer of the first
+		reactant <pre>tetrahedralStereoisomer(product(1), 0, "250-")</pre> returns the third of 250 tetrahedral stereoisomers
+		(or less, if there are no 250 tetrahedral stereoisomers) of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="tetrahedralstereoisomersex"></a><a href="#tetrahedralstereoisomersdesc">tetrahedralStereoisomers</a></td>
+		<td><pre>tetrahedralStereoisomers()</pre> returns tetrahedral stereoisomers of the input molecule in an array <pre>tetrahedralStereoisomers("250-")</pre>
+		returns 250 tetrahedral stereoisomers (or less, if there are no 250 tetrahedral stereoisomers) of the input molecule
+		in an array</td>
+		<td><pre>tetrahedralStereoisomers(reactant(0))</pre> returns tetrahedral stereoisomers of the first reactant in
+		an array <pre>tetrahedralStereoisomers(product(1), "250-")</pre> returns 250 tetrahedral stereoisomers (or less, if
+		there are no 250 tetrahedral stereoisomers) of the the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="conformercountex"></a><a href="#conformercountdesc">conformerCount</a></td>
+		<td><pre>conformerCount()</pre> returns the number of calculated conformers of the input molecule <pre>conformerCount("250-")</pre>
+		returns the number of calculated conformers of the input molecule; the maximum number of conformers to calculate is
+		set to 250, so it returns 250 or - if there are no 250 conformers of the input molecule - less then 250</td>
+		<td><pre>conformerCount(reactant(0))</pre> returns the number of calculated conformers of the first reactant <pre>conformerCount(product(1), "250-")</pre>
+		returns the number of calculated conformers of the the second product; the maximum number of conformers to calculate
+		is set to 250, so it returns 250 or - if there are no 250 conformers of the second product - less then 250</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="conformerex"></a><a href="#conformerdesc">conformer</a></td>
+		<td><pre>conformer(0)</pre> returns the first conformer of the input molecule <pre>conformer(2, "250-")</pre>
+		returns the third of 250 conformers (or less, if there are no 250 conformers) of the input molecule</td>
+		<td><pre>conformer(reactant(0), 1)</pre> returns the second conformer of the first reactant <pre>conformer(product(1), 0, "250-")</pre>
+		returns the third of 250 conformers (or less, if there are no 250 conformers) of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="conformersex"></a><a href="#conformersdesc">conformers</a></td>
+		<td><pre>conformers()</pre> returns conformers of the input molecule in an array <pre>conformers("250-")</pre>
+		returns 250 conformers (or less, if there are no 250 conformers) of the input molecule in an array</td>
+		<td><pre>conformers(reactant(0))</pre> returns conformers of the first reactant in an array <pre>conformers(product(1), "250-")</pre>
+		returns 250 conformers (or less, if there are no 250 conformers) of the the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="leconformerex"></a><a href="#leconformerdesc">lowestEnergyConformer<br>
+		leconformer</a></td>
+		<td><pre>lowestEnergyConformer()</pre> returns the lowest energy conformer of the input molecule</td>
+		<td><pre>lowestEnergyConformer(reactant(0))</pre> returns the lowest energy conformer of the first reactant 
+		<pre>lowestEnergyConformer(product(1))</pre> returns the lowest energy conformer of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="hasvalidconformerex"></a><a href="#hasvalidconformerdesc">hasValidConformer</a></td>
+		<td><pre>hasValidConformer()</pre> returns true if the input molecule exists in 3D space (has a valid conformer)</td>
+		<td><pre>hasValidConformer(reactant(0))</pre> returns true the if the first reactant exists in 3D space <pre>hasValidConformer(product(1))</pre>
+		returns true the if the second product exist in 3D space</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dreidingenergyex"></a><a href="#dreidingenergydesc">dreidingEnergy</a></td>
+		<td><pre>dreidingEnergy()</pre> returns the dreiding energy of the input molecule (conformer)</td>
+		<td><pre>dreidingEnergy(reactant(0))</pre> returns the dreiding energy of the first reactant <pre>dreidingEnergy(product(1))</pre>
+		returns the dreiding energy of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="minimalprojectionareaex"></a><a href="#minimalprojectionareadesc">minimalProjectionArea</a></td>
+		<td><pre>minimalProjectionArea()</pre> returns the minimal projection area</td>
+		<td><pre>minimalProjectionArea((reactant(0))</pre> returns the minimal projection area of the first reactant 
+		<pre>minimalProjectionArea(product(1))</pre> returns the minimal projection area of the second product</td>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="maximalprojectionareaex"></a><a href="#maximalprojectionareadesc">maximalProjectionArea</a></td>
+		<td><pre>maximalProjectionArea()</pre> returns the maximal projection area</td>
+		<td><pre>maximalProjectionArea((reactant(0))</pre> returns the maximal projection area of the first reactant 
+		<pre>maximalProjectionArea(product(1))</pre> returns the maximal projection area of the second product</td>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="minimalprojectionradiusex"></a><a href="#minimalprojectionradiusdesc">minimalProjectionRadius</a></td>
+		<td><pre>minimalProjectionRadius()</pre> returns the minimal projection radius</td>
+		<td><pre>minimalProjectionRadius((reactant(0))</pre> returns the minimal projection radius of the first reactant 
+		<pre>minimalProjectionRadius(product(1))</pre> returns the minimal projection radius of the second product</td>
+	</tr>
+	
+	<tr valign="top">
+		<td><a name="maximalprojectionradiusex"></a><a href="#maximalprojectionradiusdesc">maximalProjectionRadius</a></td>
+		<td><pre>maximalProjectionRadius()</pre> returns the maximal projection radius</td>
+		<td><pre>maximalProjectionRadius((reactant(0))</pre> returns the maximal projection radius of the first reactant 
+		<pre>maximalProjectionRadius(product(1))</pre> returns the maximal projection radius of the second product</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="distanceex"></a><a href="#distancedesc">distance</a></td>
+		<td><pre>distance('1-2')</pre> and <pre>distance(pair(0, 1))</pre> both return the distance between atoms <code>1</code>
+		and <code>2</code> in the input molecule</td>
+		<td><pre>distance(reactant(0), pair(ratom(1), ratom(2)))</pre> returns the distance between reactant atoms matching maps <code>1</code>
+		and <code>2</code> in the reaction equation (<a href="#note1">see note 1</a>)
+		<pre>distance(product(1), pair(patom(2), patom(3)))</pre> returns the distance between product atoms matching maps <code>2</code> and <code>3</code> 
+		in the reaction equation (<a href="#note1">see note 1</a>)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="angleex"></a><a href="#angledesc">angle</a></td>
+		<td><pre>angle('1-2-3')</pre> and <pre>angle(atoms(0, 1, 2))</pre> both return the angle between atoms <code>1</code>,
+		<code>2</code> and <code>3</code> in the input molecule</td>
+		<td><pre>angle(reactant(0), atoms(ratom(1), ratom(2), ratom(3)))</pre> returns the angle between reactant atoms matching maps
+		<code>1</code>, <code>2</code> and <code>3</code> in the reaction equation (<a href="#note1">see note 1</a>)
+		<pre>angle(product(1), atoms(patom(2), patom(3), patom(4)))</pre> returns the angle between product atoms matching maps <code>2</code>, 
+		<code>3</code> and <code>4</code> in the reaction equation (<a href="#note1">see note 1</a>)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="dihedralex"></a><a href="#dihedralsc">dihedral</a></td>
+		<td><pre>dihedral('1-2-3-4')</pre> and <pre>dihedral(atoms(0, 1, 2, 3))</pre> both return the dihedral of atoms <code>1</code>,
+		<code>2</code>, <code>3</code> and <code>4</code> in the input molecule</td>
+		<td><pre>dihedral(reactant(0), atoms(ratom(1), ratom(2), ratom(3), ratom(4)))</pre> returns the dihedral of reactant atoms
+		matching maps <code>1</code>, <code>2</code>, <code>3</code> and <code>4</code> in the reaction equation (<a href="#note1">see note 1</a>)
+		<pre>dihedral(product(1), atoms(patom(2), patom(3), patom(5), patom(6)))</pre> returns the dihedral of product atoms matching maps <code>2</code>, 
+		<code>3</code>, <code>5</code> and <code>6</code> in the reaction equation (<a href="#note1">see note 1</a>)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="sterichindranceex"></a><a href="#sterichindrancedesc">stericHindrance</a></td>
+		<td><pre>stericHindrance(2)</pre> returns the steric hindrance of atom <code>2</code> of the input molecule</td>
+		<td><pre>stericHindrance(ratom(2))</pre> returns the steric hindrance of the reactant atom matching map <code>2</code>
+		in the reaction equation <pre>stericHindrance(patom(1))</pre> returns the steric hindrance of the product atom
+		matching map <code>1</code> in the reaction equation</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="nameex"></a><a href="#namedesc">name</td>
+		<td><pre>name()</pre> returns the preferred IUPAC name of the input molecule</td>
+		<td>N / A (reaction rules are numerical)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="traditionalnameex"></a><a href="#traditionalnamedesc">traditionalName</td>
+		<td><pre>traditionalName()</pre> returns the traditional name of the input molecule</td>
+		<td>N / A (reaction rules are numerical)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="molformatex"></a><a href="#molformatdesc">molFormat<br>
+		molString</a></td>
+		<td><pre>molFormat("mrv")</pre> returns the ChemAxon Marvin Document format representation of the input molecule</td>
+		<td>N / A (reaction rules are numerical)</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="molimageex"></a><a href="#molimagedesc">molBinFormat<br>
+		molImage</a></td>
+		<td><pre>molImage("jpeg:w100,Q95,#ffff00")</pre> returns the 100x100 JPEG image of the input molecule with yellow background, 95% quality</td>
+		<td>N / A (reaction rules are numerical)</td>
+	</tr>
+
+</table>
+
+<br>
+<br>
+
+<center>
+<div class="lenia">&nbsp;</div>
+</center>
+
+<h3><a name="matchfunctions"></a>Match functions</h3>
+
+<p><b>Note:</b> Match functions are available only in JChem.
+
+<p><a name="matchdesc"></a>
+<table border="0" cellspacing="0" cellpadding="5" id="grid" align="center">
+	<caption><b>Match function descriptions</b></caption>
+
+	<tr>
+		<th>Built-in name</th>
+		<th>Description</th>
+		<th>Return value</th>
+		<th>Parameters</th>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="matchdesc"></a><a href="#matchex">match</a></td>
+		<td>performs substructure search and optionally checks for atom matching</td>
+		<td><code>true</code> if matching substructure found, <code>false</code> otherwise</td>
+		<td>
+		<ul>
+			<li>target atom index / MolAtom object (optional)
+			<li>query Molecule object / SMARTS string
+			<li>query atom map(s) (optional)
+		</ul>
+		The function returns <code>true</code> if the query structure is found in the target molecule, the hit is required
+		to include the target atom if specified, furthermore if query atom map(s) are specified then these mapped atoms should
+		match the target atom.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="matchcountdesc"></a><a href="#matchcountex">matchCount</a></td>
+		<td>performs substructure search and optionally checks for atom matching, counts search hits</td>
+		<td>the number of search hits</td>
+		<td>
+		<ul>
+			<li>target atom index / MolAtom object (optional)
+			<li>query Molecule object / SMARTS string
+			<li>query atom map(s) (optional)
+		</ul>
+		The function returns the number of query structures found in the target molecule, the hit is required to include
+		the target atom if specified, furthermore if query atom map(s) are specified then these mapped atoms should match the
+		target atom.</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="disjointmatchcountdesc"></a><a href="#disjointmatchcountex">disjointMatchCount</a></td>
+		<td>performs substructure search, returns the maximal number of pairwise disjoint search hits</td>
+		<td>the maximal number of pairwise disjoint search hits</td>
+		<td>
+		<ul>
+			<li>target atom index / MolAtom object (optional)
+			<li>query Molecule object / SMARTS string
+			<li>query atom map(s) (optional)
+		</ul>
+		The function returns the maximal number of pairwise disjoint query structures found in the target molecule.
+                <br><b>Warning:</b> if the target atom index and optionally query atom maps are specified then the return value can only be <code>0</code> or <code>1</code>, therefore the result is similar to the result of the <a href="#matchdesc">match</a> function.</td>
+	</tr>
+</table>
+
+<br>
+
+<p><a name="matchex"></a>
+<table border="0" cellspacing="0" cellpadding="5" id="grid" align="center">
+	<caption><b>Match function examples</b></caption>
+
+	<tr>
+		<th>Built-in name</th>
+		<th><a href="ChemicalTerms.html#molcontext">Molecule Context</a> Example</th>
+		<th><a href="ChemicalTerms.html#reactioncontext">Reaction Context</a> Example</th>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="matchex"></a><a href="#matchdesc">match</a></td>
+		<td><pre>match("[#8]C=O")</pre> performs substructure search without atom matching requirement, the target is the
+		input molecule, the query is the carboxylic group given in the string parameter <pre>match(6, "[#8][C:1]=O", 1)</pre>
+		performs substructure search, checks if target atom <code>6</code> matches the carbon (atom with map <code>1</code>)
+		of the carboxylic group query <pre>match(6, "[#8:1]C=[O:2]", 1, 2)</pre> performs substructure search, checks if
+		target atom <code>6</code> of the input molecule is a carboxylic oxygen</td>
+		<td><pre>match(reactant(0), "[#8]C=O")</pre> performs substructure search without atom matching requirement, the
+		target is the first reactant, the query is the carboxylic group given in the string parameter <pre>match(patom(2), "[#8]C=O")</pre>
+		performs substructure search, checks if product atom matching map <code>2</code> in the reaction equation matches any
+		atom of the carboxylic group query <pre>match(ratom(1), "[#8:1]C=[O:2]", 1, 2)</pre> performs substructure search,
+		checks if reactant atom matching map <code>1</code> in the reaction equation is a carboxylic oxygen</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="matchcountex"></a><a href="#matchcountdesc">matchCount</a></td>
+		<td><pre>matchCount("[#8]C=O")</pre> counts search hits without atom matching requirement, the target is the
+		input molecule, the query is the carboxylic group given in the string parameter <pre>matchCount(6, "[#8]C=O")</pre>
+		counts search hits with target atom <code>6</code> matching any atom in a carboxylic group <pre>matchCount(6, "[#8:1]C=[O:2]", 1, 2)</pre>
+		counts search hits with target atom <code>6</code> of the input molecule being a carboxylic oxygen</td>
+		<td><pre>matchCount(reactant(0), "[#8]C=O")</pre> counts search hits without atom matching requirement, the
+		target is the first reactant, the query is the carboxylic group given in the string parameter <pre>matchCount(patom(2), "[#8]C=O")</pre>
+		counts search hits, checks if product atom matching map <code>2</code> in the reaction equation matches any atom of
+		the carboxylic group query <pre>matchCount(ratom(1), "[#8:1]C=[O:2]", 1, 2)</pre> counts search hits with reactant
+		atom matching map <code>1</code> in the reaction equation being a carboxylic oxygen</td>
+	</tr>
+
+	<tr valign="top">
+		<td><a name="disjointmatchcountex"></a><a href="#disjointmatchcountdesc">disjointMatchCount</a></td>
+		<td><pre>disjointMatchCount("[#8]C=O")</pre> counts the maximal number of pairwise disjoint carboxylic groups in the input molecule
+		<td><pre>disjointMatchCount(reactant(0), "[#8]C=O")</pre> counts the maximal number of pairwise disjoint carboxylic groups in the first reactant</td>
+	</tr>
+</table>
+
+<br>
+<br>
+
+<center>
+<div class="lenia">&nbsp;</div>
+</center>
+
+<h3><a name="notes"></a>Notes</h3>
+<ol>
+	<li><a name="note1"></a>If in reaction context in the parameter list of a Chemical Terms function atoms are referred by atom index - including 
+	cases when a Chemical Terms function is used to convert reactant or product atom maps to atom indexes - then the molecule (reactant / product) 
+	parameter always have to be specified (e.g. <code>shortestPath(reactant(0), pair(ratom(1), ratom(2)))</code>) and must contain all the 
+	atoms referred by atom indexes.</li>
+</ol>
+
+
+<br>
+<br>
+
+<p>
+<center><font size="-2" face="helvetica"> Copyright &copy; 1999-2008 <a href="http://www.chemaxon.com">ChemAxon
+Ltd.</a> &nbsp;&nbsp;&nbsp;All rights reserved. </font></center>
+</BODY>
+</HTML>

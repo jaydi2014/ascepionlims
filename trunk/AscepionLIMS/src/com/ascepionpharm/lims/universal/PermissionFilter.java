@@ -29,6 +29,7 @@ public class PermissionFilter implements Filter {
 		canISeeStructures = 0;
 		
 		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		String url = httpRequest.getRequestURI();
 		HttpSession mySession = httpRequest.getSession();

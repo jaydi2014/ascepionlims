@@ -6,4 +6,5 @@
 	String mainservletUrl= "http://" + request.getServerName() + ":" + request.getServerPort() + "/AscepionLIMS/MainServlet";
     String servletUrl = mainservletUrl;
     String aspDir="http://" + request.getServerName() + ":" + request.getServerPort() + "/AscepionLIMS/";
+    String webapps= System.getProperty("catalina.home")+ "\\webapps\\AscepionLIMS\\";
 %>

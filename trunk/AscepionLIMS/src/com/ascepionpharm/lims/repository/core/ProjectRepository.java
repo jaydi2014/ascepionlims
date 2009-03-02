@@ -17,6 +17,8 @@ import com.ascepionpharm.lims.universal.*;
 public class ProjectRepository extends LIMSRepository implements Destroyable,
 		Closable {
 	PreparedStatement getAllInactiveStmt;
+	PreparedStatement getAllNStmt;
+	PreparedStatement getByDepartmentStmt;
 	
 	public ProjectRepository() throws RepositoryException {
 		this.className = "Class: ProjectRepository. ";
@@ -42,6 +44,8 @@ public class ProjectRepository extends LIMSRepository implements Destroyable,
 		String get = "SELECT * FROM PROJECT WHERE PROJECT_ID = ? ";
 		String all = "SELECT * FROM PROJECT WHERE STATUS = 1 ORDER BY START_TIME";
 		String allinactive = "SELECT * FROM PROJECT WHERE STATUS = 0 ORDER BY START_TIME";
+		String alln = "SELECT * FROM PROJECT ORDER BY START_TIME";
+		String getbydep = "SELECT * FROM PROJECT WHERE DEPARTMENT_ID = ? AND STATUS = 1";
 		this.sqlCreate = "{call core_pkg.insertproject(?,?,?,?,?,?)}";
 		this.sqlUpdate = "{call core_pkg.updateproject(?,?,?,?,?,?,?,?)}";
 
@@ -51,6 +55,8 @@ public class ProjectRepository extends LIMSRepository implements Destroyable,
 			putStmt = conn.prepareCall(sqlCreate);
 			updStmt = conn.prepareCall(sqlUpdate);
 			getAllInactiveStmt = conn.prepareStatement(allinactive);
+			getAllNStmt = conn.prepareStatement(alln);
+			getByDepartmentStmt =  conn.prepareStatement(getbydep);
 		} catch (SQLException e) {
 			throw new RepositoryException(className
 					+ "SQLException caught in constructor. " + e.getMessage());
@@ -64,6 +70,8 @@ public class ProjectRepository extends LIMSRepository implements Destroyable,
 			putStmt.close();
 			updStmt.close();
 			getAllInactiveStmt.close();
+			getAllNStmt.close();
+			getByDepartmentStmt.close();
 		} catch (SQLException e) {
 			throw new RepositoryException(className
 					+ "Calls could not be closed. " + e.getMessage());
@@ -148,6 +156,49 @@ public class ProjectRepository extends LIMSRepository implements Destroyable,
 		}
 	}
 	
+	public List getByDepartment(int departmentId) throws RepositoryException{
+		try {
+			ResultSet results;
+			getByDepartmentStmt.clearParameters();
+			getByDepartmentStmt.setInt(1, departmentId);
+			results = getByDepartmentStmt.executeQuery();
+			List projects = new ArrayList();
+
+			while(results.next()){
+				projects.add(makeBean(results));
+			}
+			
+			return projects;
+		} catch (SQLException e) {
+			throw new RepositoryException(className
+					+ "SQLException caught in method getByDepartment. " + e.getMessage());
+		} catch (Exception e) {
+			throw new RepositoryException(className
+					+ "Unknown error caught in method getByDepartment. " + e.getMessage());
+		}
+	}
+	
+	public Item[] getAllN() throws RepositoryException {
+		try {
+			ResultSet results;
+			getAllNStmt.clearParameters();
+			Collection projects = new ArrayList();
+			results = getAllNStmt.executeQuery();
+
+			while (results.next()) {
+				projects.add(makeBean(results));
+			}
+			return (ProjectBean[]) projects.toArray(new ProjectBean[0]);
+		} catch (SQLException e) {
+			throw new RepositoryException(className
+					+ "SQLException caught in method getAllN. " + e.getMessage());
+		} catch (Exception e) {
+			throw new RepositoryException(className
+					+ "Unknown error caught in method getAllN. "
+					+ e.getMessage());
+		}
+	}
+	
 	public Item[] getAllinactive() throws RepositoryException{
 		try {
 			ResultSet results;
@@ -161,10 +212,10 @@ public class ProjectRepository extends LIMSRepository implements Destroyable,
 			return (ProjectBean[]) projects.toArray(new ProjectBean[0]);
 		} catch (SQLException e) {
 			throw new RepositoryException(className
-					+ "SQLException caught in method getAll. " + e.getMessage());
+					+ "SQLException caught in method getAllinactive. " + e.getMessage());
 		} catch (Exception e) {
 			throw new RepositoryException(className
-					+ "Unknown error caught in method getAll. "
+					+ "Unknown error caught in method getAllinactive. "
 					+ e.getMessage());
 		}
 	}
@@ -219,10 +270,10 @@ public class ProjectRepository extends LIMSRepository implements Destroyable,
 			bogus = updStmt.execute();
 		} catch (SQLException e) {
 			throw new RepositoryException(className
-					+ "SQLException caught in method put. " + e.getMessage());
+					+ "SQLException caught in method update. " + e.getMessage());
 		} catch (Exception e) {
 			throw new RepositoryException(className
-					+ "unknown error caught in method put. " + e.getMessage());
+					+ "unknown error caught in method update. " + e.getMessage());
 		}
 	}
 }
