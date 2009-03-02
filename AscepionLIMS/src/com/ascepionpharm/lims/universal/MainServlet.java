@@ -7,6 +7,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import java.util.*;
 import java.sql.*;
+
+import com.ascepionpharm.lims.command.chemistry.*;
 import com.ascepionpharm.lims.command.core.*;
 
 
@@ -72,6 +74,7 @@ public class MainServlet extends HttpServlet {
 		commands.put("main-menu", new NullCommand("core/Login.jsp"));
         commands.put("login", new LoginCommand("core/Main.jsp"));
         commands.put("choose-system", new ChooseSystemCommand("core/Main.jsp"));
+        commands.put("logout", new LogoutCommand("core/Login.jsp"));
         
         //Administration
         commands.put("new-limspage", new NewLIMSPageCommand("core/Message.jsp"));
@@ -89,6 +92,13 @@ public class MainServlet extends HttpServlet {
         commands.put("update-bankaccount", new UpdateBankAccountCommand("core/Message.jsp"));
         commands.put("quary-purchase", new QuaryPurchaseCommand("core/QuaryPurchase.jsp"));
         commands.put("modify-purchase", new ModifyPurchaseCommand("core/Message.jsp"));
+        
+        //Chemistry
+        commands.put("quary-molecular", new QuaryChemicalMolecularCommand("chemistry/QueryChemicalMolecular.jsp"));
+        commands.put("down-load", new DownloadFileCommand("chemistry/QueryChemicalMolecular.jsp"));
+        commands.put("add-moltoproject", new AddMolToProjectCommand("core/Message.jsp"));
+        commands.put("create-reaction", new CreateReactionCommand("core/Message.jsp"));
+        commands.put("query-reaction", new QueryReactionCommand("chemistry/ReactionList.jsp"));
         
         
 		// //ALERT

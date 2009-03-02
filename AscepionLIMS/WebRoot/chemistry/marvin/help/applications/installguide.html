@@ -1,0 +1,217 @@
+<html>
+<head>
+<meta NAME="description" CONTENT="Download Marvin Beans">
+<meta NAME="author" CONTENT="Tamas Vertse">
+<link REL ="stylesheet" TYPE="text/css" HREF="../marvinmanuals.css" TITLE="Style">
+<title>Installation Guide for Marvin Beans</title>
+</head>
+<body BGCOLOR="#ffffff" TEXT="#333366">
+<h1><a class="anchor" name="top">Installation Guide for Marvin Beans</a></h1>
+<p>&nbsp;</p>
+<h2>Table of Contents</h2>
+<ul>
+<li><a href="#windows">Windows Instructions</a></li>
+<li><a href="#macosx">Mac OS X Instructions</a></li>
+<li><a href="#linux">Linux / Solaris Instructions</a></li>
+<li><a href="#other">Instructions for All Other Platforms</a></li>
+<li><a href="#uninstall">Howto uninstall</a></li>
+<li><a href="#signedjars">Instructions for the additional package</a></li>
+</ul>
+<p>&nbsp;</p>
+<center><div class="lenia">&nbsp;</div></center>
+
+
+<!--	WINDOWS	-->
+<p>
+<h2><a class="anchor" name="windows">Windows Instructions</a></h2>
+<ul>
+    <h3>Instructions</h3>
+    <ol>
+	<li>After downloading, double-click on
+	<b><code>marvinbeans-VERSION-windows.exe</code></b> or
+	<b><code>marvinbeans-VERSION-windows_with_jre.exe</code></b>.
+	<li>After the installation, you can add the <code>bin</code> folder of
+	Marvin Beans to the PATH to be able to run Marvin applications from any directory
+	in the command line. For more details about the editing the PATH, please
+	consult the Windows Help.
+    </ol>
+    <h3>Notes</h3>
+    <ul>
+	<li>If you do not have a Java installed, be sure to download the package
+	above which includes it.
+        <li>If you are not sure that Java is installed, you can check it by
+        the following way:
+        <ol>
+            <li>Select <em>Command Prompt</em> from the <em>Accessories</em>
+            sub-menu in the <em>Start</em> menu.</li>
+            <li>Type the following commands in the opened Command Prompt window:
+            <em>java -version</em></li>
+            <li>You will get the following error message if Java is not
+            available on your machine:
+            <em><pre>'java' is not recognized as internal or external command, operable program or batch file</pre></em>
+            If Java has been installed, the version number of Java will be
+            printed:
+            <em><pre>java version "1.5.0_11"
+Java(TM) 2 Runtime Environment, Standard Edition (build 1.5.0_11-b03)
+Java HotSpot(TM) Client VM (build 1.5.0_11-b03, mixed mode, sharing)</pre></em>
+        </ol>
+        </li>
+    </ul>
+    <p><br>
+    (<a href="#top">Go To Top</a>)</p>
+</ul>
+<p>
+
+<!--	MACOSX	-->
+<p>
+
+<h2><a class="anchor" name="macosx">Mac OS X Instructions</a></h2>
+<ul>
+    <h3>Instructions</h3>
+    <ul>
+	<li>After downloading, double-click<b>
+	<code>marvinbeans-VERSION-macos.dmg</code></b>.
+	<li>After the installation process, add the <code>bin</code>
+	folder of the Marvin Beans folder to the PATH to be able
+	to run Marvin applications from any directory in command line.
+    </ul>
+    <h3>Notes</h3>
+    <ul>
+	<li>Requires Mac OS X 10.0 or later
+	<li>The compressed installer should be recognized by Stuffit Expander
+	and should automatically be expanded after downloading.
+	If it is not expanded, you can expand it manually using
+	<a href="http://www.aladdinsys.com/expander/index.html">
+	StuffIt Expander 6.0 or later</a>.
+	<li>If you have any problems launching the installer once it has been
+	expanded, make sure that the compressed installer was expanded using
+	Stuffit Expander.
+	If you continue to have problems, please contact technical support.
+    </ul>
+    <p><br>
+    (<a href="#top">Go To Top</a>)</p>
+</ul>
+<p>
+
+
+<!--	LINUX	-->
+<p>
+<h2><a class="anchor" name="linux">Linux / Solaris Instructions</a></h2>
+<ul>
+    <h3>Instructions</h3>
+    <ol>
+	<li>After downloading, open a shell and
+	<b><code>cd</code></b> to the directory where you downloaded
+	the installer.
+	<li>At the prompt type: <b><code>./marvinbeans-VERSION-linux.sh
+	</code></b>
+	<li>After the installation, add the <code>bin</code>
+	subdirectory of the Marvin Beans directory to the PATH to be able
+	to run Marvin applications from any directory.
+    </ol>
+    <h3>Notes</h3>
+    <ul>
+	<li>You need to install a Sun's Java Runtime Environment 1.4.2 (or
+        later). You can download it
+	from
+	<a href="http://java.sun.com/getjava/index.html">
+	Sun's Java web site</a> or contact your OS manufacturer.</li>
+        <li>If the installer does not start, check whether <b>JAVA_HOME/bin</b>
+         is in PATH (where JAVA_HOME is the directory of Java).<br>
+        To chech it, type the "<b>which&nbsp;java</b>" command that shows the
+        location of the java launcher. You should get something like this:
+        <pre>/usr/java/j2sdk1.4.2_04/bin/java</pre>
+        If java is missing from PATH, you will see something like that:
+        <pre>/usr/bin/which: no java in (/usr/java/j2sdk1.4.2_04/bin:/opt/apache-ant-1.6.1/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/home/vertset/bin)</pre></li>
+    </ul>
+    (<a href="#top">Go To Top</a>)
+</ul>
+<p>
+<!--	Other	-->
+<p>
+<h2><a class="anchor" name="other">Instructions for All Other Platforms</a></h2>
+<ul>
+    <h3>Instructions</h3>
+    <ul>
+	<li>After downloading go to the directory where you downloaded
+	<b><code>marvinbeans-VERSION.zip</code></b> then uncompress the zip file.
+	<li>You can start applications by script or batch files, which you
+	can find in the <code>marvinbeans/bin</code> directory.
+    </ul>
+    <h3>Notes</h3>
+    <ul><li>Requires Java 1.4.2 (or later). You can download it
+	from <a href="http://java.sun.com/getjava/index.html">
+	Sun's Java web site</a> or contact your OS manufacturer.
+	<li>You need an expander which can handle <code>zip</code>
+	extension.
+	<li>Batch files (<code>bin/*.bat</code>) have to be initialized before
+	first use. Edit files to set the <code>MARVINBEANSHOME</code> variable to
+	the full path of the directory where Marvin Beans is located.
+    </ul>
+    <p><br>
+    (<a href="#top">Go To Top</a>)</p>
+</ul>
+
+
+<center><div class="lenia">&nbsp;</div></center>
+<!--	uninstall	-->
+<h2><a class="anchor" name="uninstall">Howto uninstall</a></h2>
+	<ul>
+	Use the uninstaller to remove Marvin Beans from your machine.
+        <p><h3>Windows</h3>
+        Double click on <code>uninstall.exe</code> in the Marvin Beans's home
+        folder or select <strong>Marvin Beans</strong> from the
+        <strong>Add / Remove programs</strong> list on
+        <strong>Control Panel</strong>.
+	<h3>OS X</h3>
+	<p>Double click on the <code>uninstall</code> in the Marvin Beans' home
+        directory.</p>
+	<h3>Linux / Solaris</h3>
+	<p>Launch the <code>uninstall</code> script in theMarvin Beans' home
+        directory.</p>
+	<p><br>
+    (<a href="#top">Go To Top</a>)</p>
+	</ul>
+<center><div class="lenia">&nbsp;</div></center>
+<h2><a class="anchor" name="signedjars">Instructions for the additional package</a></h2>
+    <h3>Who needs this package?</h3>
+    <p>Install <strong>marvinbeans-lib-VERSION-signed.zip</strong> only that
+    case if you need the signed version of Marvin Beans package.
+    In most cases, the non-signed Marvin Beans package is enought for you.
+    If you would like to launch Marvin applications via Java Web Start
+    from your server, you need the signed version.
+    (Because of security reason, web start accept only signed jars.)
+    This archive does not contains the whole Marvin Beans package.
+    It does not work alone. It requires an installed Marvin Beans
+    package.</p>
+    <h3>Installation</h3>
+<ul>
+    <li>Check the version ID of Marvin Beans package that you have already installed (if not complete it first).
+    In the help of your Marvin Beans package, you can find the version ID
+    of your installed disribution. The "version.properties" file also includes
+    the version ID. (This file is located in the Marvin Beans directory.)</li>
+    <li>Download the additional package for this Marvin Beans version:
+        <strong>marvinbeans-lib-VERSION-signed.zip</strong>.
+        The version ID of the additional package has to equal with the ID of
+        the installed Marvin Beans package.</li>
+    <li>Create a backup about the <strong>lib</strong> sub-directory of
+    your Marvin Beans package.</li>
+    <li>Extract the <strong>marvinbeans-lib-VERSION-signed.zip</strong>
+    archive file into the
+        Marvin Beans directory.
+        Your extractor tool (e.g. <em>unzip</em> or <em>WinZip</em>) may ask confirmation to
+        update all files by unwrapping. In this case, let it overwrite all.
+        This operation will update jar files (substitute jars to signed ones)
+        in the <strong>lib</strong> sub-directory of
+        the installed Marvin Beans package.</li>
+</ul>
+<p>&nbsp;</p>
+
+<center><div class="lenia">&nbsp;</div></center>
+
+<p ALIGN=CENTER><small>Copyright &copy; 1998-2008
+<a HREF="http://www.chemaxon.com" TARGET="_top">ChemAxon Ltd.</a>
+&nbsp;&nbsp;&nbsp;All rights reserved.</small></p>
+
+</body>
+</html>

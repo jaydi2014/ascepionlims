@@ -1,0 +1,75 @@
+<html>
+<head>
+<meta NAME="author" CONTENT="Erika Biro">
+<link REL ="stylesheet" TYPE="text/css" HREF="../../../marvinmanuals.css" TITLE="Style">
+<title>MarvinSketch Example - Hydrogen atoms</title>
+</head>
+<body onLoad="links_set_search(location.search)">
+
+<h1>MarvinSketch Example - Hydrogen atoms</h1>
+<p>The description and usage of hydrogen atoms in Marvin can be found in the
+<a href="../../../help/sketch/sketch-basic.html#implicit-explicit-H">Implicit/Explicit Hydrogens</a> paragraph
+of the Marvin User's Guide.</p>
+<p>The detailed description of Implicit/Explicit Hydrogens can be found
+in the <a href="../../../help/developer/core/hydrogens.html">Implicit/Explicit Hydrogens</a>
+paragraph of the Developer's Guide.</p>
+<p>The basic description of structure parameters and structure display parameters can be found in the
+<a href="../../../help/developer/sketchman.html#structuredisplayparameters">Structure Display parameters</a> paragraph in the Developer's Guide.
+</p>
+
+<h4>How to work with structure parameters</h4>
+
+<p>This example demonstrates how to remove explicit hydrogen atoms and show
+all implicit hydrogen atoms in applets. The Developer's Guide contains the detailed
+description of the parameters used in this example.</p>
+Removing the explicit hydrogen atoms during structure import by using the importConv parameter:
+<pre>
+    msketch_param("<a href="../../../help/developer/sketchman.html#parameters.importConv">importConv</a>", "-H");
+</pre>
+Showing the implicit hydrogen atoms on all atoms with the implicitH parameter:
+<pre>
+    msketch_param("<a href="../../../help/developer/sketchman.html#parameters.implicitH">implicitH</a>", "all");
+</pre>
+
+<p>The input molecule is loaded from the file
+named <code>structure.mol</code> which resides in the directory <code>../../../mols-2d</code>
+(relative to the URL of this document).</p>
+
+<p>
+<center>
+<script LANGUAGE="JavaScript1.1" SRC="../../../marvin.js"></script>
+<script LANGUAGE="JavaScript1.1">
+<!--
+msketch_begin("../../..", 540, 480);
+msketch_param("importConv", "-H");
+msketch_param("mol", "../../../mols-2d/structure.mol");
+msketch_param("implicitH","all");
+msketch_end();
+//-->
+</script>
+</center>
+
+<p>The source of the HTML file is as follows:
+</p>
+
+<blockquote>
+<pre>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot; <strong>SRC</strong>=&quot;../../../<a HREF="../marvin.js.txt">marvin.js</a>&quot;<strong>&gt;</strong><strong>&lt;/script&gt;</strong>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot;<strong>&gt;</strong>
+<strong>&lt;!--</strong>
+<strong>msketch_begin(</strong>&quot;../../..&quot;<strong>,</strong> 540<strong>,</strong> 480<strong>);</strong>
+<strong>msketch_param(</strong>&quot;<a HREF="../../../help/developer/sketchman.html#parameters.mol">mol</a>&quot;<strong>,</strong> &quot;../../../mols-2d/structure.mol&quot;<strong>);</strong>
+<strong>msketch_param(</strong>&quot;<a HREF="../../../help/developer/sketchman.html#parameters.parameters.importConv">importConv</a>&quot;<strong>,</strong> &quot;-H&quot;<strong>);</strong>
+<strong>msketch_param(</strong>&quot;<a HREF="../../../help/developer/sketchman.html#parameters.implicitH">implicitH</a>&quot;<strong>,</strong> &quot;true&quot;<strong>);</strong>
+<strong>msketch_end();</strong>
+<strong>//--&gt;</strong>
+<strong>&lt;/script&gt;</strong>
+</pre>
+</blockquote>
+
+<p>
+<center><div class="lenia">&nbsp;</div></center>
+<p>
+
+</body>
+</html>

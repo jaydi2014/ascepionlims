@@ -22,8 +22,6 @@
 <table width="90%" cellspacing=0 cellpadding=4 border=1>
 	<tr bgcolor="lightgrey">
 		<th><fmt:message key="activeemplist.name" /></th>
-		<th><fmt:message key="activeemplist.age" /></th>
-		<th><fmt:message key="activeemplist.degree" /></th>
 		<th><fmt:message key="activeemplist.department" /></th>
 		<th><fmt:message key="activeemplist.title" /></th>
 		<th><fmt:message key="activeemplist.labphone" /></th>
@@ -35,8 +33,6 @@
 	%>
 	<tr>
 		<td><%=employee[i].getName() %></td>
-		<td><%=employee[i].getAge() %></td>
-		<td><%=employee[i].getDegree() %></td>
 		<% for (int j=0; j<department.length; j++) {
 			if(department[j].getId()==employee[i].getDepartmentId()){ %>
 				<td><%=department[j].getType() %></td>

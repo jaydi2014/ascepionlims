@@ -26,6 +26,10 @@ public class PurchasingRepository extends LIMSRepository implements
 	PreparedStatement getByProjectStmt;
 	PreparedStatement getByDepartmentStmt;
 	PreparedStatement getByAccountStmt;
+	PreparedStatement approvedStmt;
+	PreparedStatement deleteStmt;
+	PreparedStatement getByPayedStmt;
+	PreparedStatement getByInviceStmt;
 
 	public PurchasingRepository() throws RepositoryException {
 		this.className = "Class: PurchasingRepository. ";
@@ -51,15 +55,19 @@ public class PurchasingRepository extends LIMSRepository implements
 		String get = "SELECT * FROM PURCHASING WHERE PURCHASE_ID=?";
 		String all = "SELECT * FROM PURCHASING ORDER BY PURCHASE_ID";
 		this.sqlCreate = "{call core_pkg.insertpurchasing(?,?,?,?,?,?,?,?,?)}";
-		this.sqlUpdate = "{call core_pkg.updatepurchasing(?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
+		this.sqlUpdate = "{call core_pkg.updatepurchasing(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
 		this.sqlRemove = "Remove ";
-		String getbyperson = "SELECT * FROM PURCHASING WHERE PURCHASE_PERSON LIKE ?";
-		String getbyname = "SELECT * FROM PURCHASING WHERE PURCHASE_NAME LIKE ?";
-		String getbydate ="SELECT * FROM PURCHASING WHERE PURCHASE_DATE BETWEEN ? AND ?";
-		String getbytype = "SELECT * FROM PURCHASING WHERE ITEM_ID = ?";
-		String getbyproject = "SELECT * FROM PURCHASING WHERE PROJECT_ID = ?";
-		String getbydepartment = "SELECT * FROM PURCHASING WHERE DEPARTMENT_ID = ?";
-		String getbyaccount = "SELECT * FROM PURCHASING WHERE BANK_ID = ?";
+		String getbyperson = "SELECT * FROM PURCHASING WHERE PURCHASE_PERSON LIKE ? ORDER BY PURCHASE_DATE";
+		String getbyname = "SELECT * FROM PURCHASING WHERE PURCHASE_NAME LIKE ? ORDER BY PURCHASE_DATE";
+		String getbydate = "SELECT * FROM PURCHASING WHERE PURCHASE_DATE BETWEEN ? AND ? ORDER BY PURCHASE_DATE";
+		String getbytype = "SELECT * FROM PURCHASING WHERE ITEM_ID = ? ORDER BY PURCHASE_DATE";
+		String getbyproject = "SELECT * FROM PURCHASING WHERE PROJECT_ID = ? ORDER BY PURCHASE_DATE";
+		String getbydepartment = "SELECT * FROM PURCHASING WHERE DEPARTMENT_ID = ? ORDER BY PURCHASE_DATE";
+		String getbyaccount = "SELECT * FROM PURCHASING WHERE BANK_ID = ? ORDER BY PURCHASE_DATE";
+		String approved = "UPDATE PURCHASING set ISAPPROVED=1 WHERE PURCHASE_ID=?";
+		String delete = "DELETE FROM PURCHASING WHERE PURCHASE_ID=?";
+		String getbypayed = "SELECT * FROM PURCHASING WHERE ISPAYED = ? ORDER BY PURCHASE_DATE";
+		String getbyinvoice = "SELECT * FROM PURCHASING WHERE INVOICE_ARRIVE_TIME BETWEEN ? AND ? ORDER BY PURCHASE_DATE";
 
 		try {
 			getStmt = conn.prepareStatement(get);
@@ -74,6 +82,10 @@ public class PurchasingRepository extends LIMSRepository implements
 			getByProjectStmt = conn.prepareStatement(getbyproject);
 			getByDepartmentStmt = conn.prepareStatement(getbydepartment);
 			getByAccountStmt = conn.prepareStatement(getbyaccount);
+			approvedStmt = conn.prepareStatement(approved);
+			deleteStmt = conn.prepareStatement(delete);
+			getByPayedStmt = conn.prepareStatement(getbypayed);
+			getByInviceStmt = conn.prepareStatement(getbyinvoice);
 		} catch (SQLException e) {
 			throw new RepositoryException(className
 					+ "SQLException caught in constructor. " + e.getMessage());
@@ -113,6 +125,7 @@ public class PurchasingRepository extends LIMSRepository implements
 			purchase.setProjectId(results.getInt("PROJECT_ID"));
 			purchase.setItemId(results.getInt("ITEM_ID"));
 			purchase.setBankId(results.getInt("BANK_ID"));
+			purchase.setIsPayed(results.getInt("ISPAYED"));
 
 			return purchase;
 		} catch (SQLException se) {
@@ -125,7 +138,7 @@ public class PurchasingRepository extends LIMSRepository implements
 					+ e.getMessage());
 		}
 	}
-	
+
 	public void closeCalls() throws RepositoryException {
 		try {
 			getStmt.close();
@@ -140,6 +153,9 @@ public class PurchasingRepository extends LIMSRepository implements
 			getByProjectStmt.close();
 			getByDepartmentStmt.close();
 			getByAccountStmt.close();
+			approvedStmt.close();
+			deleteStmt.close();
+			getByPayedStmt.close();
 		} catch (SQLException e) {
 			throw new RepositoryException(className
 					+ "Calls could not be closed. " + e.getMessage());
@@ -245,18 +261,20 @@ public class PurchasingRepository extends LIMSRepository implements
 			updStmt.setInt(12, purchase.getIsArrive());
 			updStmt.setString(13, purchase.getCommentLine());
 			updStmt.setInt(14, purchase.getIsApproved());
-	
+			updStmt.setInt(15, purchase.getIsPayed());
+
 			bogus = updStmt.execute();
 		} catch (SQLException e) {
 			throw new RepositoryException(className
 					+ "SQLException caught in method update. " + e.getMessage());
 		} catch (Exception e) {
 			throw new RepositoryException(className
-					+ "unknown error caught in method update. " + e.getMessage());
+					+ "unknown error caught in method update. "
+					+ e.getMessage());
 		}
 	}
-	
-	public Item[] getByName(String warename) throws RepositoryException{
+
+	public Item[] getByName(String warename) throws RepositoryException {
 		try {
 			ResultSet results;
 			getByNameStmt.clearParameters();
@@ -270,15 +288,16 @@ public class PurchasingRepository extends LIMSRepository implements
 			return (PurchasingBean[]) purchases.toArray(new PurchasingBean[0]);
 		} catch (SQLException e) {
 			throw new RepositoryException(className
-					+ "SQLException caught in method getByName. " + e.getMessage());
+					+ "SQLException caught in method getByName. "
+					+ e.getMessage());
 		} catch (Exception e) {
 			throw new RepositoryException(className
 					+ "Unknown error caught in method getByName. "
 					+ e.getMessage());
 		}
 	}
-	
-	public Item[] getByPerson(String person) throws RepositoryException{
+
+	public Item[] getByPerson(String person) throws RepositoryException {
 		try {
 			ResultSet results;
 			getByPersonStmt.clearParameters();
@@ -292,15 +311,17 @@ public class PurchasingRepository extends LIMSRepository implements
 			return (PurchasingBean[]) purchases.toArray(new PurchasingBean[0]);
 		} catch (SQLException e) {
 			throw new RepositoryException(className
-					+ "SQLException caught in method getByPerson. " + e.getMessage());
+					+ "SQLException caught in method getByPerson. "
+					+ e.getMessage());
 		} catch (Exception e) {
 			throw new RepositoryException(className
 					+ "Unknown error caught in method getByPerson. "
 					+ e.getMessage());
 		}
 	}
-	
-	public Item[] getByDate(Date startDate,Date endDate) throws RepositoryException{
+
+	public Item[] getByDate(Date startDate, Date endDate)
+			throws RepositoryException {
 		try {
 			ResultSet results;
 			getByDateStmt.clearParameters();
@@ -315,15 +336,16 @@ public class PurchasingRepository extends LIMSRepository implements
 			return (PurchasingBean[]) purchases.toArray(new PurchasingBean[0]);
 		} catch (SQLException e) {
 			throw new RepositoryException(className
-					+ "SQLException caught in method getByDate. " + e.getMessage());
+					+ "SQLException caught in method getByDate. "
+					+ e.getMessage());
 		} catch (Exception e) {
 			throw new RepositoryException(className
 					+ "Unknown error caught in method getByDate. "
 					+ e.getMessage());
 		}
 	}
-	
-	public Item[] getByType(int itemid) throws RepositoryException{
+
+	public Item[] getByType(int itemid) throws RepositoryException {
 		try {
 			ResultSet results;
 			getByTypeStmt.clearParameters();
@@ -337,15 +359,16 @@ public class PurchasingRepository extends LIMSRepository implements
 			return (PurchasingBean[]) purchases.toArray(new PurchasingBean[0]);
 		} catch (SQLException e) {
 			throw new RepositoryException(className
-					+ "SQLException caught in method getByType. " + e.getMessage());
+					+ "SQLException caught in method getByType. "
+					+ e.getMessage());
 		} catch (Exception e) {
 			throw new RepositoryException(className
 					+ "Unknown error caught in method getByType. "
 					+ e.getMessage());
 		}
 	}
-	
-	public Item[] getByProject(int projectid) throws RepositoryException{
+
+	public Item[] getByProject(int projectid) throws RepositoryException {
 		try {
 			ResultSet results;
 			getByProjectStmt.clearParameters();
@@ -359,15 +382,16 @@ public class PurchasingRepository extends LIMSRepository implements
 			return (PurchasingBean[]) purchases.toArray(new PurchasingBean[0]);
 		} catch (SQLException e) {
 			throw new RepositoryException(className
-					+ "SQLException caught in method getByProject. " + e.getMessage());
+					+ "SQLException caught in method getByProject. "
+					+ e.getMessage());
 		} catch (Exception e) {
 			throw new RepositoryException(className
 					+ "Unknown error caught in method getByProject. "
 					+ e.getMessage());
 		}
 	}
-	
-	public Item[] getByDepartment(int departmentid) throws RepositoryException{
+
+	public Item[] getByDepartment(int departmentid) throws RepositoryException {
 		try {
 			ResultSet results;
 			getByDepartmentStmt.clearParameters();
@@ -381,15 +405,16 @@ public class PurchasingRepository extends LIMSRepository implements
 			return (PurchasingBean[]) purchases.toArray(new PurchasingBean[0]);
 		} catch (SQLException e) {
 			throw new RepositoryException(className
-					+ "SQLException caught in method getByDepartment. " + e.getMessage());
+					+ "SQLException caught in method getByDepartment. "
+					+ e.getMessage());
 		} catch (Exception e) {
 			throw new RepositoryException(className
 					+ "Unknown error caught in method getByDepartment. "
 					+ e.getMessage());
 		}
 	}
-	
-	public Item[] getByAccount(int bankid) throws RepositoryException{
+
+	public Item[] getByAccount(int bankid) throws RepositoryException {
 		try {
 			ResultSet results;
 			getByAccountStmt.clearParameters();
@@ -403,12 +428,112 @@ public class PurchasingRepository extends LIMSRepository implements
 			return (PurchasingBean[]) purchases.toArray(new PurchasingBean[0]);
 		} catch (SQLException e) {
 			throw new RepositoryException(className
-					+ "SQLException caught in method getByAccount. " + e.getMessage());
+					+ "SQLException caught in method getByAccount. "
+					+ e.getMessage());
 		} catch (Exception e) {
 			throw new RepositoryException(className
 					+ "Unknown error caught in method getByAccount. "
 					+ e.getMessage());
 		}
 	}
-	
+
+	public void approved(int id) throws RepositoryException {
+		try {
+			approvedStmt.clearParameters();
+			approvedStmt.setInt(1, id);
+			approvedStmt.executeQuery();
+
+		} catch (SQLException e) {
+			throw new RepositoryException(className
+					+ "SQLException caught in method approved. "
+					+ e.getMessage());
+		} catch (Exception e) {
+			throw new RepositoryException(className
+					+ "Unknown error caught in method approved. "
+					+ e.getMessage());
+		}
+	}
+
+	public void delete(int id) throws RepositoryException {
+		try {
+			deleteStmt.clearParameters();
+			deleteStmt.setInt(1, id);
+			deleteStmt.executeQuery();
+
+		} catch (SQLException e) {
+			throw new RepositoryException(className
+					+ "SQLException caught in method delete. " + e.getMessage());
+		} catch (Exception e) {
+			throw new RepositoryException(className
+					+ "Unknown error caught in method delete. "
+					+ e.getMessage());
+		}
+	}
+
+	public Item[] getByPayed(int ispayed) throws RepositoryException {
+		try {
+			ResultSet results;
+			getByPayedStmt.clearParameters();
+			getByPayedStmt.setInt(1, ispayed);
+			Collection purchases = new ArrayList();
+			results = getByPayedStmt.executeQuery();
+
+			while (results.next()) {
+				purchases.add(makeBean(results));
+			}
+			return (PurchasingBean[]) purchases.toArray(new PurchasingBean[0]);
+		} catch (SQLException e) {
+			throw new RepositoryException(className
+					+ "SQLException caught in method getByPayed. "
+					+ e.getMessage());
+		} catch (Exception e) {
+			throw new RepositoryException(className
+					+ "Unknown error caught in method getByPayed. "
+					+ e.getMessage());
+		}
+	}
+
+	public Item[] getByInvoice(Date startDate, Date endDate)
+			throws RepositoryException {
+		try {
+			ResultSet results;
+			getByInviceStmt.clearParameters();
+			getByInviceStmt.setDate(1, startDate);
+			getByInviceStmt.setDate(2, endDate);
+			Collection purchases = new ArrayList();
+			results = getByInviceStmt.executeQuery();
+
+			while (results.next()) {
+				purchases.add(makeBean(results));
+			}
+			return (PurchasingBean[]) purchases.toArray(new PurchasingBean[0]);
+		} catch (SQLException e) {
+			throw new RepositoryException(className
+					+ "SQLException caught in method getByInvoice. "
+					+ e.getMessage());
+		} catch (Exception e) {
+			throw new RepositoryException(className
+					+ "Unknown error caught in method getByInvoice. "
+					+ e.getMessage());
+		}
+	}
+
+	public static void main(String[] arg) {
+
+		try {
+
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+
+			Connection cn = DriverManager
+					.getConnection("jdbc:oracle:thin:lims/limsprod@localhost:1521:DEV1");
+			new PurchasingRepository(cn).delete(61);
+		} catch (RepositoryException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

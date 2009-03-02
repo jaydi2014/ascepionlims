@@ -1,4 +1,4 @@
-<!-- 增加银行帐户 -->
+<!--　修改银行帐户 -->
 <%@ page import="com.ascepionpharm.lims.repository.core.*" %>
 <%@ page import="com.ascepionpharm.lims.entity.core.*" %>
 <%@ page import="com.ascepionpharm.lims.universal.*" %>
@@ -17,10 +17,23 @@
 <script language="JavaScript" src="<%=aspDir%>include/aspJavaScript.js"></script>
 
 <br>
-<h5>
-	<fmt:message key="addbankaccount.editbank" />
-	:
-</h5>
+<table>
+	<tr>
+		<td>
+			<h5>
+				Bank Information&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			</h5>
+		</td>
+		<td align="right">
+			<form name="myForm" action="<%=aspDir%>core/DeleteBank.jsp" 
+				method="post" onsubmit="return validateDeleteBank()">
+				<input type="hidden" name="bankId" value="<%=bank.getId()%>" />
+				<input name="submit" type="submit" value="Delete" style="color: red"/>
+			</form>
+			
+		</td>
+	</tr>
+</table>
 
 <center>
 	<form name="myForm" action="<%=mainservletUrl%>?cmd=update-bankaccount"

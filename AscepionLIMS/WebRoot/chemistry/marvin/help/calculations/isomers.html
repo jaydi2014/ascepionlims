@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+<title>Isomers</title>
+<link rel=stylesheet type="text/css" href="../marvinmanuals.css">
+</head>
+<body>
+<h1>Isomers</h1>
+
+<h2><a class="anchor" NAME="tautomer">Tautomerization Plugin</a></h2>
+<p>Tautomers are organic compounds that are interconvertible by tautomerization. 
+Tautomerization reaction results in the formal migration of a hydrogen atom or proton, 
+accompanied by a switch of a single bond and adjacent double bond. Commonly, the
+catalysts of these reactions are acids or bases. In solution a chemical equilibrium
+of the tautomers will be reached. Some types of tautomers: ketone-enol, amid-imidic 
+acid, lactam-lactim, enamine-imine.</p>
+<p>Tautomers of a compound can be determined with the help of
+the Tautomerization plugin. Following options can be adjusted in the
+<b CLASS="buttonName">Tautomers Options</b> panel:</p>
+<p>
+<table>
+	<tr>
+		<td><img src="images/tautomer_panel.png" width="294" height="496"></td>
+	</tr>
+</table>
+</p>
+<ul>
+    <li>
+        <p><b>Calculation:</b>
+        <ul>
+            <li><b>All tautomers:</b> calculates all possible tautomers.</li>
+            <li><b>Canonical tautomer:</b> calculates only the canonical tautomer of the 
+            structure.</li>
+            <li><b>Generic tautomer:</b> used for the identification of tautomers in 
+            JChem databases. calculated according to these rules:
+                <ol><li>Tautomeric regions are identified.</li>
+                    <li>All bond types in the tautomeric regions will be changed to ANY.</li>
+                    <li>Each region will be assigned a data sgroup with Sum(bonding electrons).</li>
+            </ol></li>
+            <li><b>Most stable tautomer:</b> calculates only the energetically most stable tautomer.</li>
+            <li><b>Dominant tautomer distribution:</b> displays the percentage of different tautomers present at the given pH.</li>
+    </ul> </li>
+    
+    <li>
+    <p><b>Max. number of structures:</b> maximizes the number of structures to display.</p></li>
+    <li>
+        <p><b>Decimal places:</b> setting the number of decimal places with which
+    the tautomer distirbution values are given.</p></li>
+    <li>
+        <p><b>Set max. allowed length of the tautomerization path: Path length:</b>
+    sets the number of bonds which are considered by displacing a double bond. </p></li>
+    <li>
+    <p><b>Consider pH effect:</b> takes into account the protonation states at given pH.</p></li>
+    <li>
+    <p><b>Protect aromaticity:</b> if checked (default), the aromaticity will be maintained.</p></li>
+    <li>
+    <p><b>Protect charge:</b> if checked (default), defined charged atoms maintain their charge during calculation.</p></li>
+    <li>
+        <p><b>Exclude antiaromatic compounds:</b> if checked (default), any tautomer structure having an
+    antiaromatic ring system will be discarded.</p></li> 
+    <li>
+      <p><b>Protect double bond stereo:</b> if checked, all double bonds with stereo information
+    remain intact. If unchecked (default), tautomer regions will lose the information, any other 
+    stereo information in the molecule is intact.</p></li> 
+    <li>
+        <p><b>Protect all tetrahedral stereo centers:</b> if checked, stereocenters are not 
+    included in the tautomerization.  If unchecked (default), tautomer regions will lose the information, any other 
+    stereo information in the molecule is intact.</p></li>
+    <li>
+        <p><b>Protect labeled tetrahedral stereo centers only:</b> if checked, stereocenters 
+            labeled with chiral flag or MDL Enhanced Stereo Represenation flags will 
+          not be included in tautomerization, other stereocenters will.</p></li>
+    <li>
+        <p><b>Single fragment mode:</b> if checked (default), the results are displayed in
+            separate windows, if unchecked, the calculation handles unlinked molecules together and 
+    results are in the same window. </p></li>
+</ul>
+<h3>Examples</h3>
+<ol><li><p>The following structures are the
+calculated tautomers of 4-amino-6-ethoxypyrimidin-2-ol:</p><p>
+<table cellpadding="4">
+	<tr><td>All tautomers</td> <td><img src="images/alltautomers.png" width="606" height="618" alt="alltautomers"/>
+</td></tr>
+             <tr><td>Canonical tautomer</td><td><img src="images/canonicaltautomer.png" width="240" height="289" alt="canonical_tautomer"/>
+</td></tr>
+               <tr><td>Generic tautomer</td> <td><img src="images/generictautomer.png" width="240" height="289" alt="generictautomer"/>
+</td></tr>
+                <tr><td>Most stable tautomer</td> <td><img src="images/moststabletautomer.png" width="240" height="289" alt="moststabletautomer"/>
+</td></tr>
+                 <tr><td>Dominant tautomer distribution</td>  <td><img src="images/domtautdistr.png" width="525" height="491" alt="domtautdistr"/>
+</td></tr>
+
+</table></li>
+
+<!--<li>Protect double bond stereo option preserves the stereo information on the 
+double bond in the tautomer.
+ Cis or trans specified configurations will be retained throughout the tautomerisation, and 
+
+</li> -->
+
+<h2><a class="anchor" NAME="resonance">Resonance Plugin</a></h2>
+<p>The Resonance plugin generates all resonance structures of a molecule.
+The major contributors of the resonance structures can be calculated
+separately. Following options can be adjusted in the <b CLASS="buttonName">Resonance Options</b> panel:</p>
+<p>
+<table>
+	<tr>
+		<td><img src="images/resonance_panel.png" width="234" height="161"></td>
+	</tr>
+</table>
+</p>
+<ul>
+<li>
+	<p><b>Max. number of structure:</b> maximize the number of structures to display (decrease calculation time).</p></li>
+<li>
+	<p><b>Take canonical form:</b> display the canonical structure of the molecule. </p></li>
+<li>
+	<p><b>Take major contributors:</b> select the most relevant structures.</p></li>
+<li>
+	<p><b>Single fragment mode :</b> if checked (default), the results are displayed in separate windows, if unchecked, the calculation handles unlinked molecules together and results are in the same window.</p></li>
+</ul>
+<p>For example the two structures below, on the left are the major
+resonance contributors of diazomethane, while the structure on the right is the
+canonical form:</p>
+<p>
+<table cellpadding="4">
+	<tr>
+		<td><img src="images/resonance.png" width="407" height="288"></td>
+		<td><img src="images/canonical_resonance.png" width="238" height="274"></td>
+	</tr>
+</table>
+</p>
+
+<h2><a class="anchor" NAME="stereoisomer">Stereoisomer Plugin</a></h2>
+<p>The Stereoisomer plugin produces all possible stereoisomers of a
+given compound. The plugin handles both tetrahedral and double bond
+stereo centers.</p>
+<p>
+<table>
+	<tr>
+		<td><img src="images/stereo_panel.png" width="199" height="244"></td>
+	</tr>
+</table>
+</p>
+<ul>
+    <li>
+	<p><b>Generate</b>
+        <ul>	<li><b>Tetrahedral stereo isomers:</b> only the R/S isomers are generated.</li>
+                <li><b>double bond stereo isomers:</b> only E/Z isomers are generated.</li>
+                <li><b>both:</b> both R/S and E/Z isomers are generated.</p></li>
+         </ul>
+    </li>
+<li>
+	<p><b>Generate all stereoisomers:</b> all isomers are generated</p></li> 
+<li>
+	<p><b>Generate maximum:</b> only the given number of structures are generated. </p></li>
+<li>
+	<p><b>Filter invalid 3D structures:</b> sterically restricted isomers are discarded.</p></li>
+<li>
+	<p><b>Display in 3D:</b> results are displayed in a 3D viewer. </p></li>
+</ul>         
+<p>Results are displayed in a 2D viewer by default:</p>
+<p>
+<table cellpadding="4">
+	<tr>
+		<td><img src="images/stereoisomers.png" width="717" height="493"></td>
+	</tr>
+</table>
+</p>
+<p>To replace your drawn molecule in the sketcher with any of the isomers shown, click on the structure then press "Select" at the bottom of the cells (the result window will be closed).</p>
+<p>If "Filter invalid 3D structures" option is switched on in the
+<b>Stereoisomers Options</b> panel, the stereoisomers can also be displayed in 3D.</p>
+<p>
+<table cellpadding="4">
+	<tr>
+		<td><img src="images/stereoisomers3D.png" width="706" height="580"></td>
+	</tr>
+</table>
+</p>
+<h2>References</h2>
+<ul>
+	<li>Smith, M. B.; March, J. Advanced Organic Chemistry, 5th ed., Wiley Interscience, New York, 2001; pp 1218-1223. ISBN 0471585890 </li>
+</ul>
+
+</body>
+</html>

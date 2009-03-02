@@ -31,6 +31,7 @@ public class PurchasingBean extends Item implements Serializable{
 	private int projectId;
 	private int itemId;
 	private int bankId;
+	private int isPayed;
 	
 	public int getDempartmentId() {
 		return dempartmentId;
@@ -128,6 +129,12 @@ public class PurchasingBean extends Item implements Serializable{
 	}
 	public void setTotleprice(float totleprice) {
 		this.totleprice = totleprice;
+	}
+	public int getIsPayed() {
+		return isPayed;
+	}
+	public void setIsPayed(int isPayed) {
+		this.isPayed = isPayed;
 	}
 
 }

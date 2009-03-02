@@ -53,6 +53,7 @@ public class ModifyPurchaseCommand extends LIMSCommand{
 		         purchase.setIsArrive(Integer.parseInt(req.getParameter("isArrive")));
 		         purchase.setCommentLine(req.getParameter("commentLine"));
 		         purchase.setIsApproved(Integer.parseInt(req.getParameter("isApproved")));
+		         purchase.setIsPayed(Integer.parseInt(req.getParameter("isPayed")));
 		         
 		         purchaseRepos.update(purchase);            
 

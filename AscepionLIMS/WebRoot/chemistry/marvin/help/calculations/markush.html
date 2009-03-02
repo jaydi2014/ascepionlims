@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<meta HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+<title>Markush Enumeration Plugin</title>
+<link rel=stylesheet type="text/css" href="../marvinmanuals.css">
+</head>
+<body>
+<h1>Markush Enumeration Plugin</h1>
+
+A Markush structure is a description of a compound class by generic notations,
+primarily used in patent claims and the description of combinatorial libraries.
+The library of a Markush structure is the total set of specific molecules that
+are described by the Markush structure. 
+<p>
+The Markush enumeration plugin can be used to generate a whole or a subset of
+the library of a generic Markush structure. It is also capable of calculating
+the total number of specific structures present in a Markush library. The plugin
+is accessible from the Marvin GUI (Tools->Markush Enumeration), through the
+<a href="http://www.chemaxon.com/marvin/doc/user/calc.html">cxcalc
+    command-line program</a> (See <a 
+        href="../applications/cxcalc-calculations.html#Enumerations">this
+    link</a> for the detailed usage of the plugin in command line.), via 
+    API 
+    and in the <a href="http://www.chemaxon.com/jchem/doc/user/EvaluatorTables.html#enumerationcount">
+	Chemical Terms functions in JChem</a>.
+
+<h3>Markush features</h3>
+Currently, the Markush enumeration plugin supports the following features that describe
+mostly Markush structures in combinatorial libraries:
+
+<p>
+<table cellspacing="0" cellpadding="5" id="grid">
+    <tr><th align=center>Name</th>
+        <th align=center>Description</th>
+        <th align=center>Example</th>
+        <th align=center>Example Markush library member</th>
+    </tr>
+    <tr><td align=center>R-groups</td>
+        <td align=left>R-groups (also referred to as "substituent variation")
+            are the most widely known Markush generic features. The variable
+            part of the structure is denoted by an R-atom (eg. R1), and the
+            definitions are given separately. In each definition the connection
+            points must be defined to show where the bonds of the R-atom are
+            linked. R-atoms can appear in both rings and chains and can have
+            up to two attachments points. The same R-atom can appear multiple
+            times, and the different occurrences are handled as different cases.
+            (So they can be substituted with different definitions.) R-group
+            nesting in R-group definitions is allowed to any depth, but
+            without recursion. (An R-group definition cannot use the
+            R-atom it is defining, not even through the use of other
+            embedding R-atom(s).) In Marvin and the plugin,
+            R-groups up to number R32767 can be used.</td>
+        <td align=center><img src="images/markush01.png" width="298" height="144"></td>
+        <td align=center><img src="images/markush05.png" width="107" height="151"></td>
+    </tr>
+    <tr><td align=center>Atom lists</td>
+        <td align=left>Atom lists are another example of substituent variation.
+            They define lists of atom types at a given position. There is no
+            restriction for the length of the list and for bond count of atom
+            lists.
+        </td>
+        <td align=center><img src="images/markush02.png" width="139" height="94"></td>
+        <td align=center><img src="images/markush06.png" width="99" height="83"></td>
+    </tr>
+    <tr><td align=center>Bond lists</td>
+        <td align=left>The following bond lists (generic bond types) are
+            supported by the plugin: single or double, any(single, double or
+            triple), single or aromatic, double or aromatic.</td>
+        <td align=center><img src="images/markush03.png" width="118" height="51"></td>
+        <td align=center><img src="images/markush07.png" width="126" height="48"></td>
+    </tr>
+    <tr><td align=center>Link nodes</td>
+        <td align=left>Link nodes are atoms that may repeat between two of
+            their designated bonds (called outer bonds, denoted by brackets).
+            All other substituents (if exist) repeat together with the atom.
+            In the results, the new bonds between the repeating atoms will have
+            the bond type of the lower order outer bond. 
+        </td>
+        <td align=center><img src="images/markush04.png" width="230" height="105"></td>
+        <td align=center><img src="images/markush08.png" width="234" height="101"></td>
+    </tr>
+        <tr><td align=center>Position variation bonds</td>
+            <td align=left>Position variation bonds are bonds attached to variable atoms at one or both end positions.
+	        The set of variable atoms is drawn as a multicenter group. A position variation bond connects
+		one atom from one end position to one atom from the other end position. If the end position is a single atom
+		then the bond is attached to this atom, if the end position is a multicenter group then the bond is attached 
+		to an arbitrary member of the group. 
+		<p><b>Limitations:</b> 
+		<p>
+		<ul>
+		<li>Substructure search is not yet prepared to handle the case when
+		both end positions are multicenter groups.</li>
+		<li>A multicenter end position is not allowed to contain R-atoms.</li>
+		<li>A multicenter end position is not allowed to contain another position variation bond
+		(ie, position variation bonds cannot be nested).</li>
+		</ul>
+		<p>
+		If a link node is a member of a multicenter group then the group will 
+		include the repeated atoms as well in case when the original multicenter group contains no more atoms from the
+		link fragment, otherwise the position variation bond is part of the link fragment and repeated together with the
+		link node. Although an R-atom is not allowed to take part in position variation, 
+		it can be the single-atom end position of a position variation bond, in which case its attachment point 
+		is connected to the bond. 
+            </td>
+            <td align=center><img src="images/markush14.png" width="362" height="416">
+            </td>
+            <td align=center><img src="images/markush15.png" width="360" height="417">
+            </td>
+        </tr>
+</table>
+</p>
+
+<h3>Functionality of the plugin</h3>
+The plugin allows the following functionality. Examples are given using Marvin
+GUI.
+<dl>
+<dt><b>Sequential enumeration</b></dt> <dd>Enumerates members of the Markush
+    library in a sequential manner (by substituting the first definition of
+    the first variable, etc). The results are specific structures. The plugin
+    user interface allows the enumeration of all library members, or a specified
+    number.
+    <p>
+    <img src="images/markush09.png" align="middle" width="820" height="870">
+</dd>
+<dt><b>Random enumeration</b></dt> <dd>This mode generates a random subset of the
+    Markush library to give a quick sampling. It is especially helpful for huge
+    libraries, where full enumeration is impossible. In random mode variable
+    parts are chosen randomly, and the substitution probability of each
+    definition is proportionate with the fragment library size that the given
+    definition generates. This ensures the generation of a representative
+    random subset over the Markush library space.
+    <p>
+    <img src="images/markush10.png" align="middle" width="820" height="870">
+</dd>
+<dt><b>Calculate library size</b></dt> <dd>The size of the Markush
+    library can be calculated by arbitrary precision. On the user interface,
+    the exact value is displayed until 20 digits, above that only the magnitude
+    is shown (for example, 10^28). The calculated number is the size of the
+    whole library, and does not consider the valence check filter. (See below.)
+    <p>
+    <img src="images/markush11.png" align="middle" width="820" height="870">
+</dd>
+<dt><b>Selected part enumeration</b></dt> <dd>If part of the Markush structure is
+    selected, only the generic features in the selected part are considered for
+    enumeration/calculation. This allows focusing on a particular area of the
+    Markush structure. Enumeration of selected parts only may result in
+    generating (more specific) Markush structures.
+    <p>
+    <img src="images/markush12.png" align="middle" width="820" height="870">
+</dd>
+<dt><b>Valence filter</b></dt> <dd>If the Markush structure is not properly
+    (or too generally) formulated, it is possible that it describes structures
+    with valence errors. In this case, the valence filter setting is useful to
+    filter out the offending result structures. The default value is on.
+    <p>
+    <img src="images/markush13.png" align="middle" width="930" height="975">
+</dd>
+</dl>
+<dt><b>Scaffold alignment and coloring</b></dt> <dd>Coloring the scaffold 
+(part of the structure containg no Markush features) and/or the R-groups in
+enumerated structures can help visual recognition of parts of the molecules. 
+Differentiation of the structures is aided by alignment of all structures to 
+the original scaffold. These options are available in sequential and random enumeration.
+    <p>
+    <img src="images/markush16.png" align="middle" width="900" height="975">
+</dd>
+
+
+
+
+</body>
+</html>

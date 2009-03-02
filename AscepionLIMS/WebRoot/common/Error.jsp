@@ -11,7 +11,7 @@
 			Error Page
 		</h2>
 		<br />
-		<pre><%=exception %></pre>
+		<pre><h5><%=exception %></h5></pre>
 	</body>
 </html>
 

@@ -19,6 +19,7 @@ public class AccountingItemRepository extends LIMSRepository implements
 		Destroyable, Closable {
 
 	PreparedStatement insertItem;
+	PreparedStatement DeleteByIdStmt;
 	
 	public AccountingItemRepository() throws RepositoryException {
 		this.className = "Class: AccountingItemRepository. ";
@@ -44,11 +45,13 @@ public class AccountingItemRepository extends LIMSRepository implements
 		String get = "SELECT * FROM ACCOUNTINGITEM WHERE ITEM_ID = ? ";
 		String all = "SELECT * FROM ACCOUNTINGITEM ";
 		String insertpurchaseitem = "INSERT INTO ACCOUNTINGITEM VALUES (ACCOUNTINGITEM_SEQ.NEXTVAL,?,?)";
+		String deletebyid = "DELETE FROM ACCOUNTINGITEM WHERE ITEM_ID = ? ";
 
 		try {
 			getStmt = conn.prepareStatement(get);
 			getAllStmt = conn.prepareStatement(all);
 			insertItem = conn.prepareStatement(insertpurchaseitem);
+			DeleteByIdStmt = conn.prepareStatement(deletebyid);
 		} catch (SQLException e) {
 			throw new RepositoryException(className
 					+ "SQLException caught in constructor. " + e.getMessage());
@@ -60,6 +63,7 @@ public class AccountingItemRepository extends LIMSRepository implements
 			getStmt.close();
 			getAllStmt.close();
 			insertItem.close();
+			DeleteByIdStmt.close();
 		} catch (SQLException e) {
 			throw new RepositoryException(className
 					+ "Calls could not be closed. " + e.getMessage());
@@ -171,6 +175,22 @@ public class AccountingItemRepository extends LIMSRepository implements
 		} catch (Exception e) {
 			throw new RepositoryException(className
 					+ "Unknown error caught in method insertItem. "
+					+ e.getMessage());
+		}
+	}
+	
+	public void deleteById(int id) throws RepositoryException {
+		try {
+			DeleteByIdStmt.clearParameters();
+			DeleteByIdStmt.setInt(1, id);
+			DeleteByIdStmt.executeQuery();
+
+		} catch (SQLException e) {
+			throw new RepositoryException(className
+					+ "SQLException caught in method deleteById. " + e.getMessage());
+		} catch (Exception e) {
+			throw new RepositoryException(className
+					+ "Unknown error caught in method deleteById. "
 					+ e.getMessage());
 		}
 	}

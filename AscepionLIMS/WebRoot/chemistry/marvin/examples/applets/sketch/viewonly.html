@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta NAME="author" CONTENT="Peter Csizmadia">
+<link REL ="stylesheet" TYPE="text/css" HREF="../../../marvinmanuals.css" TITLE="Style">
+<title>MarvinSketch Example - Loading a molecule in visualization mode, using magnification</title>
+</head>
+<body onLoad="links_set_search(location.search)">
+
+<h1>MarvinSketch Example - Loading a molecule in visualization mode, using magnification</h1>
+
+This molecule is loaded by the applet from a file
+named &quot;caffeine.mol&quot; which resides in the directory &quot;../../../mols-2d&quot;
+(relative to the URL of this document).
+
+<p>
+<center>
+<script LANGUAGE="JavaScript1.1" SRC="../../../marvin.js"></script>
+<script LANGUAGE="JavaScript1.1">
+<!--
+msketch_begin("../../..", 540, 480);
+msketch_param("mol", "../../../mols-2d/caffeine.mol");
+msketch_param("viewonly", "true");
+msketch_param("autoscale","true");
+msketch_param("isMyTemplatesEnabled", "true");
+msketch_end();
+//-->
+</script>
+</center>
+
+<p>
+The applet above was started in visualization (view only) mode (i.e.,
+the editing buttons cannot be seen).
+You can get into editing mode by selecting <strong>View</strong>/<strong>Toolbar</strong> in the applet.
+We have also used the <strong>autoscale</strong> parameter of the applet to fit the molecule into the window.
+
+<blockquote>
+<pre>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot; <strong>SRC</strong>=&quot;../../../<a HREF="../marvin.js.txt">marvin.js</a>&quot;<strong>&gt;</strong><strong>&lt;/script&gt;</strong>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot;<strong>&gt;</strong>
+<strong>&lt;!--</strong>
+<strong>msketch_begin(</strong>&quot;../../..&quot;<strong>,</strong> 540<strong>,</strong> 480<strong>);</strong>
+<strong>msketch_param(</strong>&quot;<a HREF="../../../help/developer/sketchman.html#parameters.mol">mol</a>&quot;<strong>,</strong> &quot;../../../mols-2d/caffeine.mol&quot;<strong>);</strong>
+<strong>msketch_param(</strong>&quot;<a HREF="../../../help/developer/sketchman.html#parameters.viewonly">viewonly</a>&quot;<strong>,</strong> &quot;true&quot;<strong>);</strong>
+<strong>msketch_param(</strong>&quot;<a HREF="../../../help/developer/sketchman.html#parameters.autoscale">autoscale</a>&quot;<strong>,</strong> &quot;true&quot;<strong>);</strong>
+<strong>msketch_end();</strong>
+<strong>//--&gt;</strong>
+<strong>&lt;/script&gt;</strong>
+</pre>
+</blockquote>
+
+Note that the initial molecule and the magnification can also be set runtime,
+with the <a HREF="../../../help/developer/applets/api/JMSketch.html#setMol(java.lang.String)"><code>setMol</code></a>
+and the <a HREF="../../../help/developer/applets/api/JMSketch.html#setScale(double)"><code>setScale</code></a>
+public methods.
+
+<p>
+<center><div class="lenia">&nbsp;</div></center>
+<p>
+Usually this simple method of loading a molecule works well enough.
+However, sometimes it is better if the applet
+does not make any network connection, for instance if the
+user's computer is off-line, and the page with the applet comes from
+the browser's cache.
+The <a HREF="inlineinput.html">next example</a> shows the solution for this situation.
+
+</body>
+</html>

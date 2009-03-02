@@ -1,8 +1,13 @@
-<!-- 主界面 -->
+
+<%@page import="com.ascepionpharm.lims.universal.FileFeeder"%><!-- 主界面 -->
 <%@ include file="/core/Permission.jsp"%>
 <%@ include file="/common/Menu.jsp"%>
 
 <center>
+	<%
+		String tempFile = System.getProperty("catalina.home") + "\\webapps\\AscepionLIMS\\Temp";
+		FileFeeder.delAllFile(tempFile);				
+ 	%>
 	<%
 	if (request.getAttribute("myMessage") != null) {
 	%>
@@ -30,6 +35,11 @@
 			<td bgcolor=white>
 				<a href="<%=servletUrl%>?cmd=choose-system&system=purchase"><fmt:message
 						key="main.purchasing" /> </a>
+			</td>
+		</tr>
+		<tr align=center>
+			<td bgcolor=white>
+				<a href="<%=servletUrl%>?cmd=choose-system&system=chemistry">Chemistry</a>
 			</td>
 		</tr>
 	</table>

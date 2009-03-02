@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta NAME="author" CONTENT="Peter Csizmadia">
+<link REL ="stylesheet" TYPE="text/css" HREF="../../../marvinmanuals.css" TITLE="Style">
+<title>MarvinView Example - Listening for events in applets</title>
+</head>
+<body>
+<h1>MarvinView Example - Listening for events in applets</h1>
+
+<p>In this example the <code>java.beans.PropertyChange</code> and
+    <code>java.awt.event.MouseEvent</code> events that are fired by the MarvinView applet
+    are logged in the text fields below the applet.</p>
+<p><center>
+</center>
+
+<p>
+<table cellspacing="5">
+    <tr>
+        <td colspan="2" align="center">
+<script LANGUAGE="JavaScript1.1" SRC="../../../marvin.js"></script>
+<script LANGUAGE="JavaScript1.1">
+<!--
+
+mview_name="MView";
+mview_mayscript="true";
+mview_begin("../../..", 400, 300);
+mview_param("mol","C1=CNC=C1");
+//mview_param("editable", 2);
+mview_param("detachable", "false");
+mview_param("listenpropertychange","true");
+mview_param("listenmouseevent","true");
+mview_end();
+
+function propertyChange(prop) {
+    var s = document.eventform.txt.value;
+    s = s + prop + "\n";
+    document.eventform.txt.value = s;
+}
+function mouseEvent(evt) {
+    var s = document.mouseform.txt.value;
+    s = s + evt + "\n";
+    document.mouseform.txt.value = s;
+}
+//-->
+
+</script>            
+        </td>
+    </tr>
+    <tr>
+        <td>Property Change Events:</td>
+        <td>Mouse Events:</td>
+    </tr>
+    <tr>
+        <td>
+            <form name="eventform">
+            <textarea name="txt" rows=10 cols=40 readonly>
+            </textarea>
+            </form>
+        </td>
+        <td>
+            <form name="mouseform">
+            <textarea name="txt" rows=10 cols=40 readonly>
+            </textarea>
+            </form>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>

@@ -22,6 +22,7 @@ public class PurchaseRequestCommand extends LIMSCommand{
 
 	public void performTask() throws CommandException {
 		PurchasingRepository purchaseRepos;
+		AccountingItemRepository itemRepos;
 
 		Closable[] closableConnections;
 		Collection connections = new ArrayList();

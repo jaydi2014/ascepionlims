@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta NAME="author" CONTENT="Judit Vasko-Szedlar">
+<link REL ="stylesheet" TYPE="text/css" HREF="../../../marvinmanuals.css" TITLE="Style">
+<title>MarvinSketch Example - GUI customization</title>
+</head>
+<body onLoad="links_set_search(location.search)">
+
+<h1>MarvinSketch Example - GUI customization</h1>
+
+<p>
+In this example the Graphical User Interface is customized to use the ISIS/Draw-like
+configuration.
+</p>
+<center>
+<script LANGUAGE="JavaScript1.1" SRC="../../../marvin.js"></script>
+<script LANGUAGE="JavaScript1.1">
+<!--
+msketch_begin("../../..", 540, 480);
+msketch_param("menuconfig", "examples/applets/configuration.xml");
+msketch_param("ttmpls10", "*Configuration1*chemaxon/marvin/templates/config1.t");
+msketch_end();
+//-->
+</script>
+</center>
+<p>
+A simple configuration file, configuration.xml is given with the
+    <a href="../../../help/developer/sketchman.html#parameters.menuconfig">menuconfig</a>
+    parameter to achieve this:</p>
+<pre>
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;customization active="config1"&gt;
+    &lt;/customization&gt;
+</pre>
+
+For more information about GUI customization please visit <a href="../../../help/sketch/gui/customization_server_side.html">this link</a>.
+
+<blockquote>
+<pre>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot; <strong>SRC</strong>=&quot;../../../<a HREF="../marvin.js.txt">marvin.js</a>&quot;<strong>&gt;</strong><strong>&lt;/script&gt;</strong>
+<strong>&lt;script LANGUAGE</strong>=&quot;JavaScript1.1&quot;<strong>&gt;</strong>
+<strong>&lt;!--</strong>
+<strong>msketch_begin(</strong>&quot;../../..&quot;<strong>,</strong> 540<strong>,</strong> 480<strong>);</strong>
+<strong>msketch_param(</strong>&quot;menuconfig&quot;<strong>,</strong> &quot;examples/applets/sketch/configuration.xml&quot;<strong>);</strong>
+<strong>msketch_param(</strong>&quot;ttmpls10&quot;<strong>,</strong> &quot;*Configuration1*chemaxon/marvin/templates/config1.t&quot;<strong>);</strong>        
+<strong>msketch_end();</strong>
+<strong>//--&gt;</strong>
+<strong>&lt;/script&gt;</strong>
+</pre>
+</blockquote>
+
+<p>
+<center><div class="lenia">&nbsp;</div></center>
+<p>
+The <a HREF="disabling.html">next example</a> shows how to
+set which atoms and bonds are allowed to draw.
+
+</body>
+</html>

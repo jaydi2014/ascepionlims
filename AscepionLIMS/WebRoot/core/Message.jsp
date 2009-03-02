@@ -1,6 +1,13 @@
 <!-- 消息页面 -->
 <%@include file="/common/Menu.jsp"%>
-<meta http-equiv="refresh" content="2;url=core/Main.jsp">
+
+<script LANGUAGE="JavaScript1.1">
+function returnToMain(){
+	location.href =  "core/Main.jsp";
+}
+</script>
+
+<meta http-equiv="refresh" content="5;url=<%=aspDir%>core/Main.jsp">
 <br />
 <br />
 <br />
@@ -14,4 +21,11 @@
 <hr />
 <br />
 <br />
-<p align="right" style="color: red">It will forward auto in 2 seconds</p>
+<p align="right" style="color: red">It will forward auto in 5 seconds</p>
+<center>
+<br />
+<br />
+<br />
+<br />
+<input type="button" name="ok" value="OK" onclick="returnToMain()">
+

@@ -19,6 +19,7 @@ public class BankAccountRepository extends LIMSRepository implements
 	
 	PreparedStatement insertBankAccount;
 	PreparedStatement updateBankAccount;
+	PreparedStatement deleteByIdStmt;
 	
 	public BankAccountRepository() throws RepositoryException {
 		this.className = "Class: BankAccountRepository. ";
@@ -45,12 +46,14 @@ public class BankAccountRepository extends LIMSRepository implements
 		String all = "SELECT * FROM BANKACCOUNT ";
 		String insertbank = "INSERT INTO BANKACCOUNT VALUES (BANKACCOUNT_SEQ.NEXTVAL,?,?,?)";
 		String updatebank = "UPDATE BANKACCOUNT SET BANK_NAME=?,ACCOUNT_NAME=?,ACCOUNT_NUMBER=? WHERE BANK_ID=?";
-
+		String deletebyid = "DELETE FROM BANKACCOUNT WHERE BANK_ID = ? ";
+		
 		try {
 			getStmt = conn.prepareStatement(get);
 			getAllStmt = conn.prepareStatement(all);
 			insertBankAccount = conn.prepareStatement(insertbank);
 			updateBankAccount = conn.prepareStatement(updatebank);
+			deleteByIdStmt = conn.prepareStatement(deletebyid);
 		} catch (SQLException e) {
 			throw new RepositoryException(className
 					+ "SQLException caught in constructor. " + e.getMessage());
@@ -63,6 +66,7 @@ public class BankAccountRepository extends LIMSRepository implements
 			getAllStmt.close();
 			insertBankAccount.close();
 			updateBankAccount.close();
+			deleteByIdStmt.close();
 		} catch (SQLException e) {
 			throw new RepositoryException(className
 					+ "Calls could not be closed. " + e.getMessage());
@@ -198,6 +202,22 @@ public class BankAccountRepository extends LIMSRepository implements
 		} catch (Exception e) {
 			throw new RepositoryException(className
 					+ "Unknown error caught in method updateBankAccounting. "
+					+ e.getMessage());
+		}
+	}
+	
+	public void deleteById(int id) throws RepositoryException {
+		try {
+			deleteByIdStmt.clearParameters();
+			deleteByIdStmt.setInt(1, id);
+			deleteByIdStmt.executeQuery();
+
+		} catch (SQLException e) {
+			throw new RepositoryException(className
+					+ "SQLException caught in method deleteById. " + e.getMessage());
+		} catch (Exception e) {
+			throw new RepositoryException(className
+					+ "Unknown error caught in method deleteById. "
 					+ e.getMessage());
 		}
 	}

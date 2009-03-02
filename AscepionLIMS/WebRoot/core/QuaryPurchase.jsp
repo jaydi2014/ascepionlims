@@ -16,7 +16,7 @@
 
 	purchase = (PurchasingBean[])request.getAttribute("purchase");
 	AccountingItemBean[] accountItems = (AccountingItemBean[]) accountingItemRepos.getAll();
-	ProjectBean[] projects = (ProjectBean[]) projectRepos.getAll();
+	ProjectBean[] projects = (ProjectBean[]) projectRepos.getAllN();
 	Item[] departments = (Item[]) departmentRepos.getAll();
 	BankAccountBean[] banks = (BankAccountBean[])bankRepos.getAll();
 
@@ -29,7 +29,7 @@
 	<tr>
 		<td width=300>
 			<br />
-			<select name="selectway" onChange="ChangePurchaseQuary();">
+			<select id="selectway" onChange="ChangePurchaseQuary();">
 				<option value="" selected>
 					--Please Select Quary Way--
 				</option>
@@ -53,6 +53,12 @@
 				</option>
 				<option value="accountname">
 					<fmt:message key="addbankaccount.accountname" />
+				</option>
+				<option value="ispayed">
+					IsPayed
+				</option>
+				<option value="invoicearrivetime">
+					<fmt:message key="purchaserequest.invoicearrivetime" />
 				</option>
 			</select>
 		</td>
@@ -189,6 +195,44 @@
 					<input name="submit" type="submit" value="submit" />
 				</form>
 			</div>
+			
+			<div id="ispayed" style="display: none">
+				<form name="qpayed"
+					action="<%=mainservletUrl%>?cmd=quary-purchase&way=ispayed"
+					method="post" onsubmit="return validatePurchaseQuaryIsPayed()">
+					IsPayed
+					:
+					<select name="payed">
+						<option value="" selected>
+							--IsPayed--
+						</option>
+						<option value="1">YES</option>
+						<option value="0">NO</option>
+					</select>
+					<input name="submit" type="submit" value="submit" />
+				</form>
+			</div>
+			
+			<div id="invoicearrivetime" style="display: none">
+				<form name="qinvoicearrivetime"
+					action="<%=mainservletUrl%>?cmd=quary-purchase&way=invoicearrivetime"
+					method="post" onsubmit="return validatePurchaseQuaryInvoiceArriveTime()">
+					<fmt:message key="purchaserequest.invoicearrivetime" />
+					:
+					<a href="javascript:show_calendar('qinvoicearrivetime.startdate');"
+						onmouseover="window.status='Date Picker';return true"
+						onmouseout="window.status='';return true;"><img border="none"
+							src="<%=aspDir%>include/images/show-calendar.gif"> </a>
+					<input name="startdate" type="text" readonly="readonly" />
+					------
+					<a href="javascript:show_calendar('qinvoicearrivetime.enddate');"
+						onmouseover="window.status='Date Picker';return true"
+						onmouseout="window.status='';return true;"><img border="none"
+							src="<%=aspDir%>include/images/show-calendar.gif"> </a>
+					<input name="enddate" type="text" readonly="readonly" />
+					<input name="submit" type="submit" value="submit" />
+				</form>
+			</div>
 		</td>
 	</tr>
 </table>
@@ -198,9 +242,6 @@
 		<center>
 	<table id="purchase" width="95%" cellspacing=0 cellpadding=4 border=1>
 		<tr bgcolor="lightgrey">
-			<th>
-				<fmt:message key="purchaserequest.purchasesid" />
-			</th>
 			<th>
 				<fmt:message key="purchaserequest.purchasename" />
 			</th>
@@ -224,10 +265,16 @@
 				<fmt:message key="purchaserequest.purchasenumber" />
 			</th>
 			<th>
-				<fmt:message key="purchaserequest.totleprice" />
+				<fmt:message key="purchaserequest.isapproved" />
 			</th>
 			<th>
-				<fmt:message key="purchaserequest.isapproved" />
+				IsPayed
+			</th>
+			<th>
+				<fmt:message key="purchaserequest.isarrive" />
+			</th>
+			<th>
+				<fmt:message key="purchaserequest.totleprice" />
 			</th>
 		</tr>
 		<%
@@ -238,14 +285,30 @@
 			String string = "core/PurchaseInfo.jsp?purchaseid=" + id;
 		%>
 		<tr>
-			<td align="center"><%=purchase[i].getId()%></td>
 			<td align="center"><a href="<%=aspDir%><%=string%>"><%=purchase[i].getPurchaseName()%></td>
 			<td><%=purchase[i].getPurchasePerson()%></td>
-			<% for (int j=0; j<accountItems.length; j++) {
-				if(purchase[i].getItemId() == accountItems[j].getId()){ %>
-				<td><%=accountItems[j].getName() %></td>
-				<% break;} %>	
-			<% } %>
+			<%
+				int flag = 0;
+					for (int j = 0; j < accountItems.length; j++) {
+						if (purchase[i].getItemId() == accountItems[j].getId()) {
+			%>
+			<td><%=accountItems[j].getName()%></td>
+
+			<%
+				flag++;
+							break;
+						}
+			%>
+			<%
+				}
+					if (flag == 0) {
+			%>
+			<td>
+				No Item
+			</td>
+			<%
+				}
+			%>
 			<% for (int j=0; j<projects.length; j++) {
 				if(purchase[i].getProjectId() == projects[j].getId()){ %>
 				<td><%=projects[j].getName() %></td>
@@ -258,7 +321,6 @@
 			<% } %>
 			<td><%=purchase[i].getPurchaseSource()%></td>
 			<td><%=purchase[i].getPurchaseNumber()%></td>
-			<td><%=purchase[i].getTotleprice()%></td>
 			<%
 			if (purchase[i].getIsApproved() == 1) {
 			%>
@@ -274,13 +336,44 @@
 			<%
 			}
 			%>
+			<%
+			if (purchase[i].getIsPayed() == 1) {
+			%>
+			<td align="center">
+				Paid
+			</td>
+			<%
+			} else {
+			%>
+			<td align="center">
+				Not Paid
+			</td>
+			<%
+			}
+			%>
+			<%
+			if (purchase[i].getIsArrive() == 1) {
+			%>
+			<td align="center">
+				Arrived
+			</td>
+			<%
+			} else {
+			%>
+			<td align="center">
+				Not Arrived
+			</td>
+			<%
+			}
+			%>
+			<td><%=purchase[i].getTotleprice()%></td>
 		</tr>
 		<%
 		}
 		%>
 		<tr>
-			<td align="right" colspan="8">Sum Price</td>
-			<td colspan="2" style="color: red">$&nbsp<%= sum %></td>
+			<td align="right" colspan="10">Sum Price</td>
+			<td colspan="2" style="color: red">RMB: <%= sum %></td>
 		</tr>
 	</table>
 	<% } %>
